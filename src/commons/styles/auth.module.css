@@ -1,0 +1,254 @@
+.content {
+  width: 90%;
+  height: 75vh;
+  margin: 0 auto 0 auto;
+  position: relative;
+}
+
+.footer {
+  width: 100%;
+  position: absolute;
+}
+
+.grid {
+  margin-top: 5%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100%;
+  grid-template-areas: "login signup";
+  grid-gap: 5%;
+}
+
+.login {
+  width: 100%;
+  height: 100%;
+  grid-area: login;
+}
+
+.login input:focus {
+  border: 1px solid #cecece;
+}
+
+.login p:first-child {
+  font-family: Arimo;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 37px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #1a1a1a;
+  margin-bottom: 5%;
+}
+
+.login input:nth-child(2) {
+  margin-bottom: 3%;
+  height: 70px;
+  border-radius: 0;
+  border: 1px solid #cecece;
+  padding-left: 5%;
+}
+
+.login input:nth-child(3) {
+  margin-bottom: 3%;
+  height: 70px;
+  border-radius: 0;
+  border: 1px solid #cecece;
+  padding-left: 5%;
+}
+
+.login button:nth-child(4) {
+  display: block;
+  border: none;
+  margin-top: 5%;
+  border-radius: 0;
+  width: 30%;
+  height: 20%;
+  background-color: #1a1a1a;
+  font-family: Arimo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: center;
+}
+
+.login .radio-container {
+  width: 100%;
+}
+
+.radio-container .radio {
+  height: 16px;
+  width: 16px;
+  border-radius: 0;
+}
+
+.radio-container label {
+  font-family: Arimo;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #4a4141;
+}
+
+.radio-container a {
+  padding-left: 2%;
+  text-decoration: none;
+  color: #d25b5b;
+  font-family: Arimo;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.signup {
+  grid-area: signup;
+  width: 100%;
+  height: 100%;
+}
+
+.signup input:nth-child(2) {
+  height: 70px;
+  border-radius: 0;
+  border: 1px solid #cecece;
+  padding-left: 5%;
+}
+
+.signup input:nth-child(3) {
+  height: 70px;
+  border-radius: 0;
+  border: 1px solid #cecece;
+  padding-left: 5%;
+}
+
+.signup input:focus {
+  border: 1px solid #cecece;
+}
+
+.signup p:first-child {
+  font-family: Arimo;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 37px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #1a1a1a;
+  margin-bottom: 5%;
+}
+
+.signup input:nth-child(2) {
+  margin-bottom: 3%;
+}
+
+.signup label {
+  font-family: Arimo;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.signup .radio {
+  width: 16px;
+  height: 16px;
+  border-radius: 0;
+}
+
+.signup button:last-child {
+  display: block;
+  margin-top: 5%;
+  border: none;
+  border-radius: 0;
+  width: 30%;
+  height: 20%;
+  background-color: #1a1a1a;
+  font-family: Arimo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: center;
+}
+
+/* TOAST */
+.toast {
+  position: fixed;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  top: 5%;
+  right: 2%;
+  width: 230px;
+  height: 60px;
+  background-color: #1a1a1a;
+  color: white;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+.toast p {
+  padding-top: 15%;
+  font-family: Arimo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: center;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    right: 0;
+    opacity: 0;
+  }
+  to {
+    right: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    right: 0;
+    opacity: 0;
+  }
+  to {
+    right: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    right: 30px;
+    opacity: 1;
+  }
+  to {
+    right: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    right: 30px;
+    opacity: 1;
+  }
+  to {
+    right: 0;
+    opacity: 0;
+  }
+}
