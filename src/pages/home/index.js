@@ -1,13 +1,35 @@
-import { Component } from "react";
-import css from "src/commons/styles/home.module.css";
 
-export default class home extends Component {
-  render() {
-    return (
+import styles from "src/commons/styles/home.module.css"
+import Main from 'src/commons/components/Main'
+
+const Home = () => {
+
+  return (
+    <Main>
+      <section className={`${styles['bg-home']}`}>
+        <h1 className={`${styles['furniture-text']}`}>Minimal Furniture Store</h1>
+
+        <p className={`${styles['text']}`} style={{
+          position: 'relative',
+          fontFamily: 'Arimo',
+          fontStyle: 'normal',
+          fontWeight: 'normal',
+          fontSize: '16px',
+          lineHeight: '37px',
+          textAlign: 'center',
+          // color: '#4D4D4D',
+          // width: '50%'
+        }}>
+          Donec nunc nunc, gravida vitae diam vel, varius interdum erat.
+          Quisque a nunc vel diam auctor commodo.
+          Curabitur blandit ultrices ex. Curabitur ut magna dignissim, dignissim
+        </p>
+      </section>
       <div>
-        <p className={css.text}>hayolo</p>
-        <p className={css.test}>Arimo</p>
+        <p className={`${styles['text']}`}>dsadasdas</p>
       </div>
-    );
-  }
+    </Main>
+  )
 }
+
+export default Home
