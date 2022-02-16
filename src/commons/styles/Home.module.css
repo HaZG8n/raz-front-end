@@ -1,15 +1,28 @@
-.test {
-  text-align: center;
-  font-size: large;
-  padding-top: 10%;
-  font-weight: 700;
-  font-family: "Arimo";
+.bg-home{
+  background-image: url('../../assets/img/bg-home.webp');
+  background-size: cover;
+  height: 763px;
+  width: auto;
+
+  background-position: center;
+  padding: 0;
 }
 
-.text {
-  padding-top: 5%;
-  font-size: large;
-  text-align: center;
-  font-weight: 700;
-  font-family: Arial, Helvetica, sans-serif;
+.furniture-text{
+  position: relative;
+  font-family: 'Arimo';
+  font-style: 'normal';
+  font-weight: 'normal';
+  font-size: '76px';
+  line-height: '87px';
+  text-align: 'center';
+  color: yellow;
+  top: calc(50% - 87px/2 - 139.5px);
+}
+
+.text{
+width: 523px;
+background-color: aquamarine;
+/* color: aqua !important; */
+/* color: ; */
 }
