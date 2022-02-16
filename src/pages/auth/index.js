@@ -24,6 +24,8 @@ class index extends Component {
       role: "",
       isLogin: false,
       isSignUp: false,
+      loginErr: false,
+      signupErr: false,
     };
   }
 
@@ -42,7 +44,9 @@ class index extends Component {
     };
     login(body)
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data.data);
+        const token = res.data.data;
+        this.props.setAuth(token);
         setTimeout(() => {
           this.setState({ isLogin: !this.state.isLogin });
           console.log(this.state.isLogin);
@@ -50,17 +54,21 @@ class index extends Component {
         setTimeout(() => {
           this.setState({ isLogin: !this.state.isLogin });
           console.log(this.state.isLogin);
+          //   this.props.router.push("/home");
         }, 3450);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err, "ERROR");
+        this.setState({ loginErr: !this.state.loginErr }, () => {
+          console.log(this.state.loginErr);
+        });
       });
   };
 
   signup = () => {
     const body = {
       email: this.state.emailSignup,
-      password: this.state.emailSignup,
+      password: this.state.passwordSignup,
       role: this.state.role,
     };
     CreateAccount(body)
@@ -73,10 +81,34 @@ class index extends Component {
         setTimeout(() => {
           this.setState({ isSignUp: !this.state.isSignUp });
           console.log(this.state.isSignUp);
+          const data = {
+            email: this.state.emailSignup,
+            password: this.state.passwordSignup,
+          };
+          login(data)
+            .then((result) => {
+              const token = result.data.data;
+              this.props.setAuth(token);
+              setTimeout(() => {
+                this.setState({ isLogin: !this.state.isLogin });
+                console.log(this.state.isLogin);
+              }, 500);
+              setTimeout(() => {
+                this.setState({ isLogin: !this.state.isLogin });
+                console.log(this.state.isLogin);
+                this.props.router.push("/home");
+              }, 3450);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         }, 3450);
       })
       .catch((err) => {
         console.log(err);
+        this.setState({ signupErr: !this.state.signupErr }, () => {
+          console.log(this.state.signupErr);
+        });
       });
   };
 
@@ -90,8 +122,16 @@ class index extends Component {
             <div className={css.grid}>
               <div className={css.login}>
                 <p>Login</p>
-                <input className="form-control shadow-none" type="email" placeholder="User name or email address *" name="emailLogin" onChange={this.formChange} aria-label="default input example" />
-                <input className="form-control shadow-none" type="password" name="passwordLogin" onChange={this.formChange} placeholder="Password *" aria-label="default input example" />
+                <input
+                  className={`form-control shadow-none ${this.state.loginErr ? css.error : null}`}
+                  type="email"
+                  placeholder="User name or email address *"
+                  name="emailLogin"
+                  onChange={this.formChange}
+                  aria-label="default input example"
+                />
+                <input className={`form-control shadow-none ${this.state.loginErr ? css.error : null}`} type="password" name="passwordLogin" onChange={this.formChange} placeholder="Password *" aria-label="default input example" />
+                <p hidden={!this.state.loginErr}>Wrong Password or email</p>
                 <button onClick={this.Login} className="btn btn-secondary">
                   Login
                 </button>
@@ -105,8 +145,8 @@ class index extends Component {
               </div>
               <div className={css.signup}>
                 <p>Create Account</p>
-                <input className="form-control shadow-none" type="email" name="emailSignup" onChange={this.formChange} placeholder="Email Address *" aria-label="default input example" />
-                <input className="form-control shadow-none" type="password" name="passwordSignup" onChange={this.formChange} placeholder="Password *" aria-label="default input example" />
+                <input className={`form-control shadow-none ${this.state.signupErr ? css.error : null}`} type="email" name="emailSignup" onChange={this.formChange} placeholder="Email Address *" aria-label="default input example" />
+                <input className={`form-control shadow-none ${this.state.signupErr ? css.error : null}`} type="password" name="passwordSignup" onChange={this.formChange} placeholder="Password *" aria-label="default input example" />
                 <div className="form-check form-check-inline">
                   <input className={`form-check-input ${css.radio}`} type="checkbox" id="inlineCheckbox1" value="user" name="role" onChange={this.formChange} />
                   <label className="form-check-label">I`m Costumer</label>
@@ -115,6 +155,7 @@ class index extends Component {
                   <input className={`form-check-input ${css.radio}`} name="role" type="checkbox" id="inlineCheckbox2" value="seller" onChange={this.formChange} />
                   <label className="form-check-label">I`m Seller</label>
                 </div>
+                <p hidden={!this.state.signupErr}>Sign Up Error,please try again</p>
                 <button onClick={this.signup} className="btn btn-secondary">
                   Register
                 </button>
