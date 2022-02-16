@@ -1,0 +1,111 @@
+/* Checkout */
+.form-checkout {
+  width: 35%;
+}
+.visa {
+  background-image: url("../../assets/svg/logos_visa.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 20%;
+  background-color: transparent;
+}
+.btn-checkout {
+  background-color: #1a1a1a;
+  color: white;
+  font-family: "Arimo";
+  font-size: calc(15px + 0.2vw);
+  width: 30%;
+}
+.btn-checkout:hover,
+.btn-cart:hover {
+  color: white;
+}
+
+/* Cart */
+.title {
+  font-family: "Arimo";
+  color: #8d8d8d;
+  text-align: center;
+}
+.remove {
+  width: 25px;
+  height: 25px;
+}
+.img-product {
+  width: 120px;
+  height: 120px;
+}
+.price {
+  margin-top: 87px;
+}
+.counter {
+  background-color: #e9e9e9;
+  width: 20px;
+  border-radius: 6px;
+}
+.counter:hover {
+  cursor: pointer;
+}
+.radio-btn {
+  margin-left: 52%;
+  margin-top: -3%;
+  text-align: right;
+}
+.bg-cart {
+  background-color: #f9f9f9;
+  font-family: "Arimo";
+}
+.btn-cart {
+  background-color: #1a1a1a;
+  color: white;
+  font-size: calc(15px + 0.2vw);
+}
+.product {
+    margin-top: 18%;
+}
+
+@media (min-width: 1440px) {
+  .radio-btn {
+    margin-left: 56%;
+  }
+}
+@media (max-width: 1024px) {
+  .radio-btn {
+    margin-left: 31%;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-checkout {
+    width: 50%;
+  }
+  .product-name {
+    padding-left: 15%;
+  }
+  .radio-btn {
+    margin-top: -2%;
+    margin-left: 72.7%;
+  }
+}
+@media (max-width: 425px) {
+  .form-checkout {
+    width: 90%;
+  }
+  .btn-checkout {
+    width: 100%;
+  }
+  .radio-btn {
+    margin-left: 40%;
+  }
+  .price {
+    margin-top: 15px;
+    margin-bottom: 30px;
+  }
+  .product {
+      margin-left: 15%;
+      margin-top: 0;
+  }
+  .product-name {
+    text-align: center;
+  }
+}

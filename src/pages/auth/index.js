@@ -13,7 +13,7 @@ import { loginAction, saveAction } from "src/redux/actions/auth";
 // MODULE
 import { login, SignUp as CreateAccount, GetUserProfile } from "src/commons/module/auth/index";
 
-class index extends Component {
+class Auth extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -206,11 +206,11 @@ class index extends Component {
   }
 }
 
-const mapDispatchToPropps = (dispacth) => {
+const mapDispatchToProps = (dispacth) => {
   return {
     setUsers: bindActionCreators(saveAction, dispacth),
     setAuth: bindActionCreators(loginAction, dispacth),
   };
 };
 
-export default withRouter(connect(null, mapDispatchToPropps)(index));
+export default withRouter(connect(null, mapDispatchToProps)(Auth));
