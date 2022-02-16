@@ -9,3 +9,8 @@ export const SignUp = (body) => {
   const URL = `${process.env.NEXT_PUBLIC_HOST}auth/signup`;
   return axios.post(URL, body);
 };
+
+export const GetUserProfile = (token) => {
+  const URL = `${process.env.NEXT_PUBLIC_HOST}user/profile `;
+  return axios.get(URL, { headers: { "x-access-token": token } });
+};

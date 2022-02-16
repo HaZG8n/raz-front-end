@@ -11,7 +11,7 @@ import { bindActionCreators } from "redux";
 import { loginAction, saveAction } from "src/redux/actions/auth";
 
 // MODULE
-import { login, SignUp as CreateAccount } from "src/commons/module/auth/index";
+import { login, SignUp as CreateAccount, GetUserProfile } from "src/commons/module/auth/index";
 
 class index extends Component {
   constructor(props) {
@@ -44,24 +44,32 @@ class index extends Component {
     };
     login(body)
       .then((res) => {
-        console.log(res.data.data);
         const token = res.data.data;
         this.props.setAuth(token);
-        setTimeout(() => {
-          this.setState({ isLogin: !this.state.isLogin });
-          console.log(this.state.isLogin);
-        }, 500);
-        setTimeout(() => {
-          this.setState({ isLogin: !this.state.isLogin });
-          console.log(this.state.isLogin);
-          //   this.props.router.push("/home");
-        }, 3450);
+        GetUserProfile(token)
+          .then((result) => {
+            console.log("USER DATA", result.data.data);
+            const data = result.data.data;
+            this.props.setUsers(data);
+            setTimeout(() => {
+              this.setState({ isLogin: !this.state.isLogin });
+              console.log(this.state.isLogin);
+            }, 500);
+            setTimeout(() => {
+              this.setState({ isLogin: !this.state.isLogin });
+              console.log(this.state.isLogin);
+              this.props.router.push("/home");
+            }, 3450);
+          })
+          .catch((error) => {
+            console.log(error);
+            this.setState({ loginErr: !this.state.loginErr }, () => {
+              console.log(this.state.loginErr);
+            });
+          });
       })
       .catch((err) => {
-        console.log(err, "ERROR");
-        this.setState({ loginErr: !this.state.loginErr }, () => {
-          console.log(this.state.loginErr);
-        });
+        console.log(err);
       });
   };
 
@@ -89,6 +97,26 @@ class index extends Component {
             .then((result) => {
               const token = result.data.data;
               this.props.setAuth(token);
+              GetUserProfile(token)
+                .then((ress) => {
+                  console.log("USER DATA", ress.data.data);
+                  const data = result.data.data;
+                  this.props.setUsers(data);
+                  setTimeout(() => {
+                    this.setState({ isLogin: !this.state.isLogin });
+                    console.log(this.state.isLogin);
+                  }, 500);
+                  setTimeout(() => {
+                    this.setState({ isLogin: !this.state.isLogin });
+                    console.log(this.state.isLogin);
+                  }, 3450);
+                })
+                .catch((errorr) => {
+                  console.log(errorr);
+                  this.setState({ loginErr: !this.state.loginErr }, () => {
+                    console.log(this.state.loginErr);
+                  });
+                });
               setTimeout(() => {
                 this.setState({ isLogin: !this.state.isLogin });
                 console.log(this.state.isLogin);
