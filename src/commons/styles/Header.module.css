@@ -9,3 +9,94 @@
 
     color: #1A1A1A;
 }
+
+.menu-nav{
+    font-family: Arimo;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+
+    color: #1A1A1A;
+
+    cursor: pointer;
+}
+
+.submenu{
+    font-family: Arimo;
+    font-style: normal;
+    font-weight: normal;
+    /* font-size: 18px;
+    line-height: 57px; */
+
+    color: #919191;
+
+    cursor: pointer;
+}
+
+.submenu:hover{
+    background: none;
+    color: #fff;
+}
+
+.other-page-text{
+    font-family: Arimo;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 18px;
+    
+    color: #FFFFFF;
+}
+
+.other-page-text:hover{
+    background: none;
+
+    color: #FFFFFF;
+}
+
+.hamburger-menu{
+    position: relative;
+}
+
+.line-up{
+    position: absolute;
+
+    width: 22px;
+    height: 4px;
+    /* left: 92.92%;
+    right: 5.56%; */
+    /* top: 3.59%; */
+    /* bottom: 96.2%; */
+    /* right: 48px; */
+    left: 20px;
+    background: #1A1A1A;
+}
+
+.line-center{
+    position: absolute;
+    width: 44px;
+    height: 4px;
+
+    /* top: 33px; */
+    top: 8px;
+    background: #1A1A1A;
+}
+
+.line-down{
+    position: absolute;
+    width: 22px;
+    height: 4px;
+
+    /* top: 43px; */
+    /* top: 2px; */
+    top: 16px;
+    background: #1A1A1A;
+}
+
+@media(min-width:1024px){
+    .other-submenu{
+        position: relative;
+        top: 4px;
+    }
+}
