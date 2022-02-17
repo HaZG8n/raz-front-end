@@ -33,14 +33,68 @@
     top: 84px;
 }
 
-.menu-profile{
+.menu-profile-text{
     font-family: Arimo;
     font-style: normal;
     font-weight: normal;
-    font-size: 32px;
-    line-height: 37px;
-    /* identical to box height */
+    font-size: 12px;
+
+    cursor: pointer;
+}
 
 
+
+.line{
+    position: absolute;
+    height: 2px;
+    width: 5%;
+    border-radius: 0px;
+
+    background: #C2C2C2;
+
+    animation-name: line-effect;
+    animation-duration: 1s;
+}
+
+.dropdown-profile{
+    background-color: aqua;
+    width: 80%;
+}
+
+
+@keyframes line-effect{
+    from {width: 0;}
+    to {width: 6%;}
+}
+
+/* tablet */
+@media(min-width:768px){
+    .menu-profile-text{
+        font-size: 22px;
+        line-height: 37px;
+    }
+}
+
+/* laptop M */
+@media (min-width:1200px){
+    .line{
+        width: 3%;
+    }
+    @keyframes line-effect{
+        from {width: 0;}
+        to {width: 3%;}
+    }
+}
+
+.on{
+    color: #1A1A1A;
+    animation-name: on-effect;
+    animation-duration: 1s;
+}
+@keyframes on-effect{
+    from {color: #B4B4B4;}
+    to {color: #1A1A1A;}
+}
+.off{
     color: #B4B4B4;
 }

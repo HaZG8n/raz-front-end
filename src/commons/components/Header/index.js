@@ -3,10 +3,20 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import search from 'src/assets/svg/search.svg'
+import searchWhite from 'src/assets/svg/search-white.svg'
 import wishlist from 'src/assets/svg/wishlist.svg'
 import cart from 'src/assets/svg/cart.svg'
 
+import { useSelector } from 'react-redux'
+import { useState } from 'react'
+
 const Header = () => {
+    const [showSearch, setShowSearch] = useState(false)
+
+    console.log(showSearch)
+    // const state = useSelector((state) => state)
+    // const { token } = state.auth
+    // console.log(token)
     return (
         <>
             <header className='navbar navbar-expand-lg navbar-light' style={{ backgroundColor: 'transparent' }}>
@@ -31,7 +41,9 @@ const Header = () => {
                                     <li><p className={`dropdown-item ${styles['submenu']}`}>About Us</p></li>
                                     <li><p className={`dropdown-item ${styles['submenu']}`}>Contact Us</p></li>
                                     <li><p className={`dropdown-item ${styles['submenu']}`}>Coming Soon</p></li>
-                                    <li><p className={`dropdown-item ${styles['submenu']}`}>404 Page</p></li>
+                                    <Link href='/404' passHref>
+                                        <li><p className={`dropdown-item ${styles['submenu']}`}>404 Page</p></li>
+                                    </Link>
                                     <li><p className={`dropdown-item ${styles['submenu']}`}>FAQ page</p></li>
                                 </ul>
                             </li>
@@ -43,7 +55,9 @@ const Header = () => {
                                     <di className={`${styles['other-submenu']}`}>
                                         <li><p className={`dropdown-item ${styles['submenu']}`}>Shopping Cart</p></li>
                                         <li><p className={`dropdown-item ${styles['submenu']}`}>Check Out</p></li>
-                                        <li><p className={`dropdown-item ${styles['submenu']}`}>My Account</p></li>
+                                        <Link href='/profile' passHref>
+                                            <li><p className={`dropdown-item ${styles['submenu']}`}>My Account</p></li>
+                                        </Link>
                                         <li><p className={`dropdown-item ${styles['submenu']}`}>Order Tracking</p></li>
                                     </di>
                                 </ul>
@@ -56,7 +70,7 @@ const Header = () => {
 
                         <div className='row'>
                             <div className='col'>
-                                <div className={styles['logo']}>
+                                <div className={styles['logo']} onClick={() => setShowSearch(!showSearch)}>
                                     <Image src={search} alt='avatar' />
                                 </div>
                             </div>
@@ -78,10 +92,22 @@ const Header = () => {
                                 </div>
                             </div>
                         </div>
-
                     </section>
                 </nav>
             </header>
+            {
+                showSearch ? (
+                    <>
+                        <div className={`${styles['search-box']}`}>
+                            <input className={`${styles['animated-input-in']}`} />
+                            <div className={styles['logo-input']}>
+                                <Image src={searchWhite} alt='avatar' />
+                            </div>
+                        </div>
+                    </>
+                ) :
+                    <></>
+            }
         </>
     )
 }
