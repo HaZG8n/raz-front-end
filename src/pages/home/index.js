@@ -7,7 +7,7 @@ import Image from 'next/image'
 
 import sofa from "src/assets/img/sofa.png"
 import lamp from "src/assets/img/lamp.png"
-import chair from "src/assets/img/chair.png"
+import chair from "src/assets/img/chair-home.png"
 import ceramic from "src/assets/img/ceramic.png"
 import plate from "src/assets/img/plate.png"
 import modernLamp from "src/assets/img/modern-lamp.png"
