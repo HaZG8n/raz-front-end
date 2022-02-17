@@ -1,0 +1,46 @@
+.bg-menu{
+    background-color: #fafafa;
+    height: 250px;
+    width: auto;
+
+}
+
+.profile-text{
+    position: relative;
+    font-family: Arimo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 56px;
+    line-height: 64px;
+    text-align: center;
+
+    color: #1A1A1A;
+
+    top: 74px;
+}
+
+.see-notification-text{
+    position: relative;
+    font-family: Arimo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 18px;
+    text-align: center;
+
+    color: #1A1A1A;
+
+    top: 84px;
+}
+
+.menu-profile{
+    font-family: Arimo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 32px;
+    line-height: 37px;
+    /* identical to box height */
+
+
+    color: #B4B4B4;
+}

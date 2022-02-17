@@ -1,5 +1,6 @@
 import styles from 'src/commons/styles/Header.module.css'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import search from 'src/assets/svg/search.svg'
 import wishlist from 'src/assets/svg/wishlist.svg'
@@ -19,7 +20,9 @@ const Header = () => {
                         <ul className='nav navbar-nav mx-auto'>
 
                             <li className='nav-item'>
-                                <p className={`nav-link active ${styles['menu-nav']}`} aria-current="page">Home</p>
+                                <Link href='/home' passHref>
+                                    <p className={`nav-link active ${styles['menu-nav']}`} aria-current="page">Home</p>
+                                </Link>
                             </li>
 
                             <li className='nav-item dropdown'>
