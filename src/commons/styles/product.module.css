@@ -90,6 +90,7 @@
 
 .paginasi {
   margin-left: 2.5%;
+  margin-top: 5%;
 }
 
 .paginasi ul {
@@ -109,6 +110,8 @@
 }
 
 .paginasi a {
+  text-decoration: none;
+  align-items: center;
   color: black;
   height: 49px;
   width: 49px;
