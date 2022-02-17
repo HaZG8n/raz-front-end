@@ -1,7 +1,14 @@
 import Main from 'src/commons/components/Main'
 import styles from 'src/commons/styles/MenuProfile.module.css'
 
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import Link from 'next/link'
+
 const MenuProfile = ({ children }) => {
+    const [dropdown, setDropdown] = useState(false)
+    const router = useRouter()
+    const { pathname } = router
     return (
         <>
             <Main>
@@ -12,24 +19,51 @@ const MenuProfile = ({ children }) => {
 
                 <section className='container'>
                     <div className='row'>
-                        <div className='col-sm'>
-                            <h3 className={`${styles['menu-profile']}`}>Profile</h3>
+                        <div className='col'>
+                            <Link href='/profile' passHref>
+                                <h3 className={pathname == '/profile' ?
+                                    `${styles['menu-profile-text']} ${styles['on']}` :
+                                    `${styles['menu-profile-text']} ${styles['off']}`
+                                }>Profile</h3>
+                            </Link>
+                            <span className={pathname == '/test' ? `${styles['line']}` : ''}></span>
+                        </div>
+                        <div className='col' onClick={() => setDropdown(!dropdown)}>
+                            <h3 className={dropdown ? `${styles['menu-profile-text']} ${styles['on']}` : `${styles['menu-profile-text']} ${styles['off']}`}>My Product</h3>
+                            <span className={dropdown ? `${styles['line']}` : ''}></span>
+                            {dropdown ? (
+                                <>
+                                    <div className={`${styles['dropdown-profile']}`}>
+                                        <ul>
+                                            <li><p>View All</p></li>
+                                        </ul>
+                                    </div>
+                                </>
+                            ) : (
+                                <>
+                                </>
+                            )}
                         </div>
                         <div className='col'>
-                            <h3>My Product</h3>
+                            <h3 className={pathname == '/pageTestProfileMenu' ?
+                                `${styles['menu-profile-text']} ${styles['on']}` :
+                                `${styles['menu-profile-text']} ${styles['off']}`
+                            }>Selling Product</h3>
+                            <span className={pathname == '/pageTestProfileMenu' ? `${styles['line']}` : ''}></span>
                         </div>
                         <div className='col'>
-                            <h3>Selling Product</h3>
-                        </div>
-                        <div className='col'>
-                            <h3>My Order</h3>
+                            <h3 className={pathname == '/profile' ?
+                                `${styles['menu-profile-text']} ${styles['on']}` :
+                                `${styles['menu-profile-text']} ${styles['off']}`
+                            }>My Order</h3>
+                            <span className={pathname == '/test' ? `${styles['line']}` : ''}></span>
                         </div>
                     </div>
                 </section>
 
-                <div>
-
-                </div>
+                <section className='container'>
+                    {children}
+                </section>
             </Main>
         </>
     )
