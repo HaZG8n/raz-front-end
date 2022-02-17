@@ -27,9 +27,9 @@ const MenuProfile = ({ children }) => {
                     </div>
                 </section>
 
-                <di>
+                <div>
 
-                </di>
+                </div>
             </Main>
         </>
     )

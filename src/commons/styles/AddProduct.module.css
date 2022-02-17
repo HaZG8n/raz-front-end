@@ -1,0 +1,54 @@
+.main {
+  font-family: "Arimo";
+}
+.form {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto 0 auto;
+}
+.checkbox {
+  width: 21px;
+  height: 21px;
+  border-radius: 0;
+}
+
+.colors .input {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: none;
+}
+
+.colors .input:first-child {
+  background-color: #a17f25;
+}
+
+.colors .input:nth-child(2) {
+  background-color: #6b8fbe;
+}
+.colors .input:nth-child(3) {
+  background-color: #49453d;
+}
+.colors .input:nth-child(4) {
+  background-color: #504e86;
+}
+.colors .input:nth-child(5) {
+  background-color: #4e8651;
+}
+.colors .input:nth-child(6) {
+  background-color: #eea437;
+}
+.img-wrapper {
+  width: 200px;
+  height: 200px;
+}
+.btn-sell {
+  background-color: #1a1a1a;
+  color: white;
+  font-family: "Arimo";
+  font-size: calc(15px + 0.2vw);
+  width: 30%;
+  border-radius: 0;
+}
