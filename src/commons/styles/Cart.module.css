@@ -67,16 +67,16 @@
 
 
 
-@media (min-width: 1440px) {
+/* @media (min-width: 1440px) {
   .radio-btn {
-    /* margin-left: 56%; */
+    margin-left: 56%;
   }
 }
 @media (max-width: 1024px) {
   .radio-btn {
-    /* margin-left: 31%; */
+    margin-left: 31%;
   }
-}
+} */
 
 @media (max-width: 768px) {
   .form-checkout {
@@ -85,10 +85,10 @@
   .product-name {
     padding-left: 15%;
   }
-  .radio-btn {
-    /* margin-top: -2%;
-    margin-left: 72.7%; */
-  }
+  /* .radio-btn {
+    margin-top: -2%;
+    margin-left: 72.7%;
+  } */
 }
 @media (max-width: 425px) {
   .form-checkout {
@@ -97,9 +97,9 @@
   .btn-checkout {
     width: 100%;
   }
-  .radio-btn {
-    /* margin-left: 40%; */
-  }
+  /* .radio-btn {
+    margin-left: 40%;
+  } */
   .price {
     margin-top: 15px;
     margin-bottom: 30px;
