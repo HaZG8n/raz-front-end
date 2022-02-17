@@ -4,7 +4,7 @@ import Main from "src/commons/components/Main";
 import Layout from "src/commons/components/Layout";
 import Banner from "src/commons/components/Banner";
 import css from "src/commons/styles/AddProduct.module.css";
-import product from "src/assets/svg/add-product.svg"
+import product from "src/assets/svg/add-product.svg";
 
 function AddProduct() {
   return (
@@ -28,6 +28,20 @@ function AddProduct() {
                 placeholder="Description Product *"
                 className="mb-4 ps-4 pb-5 pt-4 form-control shadow-none"
               />
+              <div className="input-group mt-3 mb-4">
+                <select
+                  id="brands"
+                  name="brands"
+                  className={`form-select py-4 ps-4 shadow-none ${css["select-brands"]}`}
+                >
+                  <option value="" disable="true" hidden>Brands *</option>
+                  <option value="ikea">IKEA</option>
+                  <option value="my-royal">My Royal</option>
+                  <option value="sweet-house">Sweet House</option>
+                  <option value="north-oxford">North Oxford</option>
+                  <option value="poppin">Mr.Poppin 1929</option>
+                </select>
+              </div>
               <div className="d-flex justify-content-between">
                 <div className="form-check mb-2">
                   <input
@@ -149,7 +163,9 @@ function AddProduct() {
                 <Image src={product} alt="product" />
               </div>
             </section>
-            <button className={`btn shadow-none mb-5 py-3 ${css["btn-sell"]}`}>Sell Product</button>
+            <button className={`btn shadow-none mb-5 py-3 ${css["btn-sell"]}`}>
+              Sell Product
+            </button>
           </form>
         </div>
       </Main>
