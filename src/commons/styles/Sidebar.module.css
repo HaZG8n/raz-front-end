@@ -1,0 +1,61 @@
+.wrapper {
+  margin-left: 5%;
+  width: 15%;
+  height: 100vh;
+  background-color: antiquewhite;
+}
+
+.category {
+  color: #1a1a1a;
+}
+
+.category:first-child {
+  font-family: Arimo;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+  text-align: left;
+}
+
+.category ul {
+  padding-left: 0;
+}
+
+.category li {
+  width: 100%;
+  list-style-type: none;
+  font-family: Arimo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 48px;
+  letter-spacing: 0px;
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+}
+
+.category li p {
+  width: 90%;
+  padding-left: 5%;
+  text-align: end;
+}
+
+.price p:first-child {
+  font-family: Arimo;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.price button {
+  border-radius: 0;
+  margin-top: 5%;
+  height: 50px;
+  width: 50%;
+  background-color: #1a1a1a;
+}
