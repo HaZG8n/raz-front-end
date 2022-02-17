@@ -1,98 +1,89 @@
-.brand-text {
+.brand-text{
   font-family: Arimo;
   font-style: normal;
   font-weight: bold;
   font-size: 45.12px;
   line-height: 52px;
+
   text-align: center;
-  margin-left: 5%;
-  color: #0e0d0d;
+
+  color: #1A1A1A;
 }
 
-.wrapper li {
-  padding-top: 5%;
-}
-
-.icons {
-  display: flex;
-  justify-content: end;
-  margin-right: 5%;
-}
-
-.menu-nav {
+.menu-nav{
   font-family: Arimo;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
   line-height: 21px;
 
-  color: #1a1a1a;
+  color: #1A1A1A;
 
   cursor: pointer;
 }
 
-.submenu {
+.submenu{
   font-family: Arimo;
   font-style: normal;
   font-weight: normal;
   /* font-size: 18px;
-    line-height: 57px; */
+  line-height: 57px; */
 
   color: #919191;
 
   cursor: pointer;
 }
 
-.submenu:hover {
+.submenu:hover{
   background: none;
   color: #fff;
 }
 
-.other-page-text {
+.other-page-text{
   font-family: Arimo;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
   line-height: 18px;
-
-  color: #ffffff;
+  
+  color: #FFFFFF;
 }
 
-.other-page-text:hover {
+.other-page-text:hover{
   background: none;
 
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
-.hamburger-menu {
+.hamburger-menu{
   position: relative;
 }
 
-.line-up {
+.line-up{
   position: absolute;
 
   width: 22px;
   height: 4px;
   /* left: 92.92%;
-    right: 5.56%; */
+  right: 5.56%; */
   /* top: 3.59%; */
   /* bottom: 96.2%; */
   /* right: 48px; */
   left: 20px;
-  background: #1a1a1a;
+  background: #1A1A1A;
 }
 
-.line-center {
+.line-center{
   position: absolute;
   width: 44px;
   height: 4px;
 
   /* top: 33px; */
   top: 8px;
-  background: #1a1a1a;
+  background: #1A1A1A;
 }
 
-.line-down {
+.line-down{
   position: absolute;
   width: 22px;
   height: 4px;
@@ -100,71 +91,65 @@
   /* top: 43px; */
   /* top: 2px; */
   top: 16px;
-  background: #1a1a1a;
+  background: #1A1A1A;
 }
 
 .search-box{
-    /* width: 100%; */
-    text-align: center;
-    margin-bottom: 23px;
+  /* width: 100%; */
+  text-align: center;
+  margin-bottom: 23px;
 }
 
 .animated-input-in{
-    width: 90%;
-    animation-name: animasi-in;
-    animation-duration: 2s;
-    background-color: #1A1A1A;
-    
-    font-family: Arimo;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 37px;
+  width: 90%;
+  animation-name: animasi-in;
+  animation-duration: 2s;
+  background-color: #1A1A1A;
+  
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 37px;
 
 
-    color: #FFFFFF;
-    padding: 12px;
+  color: #FFFFFF;
+  padding: 12px;
 }
 @keyframes animasi-in{
-    from {width: 0;}
-    to {width: 90%;}
+  from {width: 0;}
+  to {width: 90%;}
 }
 
 .logo-input{
-    position: relative;
-    /* background-color: #919191; */
-    width: 10%;
-    /* margin-left: 223px; */
+  position: relative;
+  /* background-color: #919191; */
+  width: 10%;
+  /* margin-left: 223px; */
 
-    left: 80%;
-    bottom: 45px;
-    animation-name: search;
-    animation-duration: 4s;
+  left: 80%;
+  bottom: 45px;
+  animation-name: search;
+  animation-duration: 4s;
 }
 @keyframes search{
-    from {width: 0;}
-    to {width: 10%; display: none;}
+  from {width: 0;}
+  to {width: 10%; display: none;}
 }
 
 .logo{
-    cursor: pointer;
+  cursor: pointer;
 }
 
 @media(min-width:768px){
-    .logo-input{
-        left: 85%;
-    }
+  .logo-input{
+      left: 85%;
+  }
 }
 
 @media(min-width:1024px){
-    .other-submenu{
-        position: relative;
-        top: 4px;
-    }
-}
-@media (min-width: 1024px) {
-  .other-submenu {
-    position: relative;
-    top: 4px;
+  .other-submenu{
+      position: relative;
+      top: 4px;
   }
 }

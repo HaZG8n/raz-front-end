@@ -1,5 +1,5 @@
 import styles from "src/commons/styles/Home.module.css";
-import Main from "src/commons/components/Main";
+// import Main from "src/commons/components/Main";
 import Header from "src/commons/components/Header";
 import Footer from "src/commons/components/Footer";
 import arrowDown from "src/assets/svg/arrow-down.svg";
