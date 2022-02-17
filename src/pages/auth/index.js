@@ -58,7 +58,7 @@ class Auth extends Component {
             setTimeout(() => {
               this.setState({ isLogin: !this.state.isLogin });
               console.log(this.state.isLogin);
-              this.props.router.push("/home");
+              // this.props.router.push("/home");
             }, 3450);
           })
           .catch((error) => {
@@ -141,7 +141,6 @@ class Auth extends Component {
   };
 
   render() {
-    console.log(this.props.users);
     return (
       <Layout title="Auth">
         <div className={css.wrapper}>
@@ -211,12 +210,6 @@ const mapDispatchToProps = (dispacth) => {
   return {
     setUsers: bindActionCreators(saveAction, dispacth),
     setAuth: bindActionCreators(loginAction, dispacth),
-  };
-};
-
-const mapStateToprops = (state) => {
-  return {
-    users: state.auth.userData,
   };
 };
 
