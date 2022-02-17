@@ -1,5 +1,6 @@
 import styles from "src/commons/styles/Home.module.css"
 import Main from 'src/commons/components/Main'
+import Layout from "src/commons/components/Layout"
 import Header from 'src/commons/components/Header'
 import Footer from "src/commons/components/Footer"
 import arrowDown from 'src/assets/svg/arrow-down.svg'
@@ -16,200 +17,203 @@ const Home = () => {
   return (
     // <Main>
     <>
-      <section className={`${styles['bg-home']}`}>
-        <Header />
-        <h1 className={`${styles['furniture-text']}`} >Minimal Furniture Store</h1>
-        <div className={`${styles['wrapper-description']}`}>
-          <p className={`${styles['description-text']}`}>
-            Donec nunc nunc,
-            gravida vitae diam vel, varius interdum erat.
-            Quisque a nunc vel diam auctor commodo.
-            Curabitur blandit ultrices ex. Curabitur ut magna dignissim, dignissim
-          </p>
-        </div>
-        <p className={`${styles['explore-text']}`}>Explore now</p>
-        <div className={`${styles['arrow-down']}`}>
-          <Image src={arrowDown} alt='avatar' />
-        </div>
-      </section>
-
-      <section className="container-fluid">
-        {/* satu */}
-        <div className="row">
-          <div className="col p-0">
-            <Image src={sofa} alt='avatar' />
-          </div>
-          <div className="col">
-            <p className={`${styles['product-text']}`}>Mid-Century 1929 Sofa with Pilow</p>
-            <p className={`${styles['product-description-text']}`}>
-              Donec nunc nunc, gravida vitae diam vel,
-              varius interdum erat. Quisque a nunc vel diam auctor commodo.
-              Curabitur blandit ultrices ex. Curabitur ut magna dignissim,
-              dignissim neque et, placerat risus. Morbi dictum lectus quam
+      <Layout title='Home'>
+        <section className={`${styles['bg-home']}`}>
+          <Header />
+          <h1 className={`${styles['furniture-text']}`} >Minimal Furniture Store</h1>
+          <div className={`${styles['wrapper-description']}`}>
+            <p className={`${styles['description-text']}`}>
+              Donec nunc nunc,
+              gravida vitae diam vel, varius interdum erat.
+              Quisque a nunc vel diam auctor commodo.
+              Curabitur blandit ultrices ex. Curabitur ut magna dignissim, dignissim
             </p>
-            <div className="row">
-              <div className="col-1">
-                <div className={`${styles['wrapper-line']}`}>
-                  <span className={`${styles['line']}`}></span>
-                </div>
-              </div>
-              <div className="col">
-                <div className={`${styles['wrapper-line']}`}>
-                  <p className={`${styles['shop-now-text']}`}>SHOP NOW</p>
-                </div>
-              </div>
-            </div>
           </div>
-        </div>
+          <p className={`${styles['explore-text']}`}>Explore now</p>
+          <div className={`${styles['arrow-down']}`}>
+            <Image src={arrowDown} alt='avatar' />
+          </div>
+        </section>
 
-        <div className="row" >
-          <div className="col">
-            <p className={`${styles['product-text']}`}>Mid-Century 1929 Sofa with Pilow</p>
-            <p className={`${styles['product-description-text']}`}>
-              Donec nunc nunc, gravida vitae diam vel,
-              varius interdum erat. Quisque a nunc vel diam auctor commodo.
-              Curabitur blandit ultrices ex. Curabitur ut magna dignissim,
-              dignissim neque et, placerat risus. Morbi dictum lectus quam
-            </p>
-            <div className="row">
-              <div className="col-1">
-                <div className={`${styles['wrapper-line']}`}>
-                  <span className={`${styles['line']}`}></span>
+        <section className="container-fluid">
+          {/* satu */}
+          <div className="row">
+            <div className="col p-0">
+              <Image src={sofa} alt='avatar' />
+            </div>
+            <div className="col">
+              <p className={`${styles['product-text']}`}>Mid-Century 1929 Sofa with Pilow</p>
+              <p className={`${styles['product-description-text']}`}>
+                Donec nunc nunc, gravida vitae diam vel,
+                varius interdum erat. Quisque a nunc vel diam auctor commodo.
+                Curabitur blandit ultrices ex. Curabitur ut magna dignissim,
+                dignissim neque et, placerat risus. Morbi dictum lectus quam
+              </p>
+              <div className="row">
+                <div className="col-1">
+                  <div className={`${styles['wrapper-line']}`}>
+                    <span className={`${styles['line']}`}></span>
+                  </div>
                 </div>
-              </div>
-              <div className="col">
-                <div className={`${styles['wrapper-line']}`}>
-                  <p className={`${styles['shop-now-text']}`}>SHOP NOW</p>
+                <div className="col">
+                  <div className={`${styles['wrapper-line']}`}>
+                    <p className={`${styles['shop-now-text']}`}>SHOP NOW</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="col  p-0">
-            <div className={`${styles['product-img']}`}>
-              <Image src={lamp} alt='avatar' />
-            </div>
-          </div>
-        </div>
 
-        {/* dua */}
-        <div className="row">
-          <div className="col p-0">
-            <Image src={chair} alt='avatar' />
-          </div>
-          <div className="col">
-            <p className={`${styles['product-text']}`}>Mid-Century 1929 Sofa with Pilow</p>
-            <p className={`${styles['product-description-text']}`}>
-              Donec nunc nunc, gravida vitae diam vel,
-              varius interdum erat. Quisque a nunc vel diam auctor commodo.
-              Curabitur blandit ultrices ex. Curabitur ut magna dignissim,
-              dignissim neque et, placerat risus. Morbi dictum lectus quam
-            </p>
-            <div className="row">
-              <div className="col-1">
-                <div className={`${styles['wrapper-line']}`}>
-                  <span className={`${styles['line']}`}></span>
+          <div className="row" >
+            <div className="col">
+              <p className={`${styles['product-text']}`}>Mid-Century 1929 Sofa with Pilow</p>
+              <p className={`${styles['product-description-text']}`}>
+                Donec nunc nunc, gravida vitae diam vel,
+                varius interdum erat. Quisque a nunc vel diam auctor commodo.
+                Curabitur blandit ultrices ex. Curabitur ut magna dignissim,
+                dignissim neque et, placerat risus. Morbi dictum lectus quam
+              </p>
+              <div className="row">
+                <div className="col-1">
+                  <div className={`${styles['wrapper-line']}`}>
+                    <span className={`${styles['line']}`}></span>
+                  </div>
                 </div>
-              </div>
-              <div className="col">
-                <div className={`${styles['wrapper-line']}`}>
-                  <p className={`${styles['shop-now-text']}`}>SHOP NOW</p>
+                <div className="col">
+                  <div className={`${styles['wrapper-line']}`}>
+                    <p className={`${styles['shop-now-text']}`}>SHOP NOW</p>
+                  </div>
                 </div>
               </div>
             </div>
+            <div className="col  p-0">
+              <div className={`${styles['product-img']}`}>
+                <Image src={lamp} alt='avatar' />
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div className="row" >
-          <div className="col">
-            <p className={`${styles['product-text']}`}>Mid-Century 1929 Sofa with Pilow</p>
-            <p className={`${styles['product-description-text']}`}>
-              Donec nunc nunc, gravida vitae diam vel,
-              varius interdum erat. Quisque a nunc vel diam auctor commodo.
-              Curabitur blandit ultrices ex. Curabitur ut magna dignissim,
-              dignissim neque et, placerat risus. Morbi dictum lectus quam
-            </p>
-            <div className="row">
-              <div className="col-1">
-                <div className={`${styles['wrapper-line']}`}>
-                  <span className={`${styles['line']}`}></span>
+          {/* dua */}
+          <div className="row">
+            <div className="col p-0">
+              <Image src={chair} alt='avatar' />
+            </div>
+            <div className="col">
+              <p className={`${styles['product-text']}`}>Mid-Century 1929 Sofa with Pilow</p>
+              <p className={`${styles['product-description-text']}`}>
+                Donec nunc nunc, gravida vitae diam vel,
+                varius interdum erat. Quisque a nunc vel diam auctor commodo.
+                Curabitur blandit ultrices ex. Curabitur ut magna dignissim,
+                dignissim neque et, placerat risus. Morbi dictum lectus quam
+              </p>
+              <div className="row">
+                <div className="col-1">
+                  <div className={`${styles['wrapper-line']}`}>
+                    <span className={`${styles['line']}`}></span>
+                  </div>
                 </div>
-              </div>
-              <div className="col">
-                <div className={`${styles['wrapper-line']}`}>
-                  <p className={`${styles['shop-now-text']}`}>SHOP NOW</p>
+                <div className="col">
+                  <div className={`${styles['wrapper-line']}`}>
+                    <p className={`${styles['shop-now-text']}`}>SHOP NOW</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="col  p-0">
-            <div className={`${styles['product-img']}`}>
-              <Image src={ceramic} alt='avatar' />
-            </div>
-          </div>
-        </div>
 
-        {/* tiga */}
-        <div className="row">
-          <div className="col p-0">
-            <Image src={plate} alt='avatar' />
-          </div>
-          <div className="col">
-            <p className={`${styles['product-text']}`}>Mid-Century 1929 Sofa with Pilow</p>
-            <p className={`${styles['product-description-text']}`}>
-              Donec nunc nunc, gravida vitae diam vel,
-              varius interdum erat. Quisque a nunc vel diam auctor commodo.
-              Curabitur blandit ultrices ex. Curabitur ut magna dignissim,
-              dignissim neque et, placerat risus. Morbi dictum lectus quam
-            </p>
-            <div className="row">
-              <div className="col-1">
-                <div className={`${styles['wrapper-line']}`}>
-                  <span className={`${styles['line']}`}></span>
+          <div className="row" >
+            <div className="col">
+              <p className={`${styles['product-text']}`}>Mid-Century 1929 Sofa with Pilow</p>
+              <p className={`${styles['product-description-text']}`}>
+                Donec nunc nunc, gravida vitae diam vel,
+                varius interdum erat. Quisque a nunc vel diam auctor commodo.
+                Curabitur blandit ultrices ex. Curabitur ut magna dignissim,
+                dignissim neque et, placerat risus. Morbi dictum lectus quam
+              </p>
+              <div className="row">
+                <div className="col-1">
+                  <div className={`${styles['wrapper-line']}`}>
+                    <span className={`${styles['line']}`}></span>
+                  </div>
                 </div>
-              </div>
-              <div className="col">
-                <div className={`${styles['wrapper-line']}`}>
-                  <p className={`${styles['shop-now-text']}`}>SHOP NOW</p>
+                <div className="col">
+                  <div className={`${styles['wrapper-line']}`}>
+                    <p className={`${styles['shop-now-text']}`}>SHOP NOW</p>
+                  </div>
                 </div>
               </div>
             </div>
+            <div className="col  p-0">
+              <div className={`${styles['product-img']}`}>
+                <Image src={ceramic} alt='avatar' />
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div className="row" >
-          <div className="col ">
-            <p className={`${styles['product-text']}`}>Mid-Century 1929 Sofa with Pilow</p>
-            <p className={`${styles['product-description-text']}`}>
-              Donec nunc nunc, gravida vitae diam vel,
-              varius interdum erat. Quisque a nunc vel diam auctor commodo.
-              Curabitur blandit ultrices ex. Curabitur ut magna dignissim,
-              dignissim neque et, placerat risus. Morbi dictum lectus quam
-            </p>
-            <div className="row">
-              <div className="col-1">
-                <div className={`${styles['wrapper-line']}`}>
-                  <span className={`${styles['line']}`}></span>
+          {/* tiga */}
+          <div className="row">
+            <div className="col p-0">
+              <Image src={plate} alt='avatar' />
+            </div>
+            <div className="col">
+              <p className={`${styles['product-text']}`}>Mid-Century 1929 Sofa with Pilow</p>
+              <p className={`${styles['product-description-text']}`}>
+                Donec nunc nunc, gravida vitae diam vel,
+                varius interdum erat. Quisque a nunc vel diam auctor commodo.
+                Curabitur blandit ultrices ex. Curabitur ut magna dignissim,
+                dignissim neque et, placerat risus. Morbi dictum lectus quam
+              </p>
+              <div className="row">
+                <div className="col-1">
+                  <div className={`${styles['wrapper-line']}`}>
+                    <span className={`${styles['line']}`}></span>
+                  </div>
                 </div>
-              </div>
-              <div className="col">
-                <div className={`${styles['wrapper-line']}`}>
-                  <p className={`${styles['shop-now-text']}`}>SHOP NOW</p>
+                <div className="col">
+                  <div className={`${styles['wrapper-line']}`}>
+                    <p className={`${styles['shop-now-text']}`}>SHOP NOW</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="col p-0">
-            <div className={`${styles['product-img']}`}>
-              <Image src={modernLamp} alt='avatar' />
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* <div style={{ position: 'absolute', width: '100%', marginBlock: '-40px' }}> */}
-      <div className={`${styles['footer']}`}>
-        <Footer />
-      </div>
+          <div className="row" >
+            <div className="col ">
+              <p className={`${styles['product-text']}`}>Mid-Century 1929 Sofa with Pilow</p>
+              <p className={`${styles['product-description-text']}`}>
+                Donec nunc nunc, gravida vitae diam vel,
+                varius interdum erat. Quisque a nunc vel diam auctor commodo.
+                Curabitur blandit ultrices ex. Curabitur ut magna dignissim,
+                dignissim neque et, placerat risus. Morbi dictum lectus quam
+              </p>
+              <div className="row">
+                <div className="col-1">
+                  <div className={`${styles['wrapper-line']}`}>
+                    <span className={`${styles['line']}`}></span>
+                  </div>
+                </div>
+                <div className="col">
+                  <div className={`${styles['wrapper-line']}`}>
+                    <p className={`${styles['shop-now-text']}`}>SHOP NOW</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col p-0">
+              <div className={`${styles['product-img']}`}>
+                <Image src={modernLamp} alt='avatar' />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* <div style={{ position: 'absolute', width: '100%', marginBlock: '-40px' }}> */}
+        <div className={`${styles['footer']}`}>
+          <Footer />
+        </div>
+      </Layout>
+
       {/* </div> */}
 
       {/* <section className="container-fluid">
