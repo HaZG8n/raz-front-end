@@ -18,19 +18,19 @@ function Checkout() {
           <input
             type="text"
             placeholder="Your Name *"
-            className="mb-3 py-3 ps-4 form-control"
+            className="mb-3 py-3 ps-4 form-control shadow-none"
           />
           <input
             type="text"
             placeholder="Address *"
-            className="mb-3 py-3 ps-4 form-control"
+            className="mb-3 py-3 ps-4 form-control shadow-none"
           />
           <div className="input-group mb-3">
             <span className="input-group-text">+62</span>
             <input
               type="text"
               placeholder="Phone Number *"
-              className="form-control py-3 ps-4"
+              className="form-control py-3 ps-4 shadow-none"
             />
           </div>
           <div className="input-group mt-3 mb-4">
@@ -38,7 +38,7 @@ function Checkout() {
             <select
               id="payment"
               name="payment"
-              className="form-select py-3 fw-bold"
+              className="form-select py-3 fw-bold shadow-none"
             >
               <option value="visa">Pay with Visa</option>
               <option value="debit">Pay with Debit</option>
