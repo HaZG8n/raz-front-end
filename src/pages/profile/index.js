@@ -5,6 +5,8 @@ import Banner from "src/commons/components/Banner/index";
 import edit from "src/assets/img/edit.png"
 import Header from "src/commons/components/Header";
 import Footer from "src/commons/components/Footer";
+import CardProductOwner from "src/commons/components/ProductOwner";
+import CardProduct from "src/commons/components/Product";
 
 function Profile() {
   return (
@@ -66,7 +68,10 @@ function Profile() {
           </form>
         </section>
         <button className={`${styles["button-logout"]} btn`}>LOGOUT</button>
+        <CardProduct />
+        <CardProductOwner />
         <Footer />
+        
       </main>
     </>
   );

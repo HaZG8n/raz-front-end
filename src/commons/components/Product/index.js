@@ -9,9 +9,10 @@ function CardProduct() {
             <div className={styles.image}>
                 <Image 
                     width={293}
-                    height={472}
+                    height={450}
                     src={chair}
                     alt="product"
+                    className={styles["image-product"]}
                 />
             </div>
             <figcaption className={styles["fill-product"]}>
