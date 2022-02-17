@@ -36,7 +36,7 @@ class Cart extends Component {
         <Banner title="Your Cart" text="Buy everything in your cart now!" />
         <div className="container-fluid px-5 mt-5">
           <div className="row">
-            <div className="col-lg-8">
+            <section className="col-lg-8">
               <div className="row">
                 <div className="col-md-5">
               <p className={`${styles.title}`}>PRODUCTS</p>
@@ -100,7 +100,7 @@ class Cart extends Component {
             <p className="text-muted px-3 ms-auto">Clear Cart</p>
             <p className="fw-bold">Update Cart</p>
             </div>
-            </div>
+            </section>
 
             <section className={`col-lg-4 ${styles["bg-cart"]} mb-5`}>
               <div className="container">
@@ -122,7 +122,33 @@ class Cart extends Component {
                     </label>
                   </div>
                 </div>
-                <div className={`${styles["radio-btn"]}`}>
+                <div className="d-flex">
+                  <span></span>
+                  <div className="form-check ms-auto mb-3">
+                    <input
+                      className={`form-check-input ${styles["radio-btn"]}`}
+                      type="radio"
+                      name="shipping"
+                    />
+                    <label className="form-check-label text-muted">
+                      Free Shipping
+                    </label>
+                  </div>
+                </div>
+                <div className="d-flex">
+                  <span></span>
+                  <div className="form-check ms-auto">
+                    <input
+                      className={`form-check-input ${styles["btn-radio"]}`}
+                      type="radio"
+                      name="pickup"
+                    />
+                    <label className="form-check-label text-muted">
+                      Local Pickup
+                    </label>
+                  </div>
+                </div>
+                {/* <div className={`${styles["radio-btn"]}`}>
                   <div className="form-check">
                     <input
                       className="form-check-input"
@@ -143,7 +169,7 @@ class Cart extends Component {
                       Local Pickup
                     </label>
                   </div>
-                </div>
+                </div> */}
                 <hr className="mt-5" />
                 <div className="d-flex mb-5">
                   <p className="fw-bold">Total Price</p>

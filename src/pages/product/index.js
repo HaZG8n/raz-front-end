@@ -62,7 +62,7 @@ class index extends Component {
                   <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
                 </div>
                 <div className={css.paginasi}>
-                  <ul className="pagination pagination-lg">
+                  <ul className="pagination pagination-lg mt-5">
                     <li className={router.query.page == "1" ? `page-item ${css.active}` : "page-item"} aria-current="page">
                       <Link className="page-link" href="/product?page=1">
                         01

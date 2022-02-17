@@ -47,9 +47,10 @@
   cursor: pointer;
 }
 .radio-btn {
-  margin-left: 52%;
-  margin-top: -3%;
-  text-align: right;
+  margin-right: 53px;
+}
+.btn-radio {
+  margin-right: 60px;
 }
 .bg-cart {
   background-color: #f9f9f9;
@@ -64,14 +65,16 @@
     margin-top: 18%;
 }
 
+
+
 @media (min-width: 1440px) {
   .radio-btn {
-    margin-left: 56%;
+    /* margin-left: 56%; */
   }
 }
 @media (max-width: 1024px) {
   .radio-btn {
-    margin-left: 31%;
+    /* margin-left: 31%; */
   }
 }
 
@@ -83,8 +86,8 @@
     padding-left: 15%;
   }
   .radio-btn {
-    margin-top: -2%;
-    margin-left: 72.7%;
+    /* margin-top: -2%;
+    margin-left: 72.7%; */
   }
 }
 @media (max-width: 425px) {
@@ -95,7 +98,7 @@
     width: 100%;
   }
   .radio-btn {
-    margin-left: 40%;
+    /* margin-left: 40%; */
   }
   .price {
     margin-top: 15px;
@@ -107,5 +110,6 @@
   }
   .product-name {
     text-align: center;
+    padding-left: 5%;
   }
 }
