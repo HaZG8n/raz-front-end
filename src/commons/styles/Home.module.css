@@ -182,6 +182,11 @@ Height
   margin-block: -38px;
 }
 
+.product-img{
+  display: flex;
+  justify-content: end;
+}
+
 @media(min-width :375px){
   .footer{
     margin-block: -5px;
@@ -241,4 +246,8 @@ Height
   .wrapper-line{
     top: 310px;
   }
+  /* .product-img{
+    padding-left: 10px;
+  } */
+  
 }
