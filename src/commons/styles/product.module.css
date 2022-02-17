@@ -1,0 +1,131 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.content {
+  width: 70%;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-bottom: 3%;
+}
+
+.head {
+  display: flex;
+}
+.head p:first-child {
+  text-align: start;
+  font-family: Arimo;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.head div:nth-child(2) {
+  display: flex;
+  justify-content: end;
+  width: 81.7%;
+}
+
+.head ul {
+  background-color: #212121;
+  width: 210px;
+  height: 219px;
+}
+
+.head li a {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: Arimo;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 57px;
+  letter-spacing: 0px;
+}
+
+.head > div > button {
+  background-color: transparent;
+  border: none;
+  font-family: Arimo;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0px;
+  text-align: right;
+  color: #212121;
+  box-shadow: none;
+}
+
+.head > div > button:hover {
+  box-shadow: none !important;
+  background-color: transparent;
+  border: none;
+  font-family: Arimo;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0px;
+  text-align: right;
+  color: #212121;
+}
+
+.card {
+  display: flex;
+  min-height: 100vh;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.paginasi {
+  margin-left: 2.5%;
+}
+
+.paginasi ul {
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.paginasi li {
+  border: none;
+  border-radius: 0 !important;
+}
+
+.paginasi li a:first-child {
+  border-radius: 0 !important;
+}
+
+.paginasi a {
+  color: black;
+  height: 49px;
+  width: 49px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+  background-color: white;
+}
+
+.paginasi a:hover {
+  color: black;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.paginasi .active a {
+  background-color: #212121 !important;
+  color: white;
+}

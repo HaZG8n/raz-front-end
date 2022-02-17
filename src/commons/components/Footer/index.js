@@ -54,7 +54,7 @@ const Footer = () => {
                                 <h2 className={`text-white ${styles['h2-text']}`}>USERFUL</h2>
                                 <div className={`${styles['list']}`}>
                                     <p>THE COLLECTIONS</p>
-                                    <p>SIZE GUID</p>
+                                    <p>SIZE GUIDE</p>
                                     <p>LOOKBOOK</p>
                                     <p>INSTAGRAM SHOP</p>
                                 </div>

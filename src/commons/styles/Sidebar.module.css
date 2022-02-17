@@ -1,0 +1,134 @@
+.wrapper {
+  margin-left: 5%;
+  margin-top: 5%;
+  width: 15%;
+  height: 140vh;
+  position: relative;
+  background-color: transparent;
+}
+
+.category {
+  color: #1a1a1a;
+}
+
+.category:first-child {
+  font-family: Arimo;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+  text-align: left;
+}
+
+.category ul {
+  padding-left: 0;
+}
+
+.category li {
+  width: 100%;
+  list-style-type: none;
+  font-family: Arimo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 48px;
+  letter-spacing: 0px;
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+}
+
+.category li p {
+  width: 90%;
+  padding-left: 5%;
+  text-align: end;
+}
+
+.price p:first-child {
+  font-family: Arimo;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.price button {
+  border-radius: 0;
+  margin-top: 5%;
+  height: 50px;
+  width: 50%;
+  background-color: #1a1a1a;
+}
+
+.brands p:first-child {
+  padding-top: 10%;
+  font-family: Arimo;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.brands label {
+  font-family: Arimo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: left;
+  padding-left: 5%;
+}
+
+.brands .input {
+  width: 21px;
+  height: 21px;
+  border-radius: 0;
+}
+
+.colors p:first-child {
+  padding-top: 10%;
+  font-family: Arimo;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.colors .radio {
+  display: flex;
+  justify-content: space-between;
+}
+
+.radio .input {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: none;
+}
+
+.radio .input:first-child {
+  background-color: #a17f25;
+}
+
+.radio .input:nth-child(2) {
+  background-color: #6b8fbe;
+}
+.radio .input:nth-child(3) {
+  background-color: #49453d;
+}
+.radio .input:nth-child(4) {
+  background-color: #504e86;
+}
+.radio .input:nth-child(5) {
+  background-color: #4e8651;
+}
+.radio .input:nth-child(6) {
+  background-color: #eea437;
+}

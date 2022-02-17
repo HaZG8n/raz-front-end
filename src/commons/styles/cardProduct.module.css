@@ -58,3 +58,37 @@
   margin-top: auto;
   margin-bottom: auto;
 }
+
+.card-product {
+  width: 293px;
+  text-align: center;
+  margin-bottom: 2%;
+  margin-top: 2%;
+  transition: all 0.5s ease;
+}
+
+.card-product:hover {
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.name-product {
+  font-family: Arimo;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0px;
+  text-align: center;
+  padding-top: 5%;
+}
+
+.price-product {
+  font-family: Arimo;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 21px;
+  letter-spacing: 0px;
+  text-align: center;
+}
