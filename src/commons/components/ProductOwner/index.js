@@ -1,6 +1,6 @@
 import styles from "src/commons/styles/cardProduct.module.css"
 import Image from "next/image"
-import chair from "src/assets/img/chair.png"
+import chair from "src/assets/img/chair-home.png"
 
 function CardProductOwner() {
   return (

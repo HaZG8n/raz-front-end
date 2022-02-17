@@ -74,10 +74,11 @@
 .edit-gender {
   margin-top: auto;
   margin-bottom: auto;
+  text-align: end;
 }
 
 .gender-fill {
-  text-align: center;
+  text-align: start;
   padding-left: 5%;
   padding-top: 2%;
   padding-bottom: 2%;
@@ -115,12 +116,13 @@
 
 .click-edit {
   font-family: "Arimo";
-  font-size: 18px;
+  font-size: 1.1rem;
   font-style: normal;
   font-weight: 700;
   line-height: 21px;
   letter-spacing: 0px;
   text-align: end;
+  border: 0;
 }
 
 .button-logout {
@@ -140,4 +142,8 @@
   letter-spacing: 0px;
   text-align: center;
   color: #FFFFFF;
+}
+
+.gender-fill > input {
+  border: 0;
 }
