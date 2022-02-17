@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { withRouter } from "next/router";
+import Link from "next/link";
 
 import Main from "src/commons/components/Main";
 import Layout from "src/commons/components/Layout";
@@ -63,34 +64,34 @@ class index extends Component {
                 <div className={css.paginasi}>
                   <ul className="pagination pagination-lg">
                     <li className={router.query.page == "1" ? `page-item ${css.active}` : "page-item"} aria-current="page">
-                      <a className="page-link" href="/product?page=1">
+                      <Link className="page-link" href="/product?page=1">
                         01
-                      </a>
+                      </Link>
                     </li>
                     <li className={router.query.page == "2" ? `page-item ${css.active}` : "page-item"}>
-                      <a className="page-link" href="/product?page=2">
+                      <Link className="page-link" href="/product?page=2">
                         02
-                      </a>
+                      </Link>
                     </li>
                     <li className={router.query.page == "3" ? `page-item ${css.active}` : "page-item"}>
-                      <a className="page-link" href="/product?page=3">
+                      <Link className="page-link" href="/product?page=3">
                         03
-                      </a>
+                      </Link>
                     </li>
                     <li className={router.query.page == "4" ? `page-item ${css.active}` : "page-item"}>
-                      <a className="page-link" href="/product?page=4">
+                      <Link className="page-link" href="/product?page=4">
                         04
-                      </a>
+                      </Link>
                     </li>
                     <li className={router.query.page == "5" ? `page-item ${css.active}` : "page-item"}>
-                      <a className="page-link" href="/product?page=5">
+                      <Link className="page-link" href="/product?page=5">
                         05
-                      </a>
+                      </Link>
                     </li>
                     <li className={router.query.page == "6" ? `page-item ${css.active}` : "page-item"}>
-                      <a className="page-link" href="/product?page=6">
+                      <Link className="page-link" href="/product?page=6">
                         06
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>

@@ -141,6 +141,7 @@ class Auth extends Component {
   };
 
   render() {
+    console.log(this.props.users);
     return (
       <Layout title="Auth">
         <div className={css.wrapper}>
@@ -213,4 +214,10 @@ const mapDispatchToProps = (dispacth) => {
   };
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(Auth));
+const mapStateToprops = (state) => {
+  return {
+    users: state.Auth.users,
+  };
+};
+
+export default withRouter(connect(mapStateToprops, mapDispatchToProps)(Auth));
