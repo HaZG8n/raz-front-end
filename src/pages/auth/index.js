@@ -216,7 +216,7 @@ const mapDispatchToProps = (dispacth) => {
 
 const mapStateToprops = (state) => {
   return {
-    users: state.Auth.users,
+    users: state.auth.userData,
   };
 };
 
