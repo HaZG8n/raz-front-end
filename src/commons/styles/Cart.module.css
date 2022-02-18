@@ -30,6 +30,11 @@
   width: 25px;
   height: 25px;
 }
+
+.remove:hover {
+  cursor: pointer;
+}
+
 .img-product {
   width: 120px;
   height: 120px;

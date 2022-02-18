@@ -17,6 +17,7 @@ import Cart from "src/commons/Cart";
 class index extends Component {
   state = {
     counter: 1,
+    cart: this.props.cart,
   };
 
   addCounter = () => {
@@ -50,6 +51,7 @@ class index extends Component {
   // }
 
   render() {
+    console.log("CART", this.props.cart);
     return (
       <>
         <Layout title="Cart" />
@@ -74,10 +76,7 @@ class index extends Component {
               </div>
 
               {/* Card */}
-              <Cart remove={remove} productImage={chair} name="Fabric Mid Century Chair" price="Rp500.000" total="Rp500.000" />
-              <Cart remove={remove} productImage={chair} name="Fabric Mid Century Chair" price="Rp500.000" total="Rp500.000" />
-              <Cart remove={remove} productImage={chair} name="Fabric Mid Century Chair" price="Rp500.000" total="Rp500.000" />
-              <Cart remove={remove} productImage={chair} name="Fabric Mid Century Chair" price="Rp500.000" total="Rp500.000" />
+              {Object.keys(this.state.cart).length == 0 ? null : <Cart remove={remove} productImage={chair} name={this.state.cart.productName} price={this.state.cart.price} quantity={this.state.cart.stock} total={this.state.cart.total} />}
               {/* end of card */}
 
               <hr />
@@ -132,16 +131,9 @@ class index extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("STATE", state);
   return {
-    cart: state.cart,
+    cart: state.cart.cart,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setUserCart: bindActionCreators(setCart, dispatch),
-  };
-};
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(index));
+export default withRouter(connect(mapStateToProps)(index));

@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { withRouter } from "next/router";
 import styles from "src/commons/styles/Cart.module.css";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { DelCart } from "src/redux/actions/product";
 
 import Image from "next/image";
 import chair from "src/assets/img/Mask.png";
@@ -24,13 +27,19 @@ class index extends Component {
       counter: newCounter - 1 < 1 ? 1 : newCounter - 1,
     });
   };
+
+  deletCart = () => {
+    this.props.RemoveCart();
+    window.location.reload();
+  };
+
   render() {
     return (
       <div className="row">
         <div className="col-md-5">
           <div className={`row mb-4 ${styles.product}`}>
             <div className="col-md-1">
-              <div className={`pt-5 ${styles.remove}`}>
+              <div onClick={this.deletCart} className={`pt-5 ${styles.remove}`}>
                 <Image src={this.props.remove} alt="remove" layout="responsive" width={30} height={30} />
               </div>
             </div>
@@ -54,7 +63,7 @@ class index extends Component {
             <p onClick={this.subCounter} className={`${styles.counter} me-3`}>
               -
             </p>
-            <p>{this.state.counter}</p>
+            <p>{this.props.quantity}</p>
             <p onClick={this.addCounter} className={`${styles.counter} ms-3`}>
               +
             </p>
@@ -70,4 +79,10 @@ class index extends Component {
   }
 }
 
-export default withRouter(index);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    RemoveCart: bindActionCreators(DelCart, dispatch),
+  };
+};
+
+export default withRouter(connect(null, mapDispatchToProps)(index));
