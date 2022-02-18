@@ -12,11 +12,6 @@ const MenuProfile = ({ children }) => {
     return (
         <>
             <Main>
-                <section className={`container-fluid p-0 ${styles['bg-menu']}`}>
-                    <h2 className={`${styles['profile-text']}`}>Profile</h2>
-                    <p className={`${styles['see-notification-text']}`}>See your notifications for the latest updates</p>
-                </section>
-
                 <section className='container'>
                     <div className='row'>
                         <div className='col'>
