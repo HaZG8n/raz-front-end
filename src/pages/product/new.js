@@ -34,7 +34,9 @@ function AddProduct() {
                   name="brands"
                   className={`form-select py-4 ps-4 shadow-none ${css["select-brands"]}`}
                 >
-                  <option value="" disable="true" hidden>Brands *</option>
+                  <option value="" disable="true" hidden>
+                    Brands *
+                  </option>
                   <option value="ikea">IKEA</option>
                   <option value="my-royal">My Royal</option>
                   <option value="sweet-house">Sweet House</option>
@@ -46,7 +48,8 @@ function AddProduct() {
                 <div className="form-check mb-2">
                   <input
                     className={`form-check-input ${css.checkbox} shadow-none`}
-                    type="checkbox"
+                    type="radio"
+                    name="category"
                     value=""
                   />
                   <label className="form-check-label ps-2 lh-lg">
@@ -56,7 +59,8 @@ function AddProduct() {
                 <div className="form-check mb-2">
                   <input
                     className={`form-check-input ${css.checkbox} shadow-none`}
-                    type="checkbox"
+                    type="radio"
+                    name="category"
                     value=""
                   />
                   <label className="form-check-label ps-2 lh-lg">
@@ -66,7 +70,8 @@ function AddProduct() {
                 <div className="form-check mb-2">
                   <input
                     className={`form-check-input ${css.checkbox} shadow-none`}
-                    type="checkbox"
+                    type="radio"
+                    name="category"
                     value=""
                   />
                   <label className="form-check-label ps-2 lh-lg">
@@ -76,7 +81,8 @@ function AddProduct() {
                 <div className="form-check mb-2">
                   <input
                     className={`form-check-input ${css.checkbox} shadow-none`}
-                    type="checkbox"
+                    type="radio"
+                    name="category"
                     value=""
                   />
                   <label className="form-check-label ps-2 lh-lg">
@@ -89,32 +95,38 @@ function AddProduct() {
               >
                 <input
                   className={`form-check-input shadow-none ${css.input}`}
-                  type="checkbox"
+                  type="radio"
+                  name="color"
                   value=""
                 />
                 <input
                   className={`form-check-input shadow-none ${css.input}`}
-                  type="checkbox"
+                  type="radio"
+                  name="color"
                   value=""
                 />
                 <input
                   className={`form-check-input shadow-none ${css.input}`}
-                  type="checkbox"
+                  type="radio"
+                  name="color"
                   value=""
                 />
                 <input
                   className={`form-check-input shadow-none ${css.input}`}
-                  type="checkbox"
+                  type="radio"
+                  name="color"
                   value=""
                 />
                 <input
                   className={`form-check-input shadow-none ${css.input}`}
-                  type="checkbox"
+                  type="radio"
+                  name="color"
                   value=""
                 />
                 <input
                   className={`form-check-input shadow-none ${css.input}`}
-                  type="checkbox"
+                  type="radio"
+                  name="color"
                   value=""
                 />
               </div>
