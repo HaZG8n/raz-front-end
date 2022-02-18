@@ -12,7 +12,7 @@ import Footer from "src/commons/components/Footer";
 import chair from "src/assets/img/Mask.png";
 import remove from "src/assets/svg/close.svg";
 import styles from "src/commons/styles/Cart.module.css";
-import Cart from "src/commons/Cart";
+import Cart from "src/commons/components/Cart";
 
 class index extends Component {
   state = {
