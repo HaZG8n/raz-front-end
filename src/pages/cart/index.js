@@ -3,7 +3,7 @@ import { withRouter } from "next/router";
 import { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { setCart } from "src/redux/actions/cart";
+import { setCart } from "src/redux/actions/product";
 
 import Header from "src/commons/components/Header";
 import Banner from "src/commons/components/Banner";
