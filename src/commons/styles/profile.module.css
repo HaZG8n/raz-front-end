@@ -141,7 +141,7 @@
   line-height: 18px;
   letter-spacing: 0px;
   text-align: center;
-  color: #FFFFFF;
+  color: #fff !important;
 }
 
 .gender-fill > input {

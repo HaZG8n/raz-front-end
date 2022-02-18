@@ -9,8 +9,9 @@ import CardProductOwner from "src/commons/components/ProductOwner";
 import CardProduct from "src/commons/components/Product";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import { updateProfile } from "src/commons/module/user";
 import Layout from "src/commons/components/Layout";
+
+import { updateProfile } from "src/commons/module/user";
 
 function Profile() {
   const userData = useSelector((state) => state.auth.userData);
@@ -29,9 +30,9 @@ function Profile() {
       email: e.target.email.value,
       gender: e.target.gender.value,
     };
-    console.log(updateProfile);
-    updateProfile(body, token)
-      .then((res) => console.log(res))
+    console.log(body);
+    updateProfile(token, body)
+      .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
   };
   return (
