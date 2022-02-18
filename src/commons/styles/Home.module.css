@@ -240,4 +240,8 @@ Height
   .wrapper-line {
     top: 310px;
   }
+  .product-img{
+    display: flex;
+    justify-content: end;
+  }
 }
