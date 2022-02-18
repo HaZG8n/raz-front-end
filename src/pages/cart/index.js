@@ -1,6 +1,9 @@
 import Image from "next/image";
 import { withRouter } from "next/router";
 import { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { setCart } from "src/redux/actions/cart";
 
 import Header from "src/commons/components/Header";
 import Banner from "src/commons/components/Banner";
@@ -9,8 +12,9 @@ import Footer from "src/commons/components/Footer";
 import chair from "src/assets/img/Mask.png";
 import remove from "src/assets/svg/close.svg";
 import styles from "src/commons/styles/Cart.module.css";
+import Cart from "src/commons/Cart";
 
-class Cart extends Component {
+class index extends Component {
   state = {
     counter: 1,
   };
@@ -28,59 +32,54 @@ class Cart extends Component {
       counter: newCounter - 1 < 1 ? 1 : newCounter - 1,
     });
   };
+
+  // componentDidMount() {
+  //   const data = [
+  //     {
+  //       id: 1,
+  //       name: "rhymado",
+  //       price: 10000,
+  //     },
+  //     {
+  //       id: 1,
+  //       name: "rhymado",
+  //       price: 10000,
+  //     },
+  //   ];
+  //   this.props.setUserCart(data);
+  // }
+
   render() {
     return (
       <>
         <Layout title="Cart" />
         <Header />
         <Banner title="Your Cart" text="Buy everything in your cart now!" />
-        <div className="container-fluid px-5 mt-5">
+        <div className="container-fluid px-5 mt-5 mb-5">
           <div className="row">
             <section className="col-lg-8">
               <div className="row">
                 <div className="col-md-5">
                   <p className={`${styles.title}`}>PRODUCTS</p>
-                  <div className={`row mb-5 ${styles.product}`}>
-                    <div className="col-md-1">
-                      <div className={`pt-5 ${styles.remove}`}>
-                        <Image src={remove} alt="remove" layout="responsive" width={30} height={30} />
-                      </div>
-                    </div>
-                    <div className="col-md-5 ps-5">
-                      <div className={`${styles["img-product"]}`}>
-                        <Image src={chair} alt="product img" layout="responsive" />
-                      </div>
-                    </div>
-                    <div className={`${styles["product-name"]} mx-auto col-md-6 d-flex align-self-center`}>
-                      <p>Fabric Mid Century Chair</p>
-                    </div>
-                  </div>
                 </div>
                 <div className="col">
                   <p className={`${styles.title}`}>PRICE</p>
-                  <div className={`${styles.price} justify-content-center d-flex`}>
-                    <p>Rp500.000</p>
-                  </div>
                 </div>
                 <div className="col-md-2 text-center">
                   <p className={`${styles.title}`}>QUANTITY</p>
-                  <div className={`${styles.price} d-flex justify-content-center`}>
-                    <p onClick={this.subCounter} className={`${styles.counter} me-3`}>
-                      -
-                    </p>
-                    <p>{this.state.counter}</p>
-                    <p onClick={this.addCounter} className={`${styles.counter} ms-3`}>
-                      +
-                    </p>
-                  </div>
                 </div>
                 <div className="col text-center">
                   <p className={`${styles.title}`}>TOTAL</p>
-                  <div className={`${styles.price} justify-content-center d-flex justify-content-center`}>
-                    <p>Rp500.000</p>
-                  </div>
                 </div>
               </div>
+
+              {/* Card */}
+              <Cart remove={remove} productImage={chair} name="Fabric Mid Century Chair" price="Rp500.000" total="Rp500.000" />
+              <Cart remove={remove} productImage={chair} name="Fabric Mid Century Chair" price="Rp500.000" total="Rp500.000" />
+              <Cart remove={remove} productImage={chair} name="Fabric Mid Century Chair" price="Rp500.000" total="Rp500.000" />
+              <Cart remove={remove} productImage={chair} name="Fabric Mid Century Chair" price="Rp500.000" total="Rp500.000" />
+              {/* end of card */}
+
               <hr />
               <div className="d-flex mb-3">
                 <p className="text-muted px-3 ms-auto">Clear Cart</p>
@@ -116,28 +115,6 @@ class Cart extends Component {
                     <label className="form-check-label text-muted">Local Pickup</label>
                   </div>
                 </div>
-                {/* <div className={`${styles["radio-btn"]}`}>
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="shipping"
-                    />
-                    <label className="form-check-label text-muted">
-                      Free Shipping
-                    </label>
-                  </div>
-                  <div className="form-check ms-auto">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="pickup"
-                    />
-                    <label className="form-check-label text-muted">
-                      Local Pickup
-                    </label>
-                  </div>
-                </div> */}
                 <hr className="mt-5" />
                 <div className="d-flex mb-5">
                   <p className="fw-bold">Total Price</p>
@@ -154,4 +131,17 @@ class Cart extends Component {
   }
 }
 
-export default withRouter(Cart);
+const mapStateToProps = (state) => {
+  console.log("STATE", state);
+  return {
+    cart: state.cart,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setUserCart: bindActionCreators(setCart, dispatch),
+  };
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(index));
