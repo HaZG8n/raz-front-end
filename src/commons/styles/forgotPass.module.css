@@ -60,3 +60,14 @@
   width: 100%;
   position: absolute;
 }
+
+.error {
+  margin-bottom: 3%;
+  height: 70px;
+  border-radius: 0;
+  border: 1px solid #ee1e1e !important;
+  transition: 0.5s;
+  padding-left: 5%;
+}
+
+
