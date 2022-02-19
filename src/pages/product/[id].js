@@ -31,6 +31,7 @@ class index extends Component {
       review: false,
       isError: 0,
       stock: 1,
+      isAdd: false,
     };
     this.onError = this.onError.bind(this);
   }
@@ -43,7 +44,7 @@ class index extends Component {
 
   getProduct = () => {
     const token = this.props.token;
-    const id = 1;
+    const id = this.props.router.query.id;
     GetProductDetail(id, token)
       .then((res) => {
         this.setState({ product: res.data.data, productImg: res.data.data.image });
@@ -85,7 +86,17 @@ class index extends Component {
       total: this.state.product.price * this.state.stock,
     };
     this.props.setCartData(product);
+    setTimeout(() => {
+      this.setState({ isAdd: !this.state.isAdd });
+    }, 500);
+    setTimeout(() => {
+      this.setState({ isAdd: !this.state.isAdd });
+    }, 3440);
   };
+
+  componentDidUpdate() {
+    this.getProduct();
+  }
 
   render() {
     const formater = new Intl.NumberFormat("id-ID", {
@@ -93,173 +104,191 @@ class index extends Component {
       currency: "IDR",
       minimumFractionDigits: 2,
     });
-    console.log(this.props.cart);
-    return (
-      <>
-        <Layout title="Product Detail" />
-        <Main>
-          <div className={css.wrapper}>
-            <div className={css.bread}>
-              <Breadcrumb>
-                <Breadcrumb.Item href="/product">Product </Breadcrumb.Item>
-                <Breadcrumb.Item href="#" active>
-                  {this.state.product.name}
-                </Breadcrumb.Item>
-              </Breadcrumb>
-            </div>
-            <div className={css.imgContainer}>
-              <div className={css.side}>
-                {this.state.productImg.map((val) => {
-                  return (
-                    <>
-                      <Image
-                        onClick={() => {
-                          if (this.state.jumboImg == Kursi) {
-                            this.setState({ jumboImg: Chair });
-                          } else {
-                            this.setState({ jumboImg: Kursi });
-                          }
-                        }}
-                        key={val.id}
-                        height={134}
-                        width={140}
-                        src={Chair}
-                        onError={() => this.onError(val.id)}
-                        alt="product image"
-                      />
-                    </>
-                  );
-                })}
+    console.log(this.state.product.length);
+    if (this.state.product.length !== 0) {
+      return (
+        <>
+          <Layout title="Product Detail" />
+          <Main>
+            <div className={css.wrapper}>
+              <div className={css.bread}>
+                <Breadcrumb>
+                  <Breadcrumb.Item href="/product">Product </Breadcrumb.Item>
+                  <Breadcrumb.Item href="#" active>
+                    {this.state.product.name}
+                  </Breadcrumb.Item>
+                </Breadcrumb>
               </div>
-              <div className={css.main}>
-                <Image src={this.state.jumboImg !== "" ? this.state.jumboImg : Chair} width={890} height={705} alt="product image" />
+              <div className={css.imgContainer}>
+                <div className={css.side}>
+                  {this.state.productImg.map((val) => {
+                    return (
+                      <>
+                        <Image
+                          onClick={() => {
+                            this.setState({ jumboImg: val.image });
+                          }}
+                          key={val.id}
+                          height={134}
+                          width={140}
+                          src={val.image}
+                          onError={() => this.onError(val.id)}
+                          alt="product image"
+                        />
+                      </>
+                    );
+                  })}
+                </div>
+                <div className={css.main}>
+                  <Image src={this.state.jumboImg !== "" ? this.state.jumboImg : Chair} width={890} height={705} alt="product image" />
+                </div>
               </div>
-            </div>
-            <div className={css.productName}>
-              <p>{this.state.product.name}</p>
-              <div className={css.icons}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" color="#1A1A1A" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16">
-                  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" color="#1A1A1A" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16">
-                  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" color="#1A1A1A" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16">
-                  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" color="#1A1A1A" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16">
-                  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" color="#1A1A1A" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16">
-                  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                </svg>
-              </div>
-              <p className={css.price}>{formater.format(this.state.product.price)}</p>
-              <p className={css.stock}>
-                <i className="bi bi-check-circle"></i>
-                {this.state.product.stock} Stock
-              </p>
-            </div>
-            <p className={css.desc}>
-              Donec nunc nunc, gravida vitae diam vel, varius interdum erat. Quisque a nunc vel diam auctor commodo. Curabitur blandit ultrices exurabitur ut magna dignissim, dignissiNullam vitae venenatis elit. Proin dui lacus, viverra at
-              imperdiet non, facilisis eget orci. Vivamus ac elit tellus. Vestibulum nulla dui, consequat vitae diam eu, pretium finibus libero. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-              Aliquam vitae neque tellus.
-            </p>
-            <div className={css.buttonContainer}>
-              <div className={css.stockCounter}>
-                <button className="btn btn-secondary" onClick={this.subCounter}>
-                  -
-                </button>
-                <p className={css.total}>{this.state.stock}</p>
-                <button className="btn btn-secondary" onClick={this.plusCounter}>
-                  +
-                </button>
-              </div>
-              <button className={`btn btn-secondary ${css.cartBtn}`} onClick={this.addToCart}>
-                Add to cart
-              </button>
-              <button className={`btn btn-secondary ${css.love}`}>
-                <i className="bi bi-heart"></i>
-              </button>
-              <button className={`btn btn-secondary ${css.wish}`}>Add To Wishlist</button>
-            </div>
-            <div className={css.detail}>
-              <ul>
-                <li>Categories: urniture, Interior, Chair </li>
-                <li>Tag: Furniture, Chair, Scandinavian, Modern</li>
-                <li>Product Id: {this.state.product.id}</li>
-              </ul>
-            </div>
-            <div className={css.add}>
-              <p>
-                <Image src={Mobil} alt="mobil" />
-                Delivery And Return
-              </p>
-              <p>
-                <Image src={Measure} alt="mobil" />
-                Size Guide
-              </p>
-              <p>
-                <Image src={Pin} alt="mobil" />
-                Store available
-              </p>
-            </div>
-            <div className={css.media}>
-              <i className="bi bi-facebook"></i>
-              <i className="bi bi-twitter"></i>
-              <i className="bi bi-youtube"></i>
-            </div>
-            <div className={css.nav}>
-              <p>Description</p>
-              <p>Review</p>
-              <p>Additional Information </p>
-              <p>About Brand</p>
-              <p>Shipping & Delivery</p>
-            </div>
-            <div className={css.content}>
-              <Image src={Chair} alt="product" width={100} height={100} />
-              <div className={css.text}>
-                <p>
-                  Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at egestas magna molestie a. Proin ac ex maximus, ultrices justo eget, sodales orci. Aliquam egestas libero ac turpis pharetra, in vehicula lacus scelerisque.
-                  Vestibulum ut sem laoreet, feugiat tellus at, hendrerit arcu..
+              <div className={css.productName}>
+                <p>{this.state.product.name}</p>
+                <div className={css.icons}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" color="#1A1A1A" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" color="#1A1A1A" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" color="#1A1A1A" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" color="#1A1A1A" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" color="#1A1A1A" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                  </svg>
+                </div>
+                <p className={css.price}>{formater.format(this.state.product.price)}</p>
+                <p className={css.stock}>
+                  <i className="bi bi-check-circle"></i>
+                  {this.state.product.stock} Stock
                 </p>
+              </div>
+              <p className={css.desc}>
+                Donec nunc nunc, gravida vitae diam vel, varius interdum erat. Quisque a nunc vel diam auctor commodo. Curabitur blandit ultrices exurabitur ut magna dignissim, dignissiNullam vitae venenatis elit. Proin dui lacus, viverra
+                at imperdiet non, facilisis eget orci. Vivamus ac elit tellus. Vestibulum nulla dui, consequat vitae diam eu, pretium finibus libero. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+                himenaeos. Aliquam vitae neque tellus.
+              </p>
+              <div className={css.buttonContainer}>
+                <div className={css.stockCounter}>
+                  <button className="btn btn-secondary" onClick={this.subCounter}>
+                    -
+                  </button>
+                  <p className={css.total}>{this.state.stock}</p>
+                  <button className="btn btn-secondary" onClick={this.plusCounter}>
+                    +
+                  </button>
+                </div>
+                <button className={`btn btn-secondary ${css.cartBtn}`} onClick={this.addToCart}>
+                  Add to cart
+                </button>
+                <button className={`btn btn-secondary ${css.love}`}>
+                  <i className="bi bi-heart"></i>
+                </button>
+                <button className={`btn btn-secondary ${css.wish}`}>Add To Wishlist</button>
+              </div>
+              <div className={css.detail}>
                 <ul>
-                  <li>Maecenas eu ante a elit tempus fermentum. Aliquam commodo tincidunt semper</li>
-                  <li>Aliquam est et tempus. Eaecenas libero ante, tincidunt vel</li>
+                  <li>Categories: urniture, Interior, Chair </li>
+                  <li>Tag: Furniture, Chair, Scandinavian, Modern</li>
+                  <li>Product Id: {this.state.product.id}</li>
                 </ul>
-                <p>Nunc lacus elit, faucibus ac laoreet sed, dapibus ac mi. Maecenas eu ante a elit tempus fermentum. Aliquam commodo tincidunt semper. Phasellus accum</p>
+              </div>
+              <div className={css.add}>
+                <p>
+                  <Image src={Mobil} alt="mobil" />
+                  Delivery And Return
+                </p>
+                <p>
+                  <Image src={Measure} alt="mobil" />
+                  Size Guide
+                </p>
+                <p>
+                  <Image src={Pin} alt="mobil" />
+                  Store available
+                </p>
+              </div>
+              <div className={css.media}>
+                <i className="bi bi-facebook"></i>
+                <i className="bi bi-twitter"></i>
+                <i className="bi bi-youtube"></i>
+              </div>
+              <div className={css.nav}>
+                <p>Description</p>
+                <p>Review</p>
+                <p>Additional Information </p>
+                <p>About Brand</p>
+                <p>Shipping & Delivery</p>
+              </div>
+              <div className={css.content}>
+                <Image src={this.state.jumboImg !== "" ? this.state.jumboImg : Chair} alt="product" height={200} width={200} />
+                <div className={css.text}>
+                  <p>
+                    Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at egestas magna molestie a. Proin ac ex maximus, ultrices justo eget, sodales orci. Aliquam egestas libero ac turpis pharetra, in vehicula lacus scelerisque.
+                    Vestibulum ut sem laoreet, feugiat tellus at, hendrerit arcu..
+                  </p>
+                  <ul>
+                    <li>Maecenas eu ante a elit tempus fermentum. Aliquam commodo tincidunt semper</li>
+                    <li>Aliquam est et tempus. Eaecenas libero ante, tincidunt vel</li>
+                  </ul>
+                  <p>Nunc lacus elit, faucibus ac laoreet sed, dapibus ac mi. Maecenas eu ante a elit tempus fermentum. Aliquam commodo tincidunt semper. Phasellus accum</p>
+                </div>
+              </div>
+              <div className={css.related}>
+                <p>Related Products</p>
+                <div className={css.cardContainer}>
+                  <div className={css.card}>
+                    <Image src={Chair} width={360} height={450} alt="product related    " />
+                    <figcaption>
+                      {" "}
+                      <span>Coaster 506222-CO Loveseat</span> <span>{formater.format(this.state.product.price)}</span>
+                    </figcaption>
+                  </div>
+                  <div className={css.card}>
+                    <Image src={Chair} width={360} height={450} alt="product related    " />
+                    <figcaption>
+                      {" "}
+                      <span>Coaster 506222-CO Loveseat</span> <span>{formater.format(this.state.product.price)}</span>
+                    </figcaption>
+                  </div>
+                  <div className={css.card}>
+                    <Image src={Chair} width={360} height={450} alt="product related    " />
+                    <figcaption>
+                      {" "}
+                      <span>Coaster 506222-CO Loveseat</span> <span>{formater.format(this.state.product.price)}</span>
+                    </figcaption>
+                  </div>
+                </div>
+              </div>
+              {/* TOAST */}
+              <div hidden={!this.state.isAdd} className={css.toast}>
+                <p>Add to cart Success</p>
               </div>
             </div>
-            <div className={css.related}>
-              <p>Related Products</p>
-              <div className={css.cardContainer}>
-                <div className={css.card}>
-                  <Image src={Chair} width={360} height={450} alt="product related    " />
-                  <figcaption>
-                    {" "}
-                    <span>Coaster 506222-CO Loveseat</span> <span>{formater.format(this.state.product.price)}</span>
-                  </figcaption>
-                </div>
-                <div className={css.card}>
-                  <Image src={Chair} width={360} height={450} alt="product related    " />
-                  <figcaption>
-                    {" "}
-                    <span>Coaster 506222-CO Loveseat</span> <span>{formater.format(this.state.product.price)}</span>
-                  </figcaption>
-                </div>
-                <div className={css.card}>
-                  <Image src={Chair} width={360} height={450} alt="product related    " />
-                  <figcaption>
-                    {" "}
-                    <span>Coaster 506222-CO Loveseat</span> <span>{formater.format(this.state.product.price)}</span>
-                  </figcaption>
-                </div>
+          </Main>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Layout title="Product Detail" />
+          <div className={css.back}>
+            <div className={css.loading}>
+              <div className={css.loader}>
+                <svg className={`${css["loading-animation"]}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                  <path className={`${css["loading-animation__path"]}`} d="M17.9 91.1V8.9h33.5s28.8-1.4 28.8 24.7c0 19.6-17.5 23.2-17.5 23.2L85 91.2H69.8l-21-33h-8.1V47.1h9.6s16.1 1.6 16.1-13.5-16.1-13.4-16.1-13.4H31.1v70.9H17.9z" />
+                </svg>
               </div>
             </div>
           </div>
-        </Main>
-      </>
-    );
+          ;
+        </>
+      );
+    }
   }
 }
 

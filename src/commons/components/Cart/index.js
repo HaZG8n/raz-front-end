@@ -45,7 +45,7 @@ class index extends Component {
             </div>
             <div className="col-md-5 ps-5">
               <div className={`${styles["img-product"]}`}>
-                <Image src={this.props.productImage} alt="product img" layout="responsive" />
+                <Image src={this.props.productImage} alt="product img" height={120} width={120} layout="responsive" />
               </div>
             </div>
             <div className={`${styles["product-name"]} mx-auto col-md-6 d-flex align-self-center`}>
@@ -60,13 +60,7 @@ class index extends Component {
         </div>
         <div className="col-md-2 text-center">
           <div className={`${styles.price} d-flex justify-content-center`}>
-            <p onClick={this.subCounter} className={`${styles.counter} me-3`}>
-              -
-            </p>
             <p>{this.props.quantity}</p>
-            <p onClick={this.addCounter} className={`${styles.counter} ms-3`}>
-              +
-            </p>
           </div>
         </div>
         <div className="col">

@@ -51,7 +51,11 @@ class index extends Component {
   // }
 
   render() {
-    console.log("CART", this.props.cart);
+    const formater = new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 2,
+    });
     return (
       <>
         <Layout title="Cart" />
@@ -76,7 +80,9 @@ class index extends Component {
               </div>
 
               {/* Card */}
-              {Object.keys(this.state.cart).length == 0 ? null : <Cart remove={remove} productImage={chair} name={this.state.cart.productName} price={this.state.cart.price} quantity={this.state.cart.stock} total={this.state.cart.total} />}
+              {Object.keys(this.state.cart).length == 0 ? null : (
+                <Cart remove={remove} productImage={this.state.cart.image} name={this.state.cart.productName} price={formater.format(this.state.cart.price)} quantity={this.state.cart.stock} total={formater.format(this.state.cart.total)} />
+              )}
               {/* end of card */}
 
               <hr />
@@ -91,13 +97,13 @@ class index extends Component {
                 <p className="fw-bold my-4">Cart Total</p>
                 <div className="d-flex">
                   <p className="fw-bold">Subtotal</p>
-                  <p className="ms-auto fw-bold">Rp500.000</p>
+                  <p className="ms-auto fw-bold">{formater.format(this.state.cart.total)}</p>
                 </div>
                 <div className="d-flex">
                   <p className="fw-bold">Shipping</p>
                   <div className="form-check ms-auto">
                     <input className="form-check-input" type="radio" name="rate" />
-                    <label className="form-check-label text-muted">Flat rate: Rp500.000</label>
+                    <label className="form-check-label text-muted">Flat rate: {formater.format(this.state.cart.total)}</label>
                   </div>
                 </div>
                 <div className="d-flex">
@@ -117,7 +123,7 @@ class index extends Component {
                 <hr className="mt-5" />
                 <div className="d-flex mb-5">
                   <p className="fw-bold">Total Price</p>
-                  <p className="ms-auto fw-bold">Rp500.000</p>
+                  <p className="ms-auto fw-bold">{formater.format(this.state.cart.total)}</p>
                 </div>
               </div>
               <button className={`btn ${styles["btn-cart"]} w-100 py-3`}>Procced To Check Out</button>
