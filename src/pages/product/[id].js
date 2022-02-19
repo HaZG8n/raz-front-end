@@ -29,7 +29,7 @@ class index extends Component {
       productImg: [],
       jumboImg: "",
       review: false,
-      isError: 0,
+      onError: 0,
       stock: 1,
       isAdd: false,
     };
@@ -38,7 +38,7 @@ class index extends Component {
 
   onError(idx) {
     this.setState({
-      isError: idx,
+      onError: idx,
     });
   }
 
@@ -53,10 +53,6 @@ class index extends Component {
         console.log(err);
       });
   };
-
-  componentDidMount() {
-    this.getProduct();
-  }
 
   plusCounter = () => {
     const { stock } = this.state;
@@ -104,7 +100,6 @@ class index extends Component {
       currency: "IDR",
       minimumFractionDigits: 2,
     });
-    console.log(this.state.product.length);
     if (this.state.product.length !== 0) {
       return (
         <>
@@ -131,7 +126,7 @@ class index extends Component {
                           key={val.id}
                           height={134}
                           width={140}
-                          src={val.image}
+                          src={val.id == this.state.onError ? Chair : val.image}
                           onError={() => this.onError(val.id)}
                           alt="product image"
                         />
@@ -282,10 +277,10 @@ class index extends Component {
                 <svg className={`${css["loading-animation"]}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
                   <path className={`${css["loading-animation__path"]}`} d="M17.9 91.1V8.9h33.5s28.8-1.4 28.8 24.7c0 19.6-17.5 23.2-17.5 23.2L85 91.2H69.8l-21-33h-8.1V47.1h9.6s16.1 1.6 16.1-13.5-16.1-13.4-16.1-13.4H31.1v70.9H17.9z" />
                 </svg>
+                <p>Loading...</p>
               </div>
             </div>
           </div>
-          ;
         </>
       );
     }
