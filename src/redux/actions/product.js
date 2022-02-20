@@ -1,4 +1,4 @@
-import { addProduct, getMyProduct } from "src/commons/module/product";
+// import { getMyProduct } from "src/commons/module/product";
 
 export const setCart = (product) => {
   return {
@@ -27,12 +27,12 @@ export const setWishList = (product) => {
   };
 };
 
-export const myProductAction = (token) => {
-  return {
-    type: "SET_MYPRODUCT_FULFILLED",
-    payload: getMyProduct(token)
-  }
-}
+// export const myProductAction = (token) => {
+//   return {
+//     type: "SET_MY_PRODUCT_FULFILLED",
+//     payload: getMyProduct(token)
+//   }
+// }
 // export const addProductAction = (body, token) => {
 //   return {
 //     type: "SET_ADD_PRODUCT_FULFILLED",

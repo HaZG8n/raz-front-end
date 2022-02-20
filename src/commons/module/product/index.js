@@ -20,6 +20,11 @@ export const getMyProduct = (token) => {
   return axios.get(URL, { headers: { "x-access-token": token } })
 }
 
+export const deleteMyProduct = (id, token) => {
+  const URL = `${process.env.NEXT_PUBLIC_HOST}product/${id}`
+  return axios.delete(URL, { headers: { "x-access-token": token } })
+}
+
 export const getOrder = (token) => {
   const URL = `${process.env.NEXT_PUBLIC_HOST}checkout`;
   return axios.get(URL, { headers: { "x-access-token": token } });
