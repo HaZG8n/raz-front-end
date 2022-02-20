@@ -7,7 +7,7 @@ export const setCart = (product) => {
   };
 };
 
-export const DelCart = () => {
+export const DelCart = (index) => {
   return {
     type: "DEL_CART_FULFILLED",
   };
@@ -23,7 +23,7 @@ export const setWishList = (product) => {
 export const addProductAction = (body, token) => {
   return {
     type: "SET_ADD_PRODUCT_FULFILLED",
-    payload: addProduct(body, token)
+    payload: addProduct(body, token),
     // payload: product,
-  }
-}
+  };
+};

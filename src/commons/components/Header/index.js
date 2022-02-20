@@ -12,8 +12,10 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 
 const Header = () => {
+  const { cart: carts } = useSelector((state) => state.cart);
   const [showSearch, setShowSearch] = useState(false);
   const router = useRouter();
+
   return (
     <>
       <header className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: "transparent" }}>
@@ -116,7 +118,7 @@ const Header = () => {
                     router.push("/cart");
                   }}
                 >
-                  <div className={styles.total}>5</div>
+                  <div className={styles.total}>{carts.length}</div>
                   <Image src={cart} alt="avatar" />
                 </div>
               </div>

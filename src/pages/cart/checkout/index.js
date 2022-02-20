@@ -37,11 +37,7 @@ class checkout extends Component {
 
   goCheckOut = () => {
     const body = {
-      cart: {
-        product_id: this.props.cart.productId,
-        total_price: this.props.cart.total,
-        quantity: this.props.cart.stock,
-      },
+      cart: this.props.cart,
       name_user: this.state.name_user,
       adress: this.state.adress,
       phone: this.state.phone,
@@ -50,16 +46,16 @@ class checkout extends Component {
     };
     console.log("body", body);
     const token = this.props.token;
-    CheckOutProduct(body, token)
-      .then((res) => {
-        console.log("RESULT", res.data);
-        const { va_number } = res.data.data.va_numbers[0];
-        this.setState({ isShow: !this.state.isShow });
-        this.setState({ va_number: va_number });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // CheckOutProduct(body, token)
+    //   .then((res) => {
+    //     console.log("RESULT", res.data);
+    //     const { va_number } = res.data.data.va_numbers[0];
+    //     this.setState({ isShow: !this.state.isShow });
+    //     this.setState({ va_number: va_number });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   render() {
