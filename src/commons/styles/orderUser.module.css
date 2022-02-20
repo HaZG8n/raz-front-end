@@ -1,0 +1,64 @@
+.card-order {
+  margin: 0;
+  padding: 0 5%;
+}
+
+.name-product {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-family: Arimo;
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.price-product {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-family: Arimo;
+  font-size: 1.1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 21px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.quantity-product {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-family: Arimo;
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.status-product {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-family: Arimo;
+  font-size: 0.7rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.total-product {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-family: Arimo;
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: left;
+}

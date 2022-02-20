@@ -1,0 +1,23 @@
+.textOrder {
+    text-align: center;
+}
+
+.form-info {
+    padding: 5% 3%;
+}
+
+.form-label {
+    text-align: start;
+    margin-top: 5%;
+}
+
+.button-track {
+    /* margin-top: 5%; */
+    background-color: black;
+    color: #FFF !important;
+    border-radius: 0;
+    margin: 5% 33%;
+    height: 50px;
+    width: 30%;
+    text-align: center;
+}
