@@ -12,11 +12,12 @@ import Footer from "src/commons/components/Footer";
 import chair from "src/assets/img/Mask.png";
 import remove from "src/assets/svg/close.svg";
 import styles from "src/commons/styles/Cart.module.css";
-import Cart from "src/commons/Cart";
+import Cart from "src/commons/components/Cart";
 
 class index extends Component {
   state = {
     counter: 1,
+    cart: this.props.cart,
   };
 
   addCounter = () => {
@@ -50,6 +51,11 @@ class index extends Component {
   // }
 
   render() {
+    const formater = new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 2,
+    });
     return (
       <>
         <Layout title="Cart" />
@@ -74,10 +80,9 @@ class index extends Component {
               </div>
 
               {/* Card */}
-              <Cart remove={remove} productImage={chair} name="Fabric Mid Century Chair" price="Rp500.000" total="Rp500.000" />
-              <Cart remove={remove} productImage={chair} name="Fabric Mid Century Chair" price="Rp500.000" total="Rp500.000" />
-              <Cart remove={remove} productImage={chair} name="Fabric Mid Century Chair" price="Rp500.000" total="Rp500.000" />
-              <Cart remove={remove} productImage={chair} name="Fabric Mid Century Chair" price="Rp500.000" total="Rp500.000" />
+              {Object.keys(this.state.cart).length == 0 ? null : (
+                <Cart remove={remove} productImage={this.state.cart.image} name={this.state.cart.productName} price={formater.format(this.state.cart.price)} quantity={this.state.cart.stock} total={formater.format(this.state.cart.total)} />
+              )}
               {/* end of card */}
 
               <hr />
@@ -92,13 +97,13 @@ class index extends Component {
                 <p className="fw-bold my-4">Cart Total</p>
                 <div className="d-flex">
                   <p className="fw-bold">Subtotal</p>
-                  <p className="ms-auto fw-bold">Rp500.000</p>
+                  <p className="ms-auto fw-bold">{formater.format(this.state.cart.total)}</p>
                 </div>
                 <div className="d-flex">
                   <p className="fw-bold">Shipping</p>
                   <div className="form-check ms-auto">
                     <input className="form-check-input" type="radio" name="rate" />
-                    <label className="form-check-label text-muted">Flat rate: Rp500.000</label>
+                    <label className="form-check-label text-muted">Flat rate: {formater.format(this.state.cart.total)}</label>
                   </div>
                 </div>
                 <div className="d-flex">
@@ -118,7 +123,7 @@ class index extends Component {
                 <hr className="mt-5" />
                 <div className="d-flex mb-5">
                   <p className="fw-bold">Total Price</p>
-                  <p className="ms-auto fw-bold">Rp500.000</p>
+                  <p className="ms-auto fw-bold">{formater.format(this.state.cart.total)}</p>
                 </div>
               </div>
               <button className={`btn ${styles["btn-cart"]} w-100 py-3`}>Procced To Check Out</button>
@@ -132,16 +137,9 @@ class index extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("STATE", state);
   return {
-    cart: state.cart,
+    cart: state.cart.cart,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setUserCart: bindActionCreators(setCart, dispatch),
-  };
-};
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(index));
+export default withRouter(connect(mapStateToProps)(index));

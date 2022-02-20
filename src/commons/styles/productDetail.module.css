@@ -1,0 +1,516 @@
+.wrapper {
+  width: 90%;
+  margin: auto;
+}
+
+.imgContainer {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 20% auto;
+  grid-template-areas: "side main";
+  margin-bottom: 5%;
+}
+
+.side {
+  grid-area: side;
+  justify-content: space-evenly;
+  display: flex;
+  flex-direction: column;
+}
+
+.side img {
+  object-fit: contain;
+}
+
+.main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.main img {
+  object-fit: contain;
+}
+
+.productName {
+  margin-bottom: 2%;
+  height: 150px;
+}
+
+.productName p:first-child {
+  font-family: Arimo;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 37px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #1a1a1a;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 10%;
+}
+
+.price {
+  font-family: Arimo;
+  padding-top: 2%;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #1a1a1a;
+}
+
+.stock {
+  margin-top: -4%;
+  text-align: center;
+}
+
+.stock i {
+  padding-right: 1%;
+  color: #111111;
+}
+
+.desc {
+  font-family: Arimo;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 37px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #4d4d4d;
+}
+
+.buttonContainer {
+  margin-top: 1%;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2%;
+}
+
+.stockCounter {
+  height: 100%;
+  width: 110px;
+  border: 1px solid #d4d4d4;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "minus stock add";
+}
+
+.stockCounter button:first-child {
+  grid-area: minus;
+  background-color: transparent;
+  color: #111111;
+  box-shadow: none;
+  border-radius: 0;
+  border: none;
+  font-size: 30px;
+}
+
+.stockCounter p:nth-child(2) {
+  display: flex;
+  align-items: center;
+  padding-top: 50%;
+  justify-content: center;
+  grid-area: stock;
+  font-family: Arimo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: center;
+}
+
+.stockCounter button:last-child {
+  grid-area: add;
+  color: #111111;
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  border: none;
+  font-size: 30px;
+}
+
+.cartBtn {
+  margin-left: 2%;
+  height: 60px;
+  width: 150px;
+  border-radius: 0%;
+  font-family: Arimo;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: 0px;
+  text-align: center;
+  background-color: #1a1a1a;
+  color: white;
+}
+
+.cartBtn:hover {
+  margin-left: 2%;
+  height: 60px;
+  width: 150px;
+  border-radius: 0%;
+  font-family: Arimo;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: 0px;
+  text-align: center;
+  background-color: #1a1a1a;
+  color: white;
+}
+
+.love {
+  height: 60px;
+  margin-left: 2%;
+  width: 60px;
+  background-color: #1a1a1a;
+  color: white;
+  border-radius: 0px;
+}
+
+.love:hover {
+  background-color: #1a1a1a;
+  color: white;
+}
+
+.wish {
+  margin-left: 2%;
+  height: 60px;
+  width: 164px;
+  border-radius: 0px;
+  border: 1px solid #b4b4b4;
+  font-family: Arimo;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #262626;
+  background-color: transparent;
+}
+
+.wish:hover {
+  color: #262626;
+  background-color: transparent;
+}
+
+.detail ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.detail li {
+  padding-left: 0;
+  font-family: Arimo;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #2f2f2f;
+}
+
+.add {
+  width: 40%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.media {
+  width: 10%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.media i {
+  width: 31px;
+  height: 31px;
+  border-radius: 50%;
+  border: 1px solid grey;
+  text-align: center;
+  padding-top: 2%;
+}
+
+.nav {
+  margin-top: 5%;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1%;
+}
+
+.nav p {
+  font-family: Arimo;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px;
+  letter-spacing: 0px;
+  color: #1a1a1a;
+}
+
+.content {
+  height: 100vh;
+  margin-bottom: 3%;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-areas: "image text";
+  grid-gap: 5%;
+}
+
+.content img {
+  width: 200px;
+  height: 200px;
+  grid-area: image;
+}
+
+.text p:first-child {
+  font-family: Arimo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #777777;
+}
+
+.text ul {
+  padding-left: 2%;
+}
+
+.text li {
+  font-family: Arimo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #777777;
+}
+
+.text p:last-child {
+  font-family: Arimo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #777777;
+}
+
+.cardContainer {
+  margin-top: 5%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.related {
+  height: 80vh;
+  margin-top: 5%;
+  margin-bottom: 10%;
+}
+
+.related p:first-child {
+  font-family: Arimo;
+  font-size: 46px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 53px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #1a1a1a;
+}
+
+.card {
+  width: 360px;
+}
+
+.card figcaption {
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.card figcaption span:first-child {
+  font-family: Arimo;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #1a1a1a;
+}
+
+.card figcaption span:last-child {
+  margin-top: 2%;
+  font-family: Arimo;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 21px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #1a1a1a;
+}
+
+/* TOAST */
+.toast {
+  position: fixed;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  top: 5%;
+  right: 2%;
+  width: 230px;
+  height: 60px;
+  background-color: #1a1a1a;
+  color: white;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+.toast p {
+  padding-top: 15%;
+  font-family: Arimo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: center;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    right: 0;
+    opacity: 0;
+  }
+  to {
+    right: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    right: 0;
+    opacity: 0;
+  }
+  to {
+    right: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    right: 30px;
+    opacity: 1;
+  }
+  to {
+    right: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    right: 30px;
+    opacity: 1;
+  }
+  to {
+    right: 0;
+    opacity: 0;
+  }
+}
+
+/* LOADING */
+
+.back {
+  height: 100vh;
+  width: 100%;
+}
+
+.loading {
+  background: rgb(0, 0, 0);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  width: 8rem;
+}
+
+.loading-animation__path {
+  stroke: #ffffff;
+  stroke-width: 1;
+  fill: none;
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: stroke 3s linear infinite;
+}
+
+@keyframes stroke {
+  from {
+    stroke-dashoffset: 500;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.back p {
+  text-align: center;
+  font-family: Arimo;
+  padding-top: 20%;
+  font-size: 30px;
+  color: white;
+  text-transform: uppercase;
+}
+
+/* .back p {
+  width: max-content;
+  position: relative;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  font-size: 2em;
+  background: linear-gradient(90deg, #000, #fff, #000);
+  background-repeat: no-repeat;
+  background-size: 70%;
+  animation: animate 3s linear infinite;
+  background-clip: text;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0);
+} */
+
+@keyframes animate {
+  0% {
+    background-position: -500%;
+  }
+  100% {
+    background-position: 500%;
+  }
+}

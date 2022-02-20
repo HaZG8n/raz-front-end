@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { withRouter } from "next/router";
 import Link from "next/link";
+import { getAllProduct } from "src/commons/module/product";
 
 import Main from "src/commons/components/Main";
 import Layout from "src/commons/components/Layout";
@@ -11,6 +12,28 @@ import CardProduct from "src/commons/components/Product";
 import css from "src/commons/styles/product.module.css";
 
 class index extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      product: [],
+    };
+  }
+
+  getAll = () => {
+    getAllProduct()
+      .then((res) => {
+        console.log(res.data.data);
+        this.setState({ product: res.data.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  componentDidMount() {
+    this.getAll();
+  }
+
   render() {
     const { router } = this.props;
     console.log("ROUTER", router.query);
@@ -48,18 +71,11 @@ class index extends Component {
                   </div>
                 </div>
                 <div className={css.card}>
-                  <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
-                  <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
-                  <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
-                  <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
-                  <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
-                  <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
-                  <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
-                  <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
-                  <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
-                  <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
-                  <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
-                  <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
+                  {this.state.product.length == 0
+                    ? null
+                    : this.state.product.map((val) => {
+                        return <CardProduct key={val.id} id={val.id} name={val.name} price={val.price} />;
+                      })}
                 </div>
                 <div className={css.paginasi}>
                   <ul className="pagination pagination-lg mt-5">
