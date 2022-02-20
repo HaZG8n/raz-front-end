@@ -20,10 +20,10 @@ export const setWishList = (product) => {
   };
 };
 
-export const addProductAction = (body, token) => {
-  return {
-    type: "SET_ADD_PRODUCT_FULFILLED",
-    payload: addProduct(body, token)
-    // payload: product,
-  }
-}
+// export const addProductAction = (body, token) => {
+//   return {
+//     type: "SET_ADD_PRODUCT_FULFILLED",
+//     payload: addProduct(body, token)
+//     // payload: product,
+//   }
+// }

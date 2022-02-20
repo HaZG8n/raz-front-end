@@ -7,12 +7,13 @@ import css from "src/commons/styles/AddProduct.module.css";
 import product from "src/assets/svg/add-product.svg";
 import MenuProfile from "src/commons/components/MenuProfile";
 
-import { addProductAction } from "src/redux/actions/product";
+// import { addProductAction } from "src/redux/actions/product";
+import { addProduct } from "src/commons/module/product";
 import { useSelector, useDispatch } from "react-redux";
-import { useState, createRef, Fragment } from "react";
+import { useState, createRef } from "react";
 
 function AddProduct() {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   const state = useSelector((state) => state)
   const inputImage = createRef()
   const [imagesFile, setImagesFile] = useState([])
@@ -31,7 +32,14 @@ function AddProduct() {
       condition: Array.from(document.querySelectorAll('input[type=checkbox]:checked')).map(item => item.value).join(''),
       image: imagesFile
     }
-    dispatch(addProductAction(body, token))
+    // dispatch(addProductAction(body, token))
+    addProduct(body, token)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   const handleImage = (e) => {

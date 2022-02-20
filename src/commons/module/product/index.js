@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 export const addProduct = (body, token) => {
-  const URL = process.env.NEXT_PUBLIC_HOST + 'product/createproduct'
+  const URL = `${process.env.NEXT_PUBLIC_HOST}product/createproduct`
   return axios.post(URL, body, { headers: { 'x-access-token': token } })
 }
 export const GetProductDetail = (id, token) => {
