@@ -15,3 +15,7 @@ export const getAllProduct = () => {
   return axios.get(URL);
 };
 
+export const getMyProduct = (token) => {
+  const URL = `${process.env.NEXT_PUBLIC_HOST}product/getproductbyseler`
+  return axios.get(URL, { headers: { "x-access-token": token } })
+}
