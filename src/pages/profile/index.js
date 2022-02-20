@@ -14,10 +14,11 @@ import { Modal, Button } from "react-bootstrap";
 
 import { bindActionCreators } from "redux";
 import { saveAction } from "src/redux/actions/auth";
-import { updateProfile } from "src/commons/module/user";
+import { editPassword, updateProfile } from "src/commons/module/user";
 import { GetUserProfile } from "src/commons/module/auth";
 
 import { Router, useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 function Profile(props) {
   // console.log(props)
@@ -27,11 +28,19 @@ function Profile(props) {
 
   // console.log(userData);
   const [show, setShow] = useState(false);
+  const [input, setInput] = useState({
+    oldPassword: "",
+    newPassword: "",
+    confirmPassword: "",
+  });
+  const [errors, setErrors] = useState({});
+  const [isEditPassword, setIsEditPassword] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const [isEdit, setIsEdit] = useState(true);
+
   const handleClick = () => {
     setIsEdit(!isEdit);
   };
@@ -59,6 +68,59 @@ function Profile(props) {
       })
       .catch((err) => console.log(err));
   };
+
+  const validate = () => {
+    let errors = {};
+    let isValid = true;
+
+    if (
+      typeof input.newPassword !== "undefined" &&
+      typeof input.confirmPassword !== "undefined"
+    ) {
+      if (input.newPassword !== input.confirmPassword) {
+        isValid = false;
+        errors["confirmPassword"] = "Passwords don't match";
+      }
+    }
+    setErrors(errors);
+    return isValid;
+  };
+
+  const handleChange = (e) => {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmitPassword = (e) => {
+    e.preventDefault();
+    if (validate()) {
+      const body = {
+        oldPassword: input.oldPassword,
+        newPassword: input.newPassword,
+      };
+
+      editPassword(token, body)
+        .then((res) => {
+          console.log(res);
+          // setIsEditPassword(true);
+          toast.success("Edit Password Successful", {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 3000,
+          });
+          handleClose()
+          router.push("/profile");
+        })
+        .catch((err) => {
+          console.log(err);
+          let errors = {};
+          errors["oldPassword"] = "Password is invalid";
+          setErrors(errors);
+        });
+    }
+  };
+
   return (
     <>
       <Layout title="Profile">
@@ -176,67 +238,65 @@ function Profile(props) {
               >
                 Edit Password
               </button>
-              <Modal
-                show={show}
-                onHide={handleClose}
-                backdrop="static"
-                keyboard={false}
-              >
-                <Modal.Header closeButton>
-                  <Modal.Title>EDIT PASSWORD</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <form
-                    className="form-container"
-                  >
-                    <label htmlFor="currentPass" className="current-pass">
-                      Current Password :
-                    </label>
-                    <input
-                      className="form-control current mb-3"
-                      type="password"
-                      name="currentPass"
-                    />
-                    <div className="text-danger mb-2">
-                    </div>
-                    <label htmlFor="newPass" className="new-pass">
-                      New Password :
-                    </label>
-                    <input
-                      className="form-control new"
-                      type="password"
-                      name="newPass"
-                    />
-                    <div className="text-danger mb-2">
-                    </div>
-                    <label htmlFor="confirmPass" className="confirm-pass">
-                      Confirm New Password :
-                    </label>
-                    <input
-                      className="form-control confirm"
-                      type="password"
-                      name="confirmPass"
-                    />
-                    <div className="text-danger mb-2">
-                    </div>
-                    <div className="col-md-12 text-center mt-5 changePass">
-                      <button type="submit" className="btn btn-dark">
-                        Change Password
-                      </button>
-                    </div>
-                    <div className="col-md-12 text-center mt-3 cancel-edit">
-                      <button
-                        type="button"
-                        className="btn"
-                      >
-                        Cancel
-                      </button>
-                    </div>
-                  </form>
-                </Modal.Body>
-              </Modal>
             </section>
           </form>
+          <Modal
+            show={show}
+            onHide={handleClose}
+            backdrop="static"
+            keyboard={false}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>EDIT PASSWORD</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <form className="form-container" onSubmit={handleSubmitPassword}>
+                <label htmlFor="currentPass" className="current-pass">
+                  Current Password :
+                </label>
+                <input
+                  className="form-control current mb-3 shadow-none"
+                  type="password"
+                  name="oldPassword"
+                  value={input.oldPassword}
+                  onChange={handleChange}
+                />
+                <div className="text-danger mb-2">{errors.oldPassword}</div>
+                <label htmlFor="newPass" className="new-pass">
+                  New Password :
+                </label>
+                <input
+                  className="form-control shadow-none"
+                  type="password"
+                  name="newPassword"
+                  value={input.newPassword}
+                  onChange={handleChange}
+                />
+                <div className="text-danger mb-2"></div>
+                <label htmlFor="confirmPass" className="confirm-pass">
+                  Confirm New Password :
+                </label>
+                <input
+                  className="form-control shadow-none"
+                  type="password"
+                  name="confirmPassword"
+                  value={input.confirmPassword}
+                  onChange={handleChange}
+                />
+                <div className="text-danger mb-2">{errors.confirmPassword}</div>
+                <div className="col-md-12 text-center mt-5 changePass">
+                  <button type="submit" className="btn btn-dark">
+                    Change Password
+                  </button>
+                </div>
+                <div className="col-md-12 text-center mt-3 cancel-edit">
+                  <button type="button" className="btn" onClick={handleClose}>
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </Modal.Body>
+          </Modal>
           <Footer />
         </main>
       </Layout>
