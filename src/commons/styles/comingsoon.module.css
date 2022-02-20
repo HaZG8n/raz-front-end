@@ -1,0 +1,96 @@
+.main-section {
+  background-color: black;
+  color: #fff;
+  padding: 0 5%;
+}
+
+.text-coming {
+  font-family: Arimo;
+  font-size: 4.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 77px;
+  letter-spacing: 0px;
+  text-align: left;
+  /* margin-left: 5%; */
+  /* padding: 0 5%; */
+  margin-top: 10%;
+}
+
+.num {
+  font-family: Arimo;
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 56px;
+  letter-spacing: 0px;
+  text-align: center;
+  margin: 0;
+}
+
+.day {
+  font-family: Arimo;
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: center;
+}
+
+.coming-day {
+  padding: 0;
+  margin-top: 10%;
+}
+
+.left-icon {
+    padding: 5% 0;
+}
+
+.input {
+  background-color: black;
+  color: #fff;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  margin: 15% 0;
+  width: 90%;
+}
+
+.brand-icon {
+  font-family: Arimo;
+  font-size: 2.2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 41px;
+  letter-spacing: 0px;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.text-brand {
+  font-family: Arimo;
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-align: left;
+  margin-bottom: auto;
+  margin-top: auto;
+}
+
+.right-side {
+    text-align: end;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.icon-social {
+    padding: 0 5%;
+}
+
+.col {
+    padding: 0;
+}
