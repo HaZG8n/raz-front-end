@@ -16,7 +16,7 @@ function CardProduct({ name, price, id }) {
             <p className={styles["name-product"]}>{name}</p>
           </figcaption>
           <figcaption className={styles["fill-product"]}>
-            <p className={styles["price-product"]}>25.000</p>
+            <p className={styles["price-product"]}>{price}</p>
           </figcaption>
         </section>
       </Link>
