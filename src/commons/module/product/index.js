@@ -9,8 +9,8 @@ export const GetProductDetail = (id, token) => {
   return axios.get(URL, { headers: { "x-access-token": token } });
 };
 
-export const getAllProduct = () => {
-  const URL = `${process.env.NEXT_PUBLIC_HOST}product/`;
+export const getAllProduct = (page) => {
+  const URL = `${process.env.NEXT_PUBLIC_HOST}product?sort=ASC&per_page=9&page=${page}`;
   return axios.get(URL);
 };
 

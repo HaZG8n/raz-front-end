@@ -97,42 +97,46 @@ class checkout extends Component {
             </button>
           </div>
           <div className={styles.modal}>
-            <Modal show={this.state.isShow}>
-              <Modal.Header>
-                <button
-                  type="button"
-                  className="btn-close"
-                  aria-label="Close"
-                  onClick={() => {
-                    this.setState({ isShow: !this.state.isShow });
-                  }}
-                ></button>
-              </Modal.Header>
+            <Modal show={this.state.isShow} centered>
+              <div className={styles.modalHeader}>
+                <Modal.Header>
+                  <p>Please Finish Your Payment</p>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    aria-label="Close"
+                    onClick={() => {
+                      this.setState({ isShow: !this.state.isShow });
+                    }}
+                  ></button>
+                </Modal.Header>
+              </div>
               <Modal.Body>
-                <p>Your Va Numbers: {this.state.va_number}</p>
+                <div className={styles.modalBody}>
+                  <p>Your Payment Code : {this.state.va_number}</p>
+                  <p>Copy your payment code for payment</p>
+                </div>
               </Modal.Body>
               <Modal.Footer>
-                <button
-                  className="btn btn-primary"
-                  onClick={() => {
-                    if (this.state.bank == "bri") {
-                      window.open("https://simulator.sandbox.midtrans.com/bri/va/index");
-                    } else if (this.state.bank == "bni") {
-                      window.open("https://simulator.sandbox.midtrans.com/bni/va/index");
-                    } else {
-                      window.open("https://simulator.sandbox.midtrans.com/bca/va/index");
-                    }
-                  }}
-                >
-                  Please Pay Your Payment
-                </button>
+                <div className={styles.modalFooter}>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => {
+                      if (this.state.bank == "bri") {
+                        window.open("https://simulator.sandbox.midtrans.com/bri/va/index");
+                      } else if (this.state.bank == "bni") {
+                        window.open("https://simulator.sandbox.midtrans.com/bni/va/index");
+                      } else {
+                        window.open("https://simulator.sandbox.midtrans.com/bca/va/index");
+                      }
+                    }}
+                  >
+                    Go to Payment Page
+                  </button>
+                </div>
               </Modal.Footer>
             </Modal>
           </div>
-
-          {/* <button className={`btn ${styles["btn-checkout"]} py-3`} onClick={this.goCheckOut}>
-              Check Out
-            </button> */}
         </div>
         <Footer />
       </>
