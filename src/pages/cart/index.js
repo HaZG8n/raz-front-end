@@ -3,7 +3,7 @@ import { withRouter } from "next/router";
 import { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { setCart } from "src/redux/actions/product";
+import { setCart, setTotalPrice } from "src/redux/actions/product";
 
 import Header from "src/commons/components/Header";
 import Banner from "src/commons/components/Banner";
@@ -17,6 +17,9 @@ import Cart from "src/commons/components/Cart";
 class index extends Component {
   state = {
     counter: 1,
+    cart: this.props.cart,
+    totalPrice: 0,
+    key: {},
   };
 
   addCounter = () => {
@@ -33,21 +36,43 @@ class index extends Component {
     });
   };
 
-  // componentDidMount() {
-  //   const data = [
-  //     {
-  //       id: 1,
-  //       name: "rhymado",
-  //       price: 10000,
-  //     },
-  //     {
-  //       id: 1,
-  //       name: "rhymado",
-  //       price: 10000,
-  //     },
-  //   ];
-  //   this.props.setUserCart(data);
-  // }
+  removeItems = (idx) => {
+    console.log(`del ${idx}`);
+    const prods = [...this.props.cart];
+    const idxItems = prods.findIndex((vals) => {
+      return vals.product_id === idx;
+    });
+
+    if (idxItems !== -1) {
+      prods.splice(idxItems, 1);
+    }
+
+    this.props.setCartData(prods);
+  };
+
+  calCulate = () => {
+    const prods = [...this.props.cart];
+    let toals = 0;
+    if (prods.length > 0) {
+      prods.forEach((vals) => {
+        console.log(vals);
+        toals = toals + vals.total_price;
+      });
+    }
+
+    this.setState({ totalPrice: toals });
+    this.props.setTotal(toals);
+  };
+
+  componentDidMount() {
+    this.calCulate();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.cart.length !== this.props.cart.length) {
+      this.calCulate();
+    }
+  }
 
   render() {
     const formater = new Intl.NumberFormat("id-ID", {
@@ -55,7 +80,7 @@ class index extends Component {
       currency: "IDR",
       minimumFractionDigits: 2,
     });
-    console.log(this.props.cart);
+    console.log("CART", this.state.cart);
     return (
       <>
         <Layout title="Cart" />
@@ -79,8 +104,24 @@ class index extends Component {
                 </div>
               </div>
               {/* Card */}
-
-              <Cart remove={remove} productImage={chair} name={this.props.cart.productName} price={formater.format(this.props.cart.price)} quantity={this.props.cart.stock} total={formater.format(this.props.cart.total)} />
+              {this.props.cart.map((val) => {
+                console.log("val", val);
+                return (
+                  <>
+                    <Cart
+                      idx={val.product_id}
+                      key={val.product_id}
+                      remove={remove}
+                      productImage={chair}
+                      rmAction={this.removeItems}
+                      name={val.productName}
+                      price={formater.format(val.price)}
+                      quantity={val.quantity}
+                      total={formater.format(val.total_price)}
+                    />
+                  </>
+                );
+              })}
               {/* end of card */}
               <hr />
               <div className="d-flex mb-3">
@@ -94,13 +135,13 @@ class index extends Component {
                 <p className="fw-bold my-4">Cart Total</p>
                 <div className="d-flex">
                   <p className="fw-bold">Subtotal</p>
-                  <p className="ms-auto fw-bold">{formater.format(this.props.cart.total)}</p>
+                  <p className="ms-auto fw-bold">{formater.format(this.state.totalPrice)}</p>
                 </div>
                 <div className="d-flex">
                   <p className="fw-bold">Shipping</p>
                   <div className="form-check ms-auto">
                     <input className="form-check-input" type="radio" name="rate" />
-                    <label className="form-check-label text-muted">Flat rate: {formater.format(this.props.cart.total)}</label>
+                    <label className="form-check-label text-muted">Flat rate: {formater.format(this.state.totalPrice)}</label>
                   </div>
                 </div>
                 <div className="d-flex">
@@ -120,7 +161,7 @@ class index extends Component {
                 <hr className="mt-5" />
                 <div className="d-flex mb-5">
                   <p className="fw-bold">Total Price</p>
-                  <p className="ms-auto fw-bold">{formater.format(this.props.cart.total)}</p>
+                  <p className="ms-auto fw-bold">{formater.format(this.state.totalPrice)}</p>
                 </div>
               </div>
               <button
@@ -146,4 +187,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps)(index));
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setCartData: bindActionCreators(setCart, dispatch),
+    setTotal: bindActionCreators(setTotalPrice, dispatch),
+  };
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(index));

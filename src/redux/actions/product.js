@@ -13,6 +13,13 @@ export const DelCart = () => {
   };
 };
 
+export const setTotalPrice = (price) => {
+  return {
+    type: "SET_TOTAL_FULFILLED",
+    payload: price,
+  };
+};
+
 export const setWishList = (product) => {
   return {
     type: "SET_WISHLIST_FULFILLED",
@@ -27,3 +34,4 @@ export const setWishList = (product) => {
 //     // payload: product,
 //   }
 // }
+

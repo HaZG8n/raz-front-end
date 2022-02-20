@@ -77,11 +77,11 @@ class index extends Component {
       ...this.props.cart,
       {
         productName: this.state.product.name,
-        productId: this.state.product.id,
+        product_id: this.state.product.id,
         image: this.state.productImg[0].image,
-        stock: this.state.stock,
+        quantity: this.state.stock,
         price: this.state.product.price,
-        total: this.state.product.price * this.state.stock,
+        total_price: this.state.product.price * this.state.stock,
       },
     ];
     this.props.setCartData(product);
