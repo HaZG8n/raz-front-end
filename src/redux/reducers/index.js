@@ -4,6 +4,7 @@ import cartData from "./cart";
 import wishListData from "./wishList";
 import addProductReducers from "./addProduct";
 import totalPrice from "./totalPrice";
+import myProduct from "./myProduct";
 
 const reducers = combineReducers({
   auth: authReducer,
@@ -11,6 +12,7 @@ const reducers = combineReducers({
   wishList: wishListData,
 
   addProduct: addProductReducers,
+  myProduct: myProduct,
   price: totalPrice,
 });
 
