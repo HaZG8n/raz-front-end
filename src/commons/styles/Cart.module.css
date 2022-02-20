@@ -116,3 +116,10 @@
     padding-left: 5%;
   }
 }
+
+.modal {
+  font-family: Arimo;
+  font-size: 20px;
+  color: #1a1a1a;
+  text-align: center;
+}

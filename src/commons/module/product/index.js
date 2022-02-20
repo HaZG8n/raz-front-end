@@ -14,3 +14,4 @@ export const getAllProduct = () => {
   const URL = `${process.env.NEXT_PUBLIC_HOST}product/`;
   return axios.get(URL);
 };
+
