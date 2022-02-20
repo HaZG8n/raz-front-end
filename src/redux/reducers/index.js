@@ -9,6 +9,7 @@ const reducers = combineReducers({
   auth: authReducer,
   cart: cartData,
   wishList: wishListData,
+
   addProduct: addProductReducers,
   price: totalPrice,
 });

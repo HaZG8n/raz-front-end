@@ -14,6 +14,11 @@ import { useState } from "react";
 const Header = () => {
   const { cart: carts } = useSelector((state) => state.cart);
   const [showSearch, setShowSearch] = useState(false);
+  // console.log(showSearch)
+  // const state = useSelector((state) => state)
+  // const { token } = state.auth
+  // console.log(token)
+  // repush
   const router = useRouter();
 
   return (
@@ -68,7 +73,7 @@ const Header = () => {
                   <li>
                     <p className={`dropdown-item disable ${styles["other-page-text"]}`}>Other Page</p>
                   </li>
-                  <di className={`${styles["other-submenu"]}`}>
+                  <div className={`${styles["other-submenu"]}`}>
                     <li>
                       <p className={`dropdown-item ${styles["submenu"]}`}>Shopping Cart</p>
                     </li>
@@ -83,7 +88,7 @@ const Header = () => {
                     <li>
                       <p className={`dropdown-item ${styles["submenu"]}`}>Order Tracking</p>
                     </li>
-                  </di>
+                  </div>
                 </ul>
               </li>
 
