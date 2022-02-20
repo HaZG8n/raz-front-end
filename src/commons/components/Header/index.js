@@ -13,8 +13,6 @@ import { useState } from "react";
 
 const Header = () => {
   const [showSearch, setShowSearch] = useState(false);
-
-  console.log(showSearch);
   // const state = useSelector((state) => state)
   // const { token } = state.auth
   // console.log(token)

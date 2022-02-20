@@ -8,7 +8,7 @@ import { Breadcrumb } from "react-bootstrap";
 import Image from "next/image";
 
 // REDUX
-import { setCart } from "src/redux/actions/product";
+import { setCart, DelCart } from "src/redux/actions/product";
 
 import Main from "src/commons/components/Main";
 import Layout from "src/commons/components/Layout";
@@ -29,17 +29,17 @@ class index extends Component {
       productImg: [],
       jumboImg: "",
       review: false,
-      onError: 0,
+      isErr: 0,
       stock: 1,
       isAdd: false,
+      imgSrc: "",
+      animated: true,
     };
     this.onError = this.onError.bind(this);
   }
 
-  onError(idx) {
-    this.setState({
-      onError: idx,
-    });
+  onError(ids) {
+    this.setState({ isErr: ids });
   }
 
   getProduct = () => {
@@ -73,14 +73,17 @@ class index extends Component {
   };
 
   addToCart = () => {
-    const product = {
-      productName: this.state.product.name,
-      productId: this.state.product.id,
-      image: this.state.productImg[0].image,
-      stock: this.state.stock,
-      price: this.state.product.price,
-      total: this.state.product.price * this.state.stock,
-    };
+    const product = [
+      ...this.props.cart,
+      {
+        productName: this.state.product.name,
+        productId: this.state.product.id,
+        image: this.state.productImg[0].image,
+        stock: this.state.stock,
+        price: this.state.product.price,
+        total: this.state.product.price * this.state.stock,
+      },
+    ];
     this.props.setCartData(product);
     setTimeout(() => {
       this.setState({ isAdd: !this.state.isAdd });
@@ -90,8 +93,15 @@ class index extends Component {
     }, 3440);
   };
 
-  componentDidUpdate() {
-    this.getProduct();
+  async componentDidMount() {
+    try {
+      const token = this.props.token;
+      const id = this.props.router.query.id;
+      const res = await GetProductDetail(id, token);
+      this.setState({ product: res.data.data, productImg: res.data.data.image, animated: false });
+    } catch (ers) {
+      console.log(ers);
+    }
   }
 
   render() {
@@ -100,7 +110,7 @@ class index extends Component {
       currency: "IDR",
       minimumFractionDigits: 2,
     });
-    if (this.state.product.length !== 0) {
+    if (!this.state.animated) {
       return (
         <>
           <Layout title="Product Detail" />
@@ -116,23 +126,27 @@ class index extends Component {
               </div>
               <div className={css.imgContainer}>
                 <div className={css.side}>
-                  {this.state.productImg.map((val) => {
-                    return (
-                      <>
-                        <Image
-                          onClick={() => {
-                            this.setState({ jumboImg: val.image });
-                          }}
-                          key={val.id}
-                          height={134}
-                          width={140}
-                          src={val.id == this.state.onError ? Chair : val.image}
-                          onError={() => this.onError(val.id)}
-                          alt="product image"
-                        />
-                      </>
-                    );
-                  })}
+                  {this.state.productImg.length !== 0
+                    ? this.state.productImg.map((val) => {
+                        return (
+                          <>
+                            <Image
+                              onClick={() => {
+                                this.setState({ jumboImg: val.image });
+                              }}
+                              key={val.id}
+                              height={134}
+                              width={140}
+                              src={this.state.imgSrc !== Chair ? val.image : this.state.imgSrc}
+                              onError={() => {
+                                this.setState({ imgSrc: Chair });
+                              }}
+                              alt="product image"
+                            />
+                          </>
+                        );
+                      })
+                    : null}
                 </div>
                 <div className={css.main}>
                   <Image src={this.state.jumboImg !== "" ? this.state.jumboImg : Chair} width={890} height={705} alt="product image" />
@@ -181,7 +195,12 @@ class index extends Component {
                 <button className={`btn btn-secondary ${css.cartBtn}`} onClick={this.addToCart}>
                   Add to cart
                 </button>
-                <button className={`btn btn-secondary ${css.love}`}>
+                <button
+                  onClick={() => {
+                    this.props.DeletCart();
+                  }}
+                  className={`btn btn-secondary ${css.love}`}
+                >
                   <i className="bi bi-heart"></i>
                 </button>
                 <button className={`btn btn-secondary ${css.wish}`}>Add To Wishlist</button>
@@ -291,13 +310,14 @@ const mapStateToProps = (state) => {
   return {
     token: state.auth.token,
     users: state.auth.userData,
-    cart: state.cart,
+    cart: state.cart.cart,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     setCartData: bindActionCreators(setCart, dispatch),
+    DeletCart: bindActionCreators(DelCart, dispatch),
   };
 };
 

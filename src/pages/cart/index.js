@@ -17,7 +17,6 @@ import Cart from "src/commons/components/Cart";
 class index extends Component {
   state = {
     counter: 1,
-    cart: this.props.cart,
   };
 
   addCounter = () => {
@@ -56,6 +55,7 @@ class index extends Component {
       currency: "IDR",
       minimumFractionDigits: 2,
     });
+    console.log(this.props.cart);
     return (
       <>
         <Layout title="Cart" />
@@ -78,13 +78,10 @@ class index extends Component {
                   <p className={`${styles.title}`}>TOTAL</p>
                 </div>
               </div>
-
               {/* Card */}
-              {Object.keys(this.state.cart).length == 0 ? null : (
-                <Cart remove={remove} productImage={this.state.cart.image} name={this.state.cart.productName} price={formater.format(this.state.cart.price)} quantity={this.state.cart.stock} total={formater.format(this.state.cart.total)} />
-              )}
-              {/* end of card */}
 
+              <Cart remove={remove} productImage={chair} name={this.props.cart.productName} price={formater.format(this.props.cart.price)} quantity={this.props.cart.stock} total={formater.format(this.props.cart.total)} />
+              {/* end of card */}
               <hr />
               <div className="d-flex mb-3">
                 <p className="text-muted px-3 ms-auto">Clear Cart</p>
@@ -97,13 +94,13 @@ class index extends Component {
                 <p className="fw-bold my-4">Cart Total</p>
                 <div className="d-flex">
                   <p className="fw-bold">Subtotal</p>
-                  <p className="ms-auto fw-bold">{formater.format(this.state.cart.total)}</p>
+                  <p className="ms-auto fw-bold">{formater.format(this.props.cart.total)}</p>
                 </div>
                 <div className="d-flex">
                   <p className="fw-bold">Shipping</p>
                   <div className="form-check ms-auto">
                     <input className="form-check-input" type="radio" name="rate" />
-                    <label className="form-check-label text-muted">Flat rate: {formater.format(this.state.cart.total)}</label>
+                    <label className="form-check-label text-muted">Flat rate: {formater.format(this.props.cart.total)}</label>
                   </div>
                 </div>
                 <div className="d-flex">
@@ -123,10 +120,17 @@ class index extends Component {
                 <hr className="mt-5" />
                 <div className="d-flex mb-5">
                   <p className="fw-bold">Total Price</p>
-                  <p className="ms-auto fw-bold">{formater.format(this.state.cart.total)}</p>
+                  <p className="ms-auto fw-bold">{formater.format(this.props.cart.total)}</p>
                 </div>
               </div>
-              <button className={`btn ${styles["btn-cart"]} w-100 py-3`}>Procced To Check Out</button>
+              <button
+                className={`btn ${styles["btn-cart"]} w-100 py-3`}
+                onClick={() => {
+                  this.props.router.push("/cart/checkout");
+                }}
+              >
+                Procced To Check Out
+              </button>
             </section>
           </div>
         </div>

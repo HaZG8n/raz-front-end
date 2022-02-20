@@ -5,13 +5,15 @@ const initiaState = {
 const cartData = (state = initiaState, action) => {
   switch (action.type) {
     case "SET_CART_FULFILLED":
+      // return [...state, { cart: action.payload }];
       return {
         ...state,
         cart: action.payload,
       };
+
     case "DEL_CART_FULFILLED":
       return {
-        ...state,
+        ...state.cart,
         cart: [],
       };
     default:
