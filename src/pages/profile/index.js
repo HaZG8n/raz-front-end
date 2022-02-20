@@ -15,10 +15,11 @@ import { Modal, Button } from "react-bootstrap";
 import { bindActionCreators } from "redux";
 import { saveAction } from "src/redux/actions/auth";
 import { editPassword, updateProfile } from "src/commons/module/user";
-import { GetUserProfile } from "src/commons/module/auth";
+import { GetUserProfile, logout } from "src/commons/module/auth";
 
 import { Router, useRouter } from "next/router";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 function Profile(props) {
   // console.log(props)
@@ -109,7 +110,7 @@ function Profile(props) {
             position: toast.POSITION.TOP_RIGHT,
             autoClose: 3000,
           });
-          handleClose()
+          handleClose();
           router.push("/profile");
         })
         .catch((err) => {
@@ -119,6 +120,33 @@ function Profile(props) {
           setErrors(errors);
         });
     }
+  };
+
+ const onLogout = () => {
+    Swal.fire({
+      icon: "warning",
+      title: "Are you sure you want to logout?",
+      showCancelButton: true,
+      confirmButtonText: "Logout",
+      cancelButtonText: `Cancel`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logout(token)
+          .then((res) => console.log(res))
+          .catch((err) => console.error(err));
+
+        localStorage.clear("persist:root");
+        Swal.fire({
+          title: "Logout Successful",
+          text: "You have successfully logged out",
+          icon: "success",
+        });
+        setTimeout(() => {
+          window.location.reload(false);
+        }, 5000);
+        router.push("/auth");
+      }
+    });
   };
 
   return (
@@ -226,7 +254,7 @@ function Profile(props) {
                   </button>
                 </div>
               </div>
-              <button className={`${styles["button-logout"]} btn`}>
+              <button className={`${styles["button-logout"]} btn`} onClick={onLogout}>
                 LOGOUT
               </button>
               <button className={`${styles["button-save"]} btn`} type="submit">
