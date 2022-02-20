@@ -1,0 +1,17 @@
+.table {
+  width: 90%;
+  margin: 5% auto 3% auto;
+  display: grid;
+  grid-template-columns: 3.5fr repeat(5, 1fr);
+}
+
+.table p {
+  font-family: Arimo;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 13px;
+  letter-spacing: 0.9166666865348816px;
+  text-align: left;
+  color: #8d8d8d;
+}
