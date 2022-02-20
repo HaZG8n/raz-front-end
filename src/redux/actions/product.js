@@ -7,9 +7,16 @@ export const setCart = (product) => {
   };
 };
 
-export const DelCart = (index) => {
+export const DelCart = () => {
   return {
     type: "DEL_CART_FULFILLED",
+  };
+};
+
+export const setTotalPrice = (price) => {
+  return {
+    type: "SET_TOTAL_FULFILLED",
+    payload: price,
   };
 };
 

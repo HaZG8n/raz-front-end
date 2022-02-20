@@ -22,6 +22,7 @@ class checkout extends Component {
       adress: "",
       phone: "",
       bank: "",
+      dataBefore: [],
       va_number: [],
       isShow: false,
     };
@@ -41,25 +42,26 @@ class checkout extends Component {
       name_user: this.state.name_user,
       adress: this.state.adress,
       phone: this.state.phone,
-      total_price: this.props.cart.total,
+      total_price: this.props.totalPrice.price,
       bank: this.state.bank,
     };
     console.log("body", body);
     const token = this.props.token;
-    // CheckOutProduct(body, token)
-    //   .then((res) => {
-    //     console.log("RESULT", res.data);
-    //     const { va_number } = res.data.data.va_numbers[0];
-    //     this.setState({ isShow: !this.state.isShow });
-    //     this.setState({ va_number: va_number });
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    CheckOutProduct(body, token)
+      .then((res) => {
+        console.log("RESULT", res.data);
+        const { va_number } = res.data.data.va_numbers[0];
+        this.setState({ isShow: !this.state.isShow });
+        this.setState({ va_number: va_number });
+        this.props.DelCartProduct();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   render() {
-    console.log("val", this.state.va_number);
+    console.log("STATE", this.props.totalPrice);
     return (
       <>
         <Layout title={"Check Out"} />
@@ -139,9 +141,11 @@ class checkout extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log("TESADIFHG", state);
   return {
     cart: state.cart.cart,
     token: state.auth.token,
+    totalPrice: state.price,
   };
 };
 
