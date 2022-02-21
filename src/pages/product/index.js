@@ -17,12 +17,12 @@ class index extends Component {
     this.state = {
       product: [],
       data: [],
+      page: 1,
     };
   }
 
   getAll = () => {
-    // const page = this.props.router.query.page;
-    const page = 1;
+    const page = this.state.page;
     console.log("DIPANGGIL");
     getAllProduct(page)
       .then((res) => {
@@ -43,7 +43,11 @@ class index extends Component {
     const { router } = this.props;
     console.log("ROUTER", router.query);
     console.log("DATA", this.state.data);
-    let i = 0;
+    const initial = [];
+    const newArr = new Array(this.state.data.total_page);
+    for (let i = 0; i < newArr.length; i++) {
+      initial.push(1 + i);
+    }
     return (
       <Layout title="Product">
         <div className={css.main}>
@@ -86,7 +90,24 @@ class index extends Component {
                 </div>
                 <div className={css.paginasi}>
                   <ul className="pagination pagination-lg mt-5">
-                    <li className={router.query.page == "1" ? `page-item ${css.active}` : "page-item"} aria-current="page" onClick={this.getAll}>
+                    {initial.map((val, idx) => {
+                      return (
+                        <li
+                          key={idx}
+                          className={router.query.page == "1" ? `page-item ${css.active}` : "page-item"}
+                          aria-current="page"
+                          onClick={() =>
+                            this.setState({ page: val }, () => {
+                              this.getAll();
+                            })
+                          }
+                        >
+                          <button className="btn btn-secondary">{val}</button>
+                        </li>
+                      );
+                    })}
+
+                    {/* <li className={router.query.page == "1" ? `page-item ${css.active}` : "page-item"} aria-current="page" onClick={this.getAll}>
                       <Link className="page-link" href="/product?page=1">
                         01
                       </Link>
@@ -115,7 +136,7 @@ class index extends Component {
                       <Link className="page-link" href="/product?page=6">
                         06
                       </Link>
-                    </li>
+                    </li> */}
                   </ul>
                 </div>
               </div>

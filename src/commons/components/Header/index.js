@@ -14,12 +14,15 @@ import { useState } from "react";
 const Header = () => {
   const { cart: carts } = useSelector((state) => state.cart);
   const [showSearch, setShowSearch] = useState(false);
-  // console.log(showSearch)
-  // const state = useSelector((state) => state)
-  // const { token } = state.auth
-  // console.log(token)
-  // repush
+  const [keyword, setKeyword] = useState("");
   const router = useRouter();
+
+  console.log("ROUTER", router);
+
+  const handleKeyword = (e) => {
+    if (e.key === "Enter") {
+    }
+  };
 
   return (
     <>
@@ -141,7 +144,17 @@ const Header = () => {
       {showSearch ? (
         <>
           <div className={`${styles["search-box"]}`}>
-            <input className={`${styles["animated-input-in"]}`} />
+            <input
+              onChange={(e) => {
+                setKeyword(e.target.value);
+              }}
+              onKeyDown={(e) => {
+                if (e.key == "Enter") {
+                  router.push(`${router.asPath}&keyword=${keyword}`);
+                }
+              }}
+              className={`${styles["animated-input-in"]}`}
+            />
             <div className={styles["logo-input"]}>
               <Image src={searchWhite} alt="avatar" />
             </div>
