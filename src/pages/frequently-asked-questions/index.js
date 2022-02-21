@@ -7,6 +7,7 @@ import css from "src/commons/styles/Faq.module.css";
 import shopping from "src/assets/svg/shopping.svg";
 import misc from "src/assets/svg/misc.svg";
 import payment from "src/assets/svg/payment.svg";
+import Link from "next/link";
 
 function FAQ() {
   return (
@@ -163,9 +164,11 @@ function FAQ() {
           </section>
 
           <h2 className="text-center">You Still Need Help?</h2>
+          <Link href="/contact-us" passHref >
           <div className="d-flex justify-content-center mt-4 mb-5">
             <button className={`btn ${css.contact} py-3 px-5 shadow-none`}>Contact Us</button>
           </div>
+          </Link>
         </div>
       </Main>
     </>
