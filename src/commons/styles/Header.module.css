@@ -57,6 +57,7 @@
 
 .hamburger-menu {
   position: relative;
+  cursor: pointer;
 }
 
 .line-up {
@@ -172,6 +173,29 @@
   position: relative;
 }
 
+
+.box-hamburger-menu{
+  position: absolute;
+  background-color: #1A1A1A;
+  right: 20px;
+}
+
+.ul-menu{
+  list-style: none;
+  padding: 0;
+}
+
+.li-menu{
+  color: #919191;
+  padding: 8px;
+  padding-right: 20px;
+  padding-left: 25px;
+  cursor: pointer;
+}
+.li-menu:active{
+  color: #fff;
+}
+
 @media (min-width: 768px) {
   .logo-input {
     left: 85%;
@@ -182,5 +206,9 @@
   .other-submenu {
     position: relative;
     top: 4px;
+  }
+  .box-hamburger-menu{
+    top: 33px;
+    right: -10px;
   }
 }

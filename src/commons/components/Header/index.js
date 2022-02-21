@@ -12,8 +12,10 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 
 const Header = () => {
+  const { token } = useSelector((state) => state.auth)
   const { cart: carts } = useSelector((state) => state.cart);
   const [showSearch, setShowSearch] = useState(false);
+  const [dropdown, setDropdown] = useState(false)
   const [keyword, setKeyword] = useState("");
   const router = useRouter();
 
@@ -23,6 +25,16 @@ const Header = () => {
     if (e.key === "Enter") {
     }
   };
+
+  const clickSearch = () => {
+    setDropdown(false)
+    setShowSearch(!showSearch)
+  }
+
+  const clickDropdown = () => {
+    setDropdown(!dropdown)
+    setShowSearch(false)
+  }
 
   return (
     <>
@@ -48,12 +60,12 @@ const Header = () => {
                   Page
                 </p>
                 <ul className="dropdown-menu bg-black" aria-labelledby="navbarDropdownMenuLink">
-                  <Link href="/about/about" passHref>
+                  <Link href="/about-us" passHref>
                     <li>
                       <p className={`dropdown-item ${styles["submenu"]}`}>About Us</p>
                     </li>
                   </Link>
-                  <Link href='/about/contact' passHref>
+                  <Link href='/contact-us' passHref>
                     <li>
                       <p className={`dropdown-item ${styles["submenu"]}`}>Contact Us</p>
                     </li>
@@ -119,7 +131,7 @@ const Header = () => {
 
             <div className="row">
               <div className="col">
-                <div className={styles["logo"]} onClick={() => setShowSearch(!showSearch)}>
+                <div className={styles["logo"]} onClick={clickSearch}>
                   <Image src={search} alt="avatar" />
                 </div>
               </div>
@@ -145,14 +157,57 @@ const Header = () => {
                   <Image src={cart} alt="avatar" />
                 </div>
               </div>
-              <div className="col">
-                <div className={styles["hamburger-menu"]}>
+              <div className="col dropdown">
+                <div className={`${styles["hamburger-menu"]}`} onClick={clickDropdown}>
+                  {console.log(dropdown)}
                   <span className={styles["line-up"]}></span>
                   <span className={styles["line-center"]}></span>
                   <span className={styles["line-down"]}></span>
                 </div>
+                {dropdown ?
+                  (
+                    <>
+                      {!token ?
+                        (
+                          <>
+                            <div className={`${styles['box-hamburger-menu']}`}>
+                              <ul className={`${styles['ul-menu']}`}>
+                                <Link href='/auth' passHref>
+                                  <li className={`${styles['li-menu']}`}>Login</li>
+                                </Link>
+                                <Link href='/auth' passHref>
+                                  <li className={`${styles['li-menu']}`}>Register</li>
+                                </Link>
+                                <li className={`${styles['li-menu']}`}>Chat</li>
+                                <li className={`${styles['li-menu']}`}>Notification</li>
+                              </ul>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div className={`${styles['box-hamburger-menu']}`}>
+                              <ul className={`${styles['ul-menu']}`}>
+                                <Link href='/profile' passHref>
+                                  <li className={`${styles['li-menu']}`}>Profile</li>
+                                </Link>
+                                <li className={`${styles['li-menu']}`}>Chat</li>
+                                <li className={`${styles['li-menu']}`}>Notification</li>
+                                <li className={`${styles['li-menu']}`}>Logout</li>
+                              </ul>
+                            </div>
+                          </>
+                        )
+                      }
+                    </>
+                  ) :
+                  (
+                    <></>
+                  )
+                }
+
               </div>
             </div>
+
           </section>
         </nav>
       </header>
