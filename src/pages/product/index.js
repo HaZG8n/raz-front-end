@@ -42,6 +42,7 @@ class index extends Component {
     let page = router.query.page ? router.query.page : this.state.page;
     let filter = router.query.filter ? router.query.filter : "id";
     let sort = router.query.sort ? router.query.sort : "ASC";
+    console.log("FILTER", filter);
     getProduct(filter, sort, page)
       .then((res) => {
         console.log("GET", res.data);
@@ -53,17 +54,32 @@ class index extends Component {
       });
   };
 
+  formChange = (e) => {
+    const data = { ...this.state };
+    data[e.target.name] = e.target.value;
+    this.setState(data);
+    const { router } = this.props;
+    let { query } = this.props.router;
+    console.log("QUERY FORM CHANGE", query);
+    router.push({
+      pathname: "/product",
+      query: {
+        page: data.page,
+        filter: e.target.value,
+        sort: "DESC",
+      },
+    });
+    this.getProduct();
+  };
+
   componentDidMount() {
     this.getAll();
     this.getProduct();
+    console.log("RE RENDER");
   }
-  // componentDidUpdate() {
-  //     this.getProduct();
-  // }
 
   render() {
     const { router } = this.props;
-    // console.log("ROUTER", router.query);
     console.log("DATA", this.state.data);
     const initial = [];
     const newArr = new Array(this.state.data.total_page);
@@ -74,57 +90,31 @@ class index extends Component {
       <Layout title="Product">
         <div className={css.main}>
           <Main>
-            <Banner
-              text="Find and buy the one you like"
-              title="Let's Shopping"
-            />
+            <Banner text="Find and buy the one you like" title="Let's Shopping" />
             <div className={css.wrapper}>
               <Sidebar />
               <div className={css.content}>
                 <div className={css.head}>
                   <p>Showing 1-16 of 39 Results</p>
                   <div className="dropdown">
-                    {/* <button
-                      className="btn btn-secondary dropdown-toggle"
-                      type="button"
-                      id="dropdownMenuButton1"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      Sort By
-                    </button>
-                    <ul
-                      className="dropdown-menu"
-                      aria-labelledby="dropdownMenuButton1"
-                    >
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          Latest product
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          More Expensive
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          More Cheap
-                        </a>
-                      </li>
-                    </ul> */}
                     <select
                       name="filter"
-                      onChange={(e) =>
-                        router.push({
-                          pathname: "/product",
-                          query: {
-                            page: this.state.page,
-                            filter: e.target.value,
-                            sort: "DESC",
-                          },
-                        })
-                      }
+                      onChange={(e) => {
+                        if (e.target.value !== this.state.filter) {
+                          this.getProduct();
+                        }
+                        this.setState({ filter: e.target.value }, () => {
+                          router.push({
+                            pathname: "/product",
+                            query: {
+                              page: this.state.page,
+                              filter: e.target.value,
+                              sort: "DESC",
+                            },
+                          });
+                          getProduct();
+                        });
+                      }}
                     >
                       <option value="" disable="true" hidden className="filter">
                         Sort By
@@ -139,14 +129,7 @@ class index extends Component {
                   {this.state.product.length == 0
                     ? null
                     : this.state.product.map((val) => {
-                        return (
-                          <CardProduct
-                            key={val.id}
-                            id={val.id}
-                            name={val.name}
-                            price={val.price}
-                          />
-                        );
+                        return <CardProduct key={val.id} id={val.id} name={val.name} price={val.price} />;
                       })}
                 </div>
                 <div className={css.paginasi}>
@@ -155,11 +138,7 @@ class index extends Component {
                       return (
                         <li
                           key={idx}
-                          className={
-                            router.query.page == "1"
-                              ? `page-item ${css.active}`
-                              : "page-item"
-                          }
+                          className={router.query.page == "1" ? `page-item ${css.active}` : "page-item"}
                           aria-current="page"
                           onClick={() =>
                             this.setState({ page: val }, () => {
@@ -171,37 +150,6 @@ class index extends Component {
                         </li>
                       );
                     })}
-
-                    {/* <li className={router.query.page == "1" ? `page-item ${css.active}` : "page-item"} aria-current="page" onClick={this.getAll}>
-                      <Link className="page-link" href="/product?page=1">
-                        01
-                      </Link>
-                    </li>
-                    <li onClick={this.getAll} className={router.query.page == "2" ? `page-item ${css.active}` : "page-item"}>
-                      <Link className="page-link" href="/product?page=2">
-                        02
-                      </Link>
-                    </li>
-                    <li onClick={this.getAll} className={router.query.page == "3" ? `page-item ${css.active}` : "page-item"}>
-                      <Link className="page-link" href="/product?page=3">
-                        03
-                      </Link>
-                    </li>
-                    <li onClick={this.getAll} className={router.query.page == "4" ? `page-item ${css.active}` : "page-item"}>
-                      <Link className="page-link" href="/product?page=4">
-                        04
-                      </Link>
-                    </li>
-                    <li onClick={this.getAll} className={router.query.page == "5" ? `page-item ${css.active}` : "page-item"}>
-                      <Link className="page-link" href="/product?page=5">
-                        05
-                      </Link>
-                    </li>
-                    <li onClick={this.getAll} className={router.query.page == "6" ? `page-item ${css.active}` : "page-item"}>
-                      <Link className="page-link" href="/product?page=6">
-                        06
-                      </Link>
-                    </li> */}
                   </ul>
                 </div>
               </div>
