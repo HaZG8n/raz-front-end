@@ -8,11 +8,16 @@ import wishlist from "src/assets/svg/wishlist.svg";
 import cart from "src/assets/svg/cart.svg";
 
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import { setsearch } from "src/redux/actions/product";
 
 const Header = () => {
+  const dispatch= useDispatch()
   const { token } = useSelector((state) => state.auth)
+  const allState = useSelector((state) => state)
+  console.log("fakyuuuu",allState);
+
   const { cart: carts } = useSelector((state) => state.cart);
   const [showSearch, setShowSearch] = useState(false);
   const [dropdown, setDropdown] = useState(false)
@@ -217,10 +222,17 @@ const Header = () => {
             <input
               onChange={(e) => {
                 setKeyword(e.target.value);
+                
               }}
               onKeyDown={(e) => {
                 if (e.key == "Enter") {
-                  router.push(`${router.asPath}&keyword=${keyword}`);
+                  // router.push(`${router.asPath}&keyword=${keyword}`);
+                  router.query.keyword = keyword
+                  router.push({
+                    pathname: router.pathname,
+                    query: router.query
+                  });
+                  dispatch(setsearch(keyword))
                 }
               }}
               className={`${styles["animated-input-in"]}`}
