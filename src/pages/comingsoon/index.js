@@ -43,10 +43,10 @@ function ComingSoon() {
   };
   return (
     <>
-    <Layout title="ComingSoon"/>
+      <Layout title="ComingSoon" />
       <header
         className="navbar navbar-expand-lg navbar-light"
-        style={{ backgroundColor: "black", color: "white"}}
+        style={{ backgroundColor: "black", color: "white" }}
       >
         <nav className="container">
           <Link href="/home" passHref>
@@ -250,10 +250,14 @@ function ComingSoon() {
                                 Register
                               </li>
                             </Link>
-                            <li className={`${styles["li-menu"]}`}>Chat</li>
-                            <li className={`${styles["li-menu"]}`}>
-                              Notification
-                            </li>
+                            <Link href="/chat" passHref>
+                              <li className={`${styles["li-menu"]}`}>Chat</li>
+                            </Link>
+                            <Link>
+                              <li className={`${styles["li-menu"]}`}>
+                                Notification
+                              </li>
+                            </Link>
                           </ul>
                         </div>
                       </>
@@ -266,10 +270,14 @@ function ComingSoon() {
                                 Profile
                               </li>
                             </Link>
-                            <li className={`${styles["li-menu"]}`}>Chat</li>
-                            <li className={`${styles["li-menu"]}`}>
-                              Notification
-                            </li>
+                            <Link href="/chat" passHref>
+                              <li className={`${styles["li-menu"]}`}>Chat</li>
+                            </Link>
+                            <Link href='/notification' passHref>
+                              <li className={`${styles["li-menu"]}`}>
+                                Notification
+                              </li>
+                            </Link>
                             <li className={`${styles["li-menu"]}`}>Logout</li>
                           </ul>
                         </div>

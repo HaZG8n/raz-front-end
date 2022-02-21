@@ -178,8 +178,12 @@ const Header = () => {
                                 <Link href='/auth' passHref>
                                   <li className={`${styles['li-menu']}`}>Register</li>
                                 </Link>
-                                <li className={`${styles['li-menu']}`}>Chat</li>
-                                <li className={`${styles['li-menu']}`}>Notification</li>
+                                <Link href='/chat' passHref>
+                                  <li className={`${styles['li-menu']}`}>Chat</li>
+                                </Link>
+                                <Link href='/notification' passHref>
+                                  <li className={`${styles['li-menu']}`}>Notification</li>
+                                </Link>
                               </ul>
                             </div>
                           </>
@@ -190,8 +194,12 @@ const Header = () => {
                                 <Link href='/profile' passHref>
                                   <li className={`${styles['li-menu']}`}>Profile</li>
                                 </Link>
-                                <li className={`${styles['li-menu']}`}>Chat</li>
-                                <li className={`${styles['li-menu']}`}>Notification</li>
+                                <Link href='/chat' passHref>
+                                  <li className={`${styles['li-menu']}`}>Chat</li>
+                                </Link>
+                                <Link href='/notification' passHref>
+                                  <li className={`${styles['li-menu']}`}>Notification</li>
+                                </Link>
                                 <li className={`${styles['li-menu']}`}>Logout</li>
                               </ul>
                             </div>
