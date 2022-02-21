@@ -47,3 +47,20 @@
 .content {
     font-family: "Arimo";
 }
+.img-container {
+    width: 250px;
+}
+.position {
+    margin-top: -15px;
+}
+.name {
+    font-size: 15px;
+}
+.img-testi {
+    width: 50px;
+    height: 50px;
+}
+.testimoni {
+    background-color: #fafafa;
+    height: 300px;
+}
