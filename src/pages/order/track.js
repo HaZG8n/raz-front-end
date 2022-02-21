@@ -3,7 +3,9 @@ import Main from "src/commons/components/Main";
 import Banner from "src/commons/components/Banner";
 import styles from "src/commons/styles/orderTrack.module.css";
 import Image from "next/image";
-import lamp from "src/assets/img/modern-lamp.png";
+import map from "src/assets/img/MapOrder.png";
+
+import Link from "next/link";
 
 function OrderTrack() {
   return (
@@ -16,14 +18,14 @@ function OrderTrack() {
           />
           <section className={`${styles["main-section"]} row col-12`}>
             <div className={`${styles["map-image"]} col-md-6`}>
-              <Image alt="map" src={lamp} width={700} height={629} />
+              <Image alt="map" src={map} width={700} height={629} />
             </div>
             <div className={`${styles["form-info"]} col-md-6`}>
               <p className={styles.textOrder}>
                 To track your order please enter your Order ID in the box below
-                and press the <br /> {' " '}Track{' " '} button. This was given to you
-                on your receipt and in the confirmation <br /> email you should have
-                received.
+                and press the <br /> {' " '}Track{' " '} button. This was given
+                to you on your receipt and in the confirmation <br /> email you
+                should have received.
               </p>
               <form>
                 <label htmlFor="name" className={styles["form-label"]}>
@@ -44,9 +46,11 @@ function OrderTrack() {
                   name="bilEmail"
                   defaultValue="Email you used during checkout"
                 />
-                <button className={`btn ${styles["button-track"]}`}>
-                  Track Order
-                </button>
+                <Link href="detail" passHref>
+                  <button className={`btn ${styles["button-track"]}`}>
+                    Track Order
+                  </button>
+                </Link>
               </form>
             </div>
           </section>
