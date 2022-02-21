@@ -1,6 +1,10 @@
+import Main from "src/commons/components/Main"
+
 const Blog = () => {
     return (
-        <><h1>Ini Blog</h1></>
+        <Main>
+            <h1 style={{ textAlign: 'center' }}>Ini Blog</h1>
+        </Main>
     )
 }
 
