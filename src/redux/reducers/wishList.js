@@ -7,7 +7,12 @@ const wishListData = (state = initialState, action) => {
     case "SET_WISHLIST_FULFILLED":
       return {
         ...state,
-        cart: action.payload,
+        wishList: action.payload,
+      };
+    case "DEL_WISHLIST_FULFILLED":
+      return {
+        ...state.wishList,
+        wishList: [],
       };
     default:
       return state;

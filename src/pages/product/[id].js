@@ -8,7 +8,7 @@ import { Breadcrumb } from "react-bootstrap";
 import Image from "next/image";
 
 // REDUX
-import { setCart, DelCart } from "src/redux/actions/product";
+import { setCart, DelCart, setWishList } from "src/redux/actions/product";
 
 import Main from "src/commons/components/Main";
 import Layout from "src/commons/components/Layout";
@@ -33,6 +33,7 @@ class index extends Component {
       stock: 1,
       isAdd: false,
       imgSrc: "",
+      modalText: "",
       animated: true,
     };
     this.onError = this.onError.bind(this);
@@ -82,14 +83,36 @@ class index extends Component {
         quantity: this.state.stock,
         price: this.state.product.price,
         total_price: this.state.product.price * this.state.stock,
+        user_id: this.state.product.user_id,
       },
     ];
     this.props.setCartData(product);
     setTimeout(() => {
-      this.setState({ isAdd: !this.state.isAdd });
+      this.setState({ isAdd: !this.state.isAdd, modalText: "Add to cart Success" });
     }, 500);
     setTimeout(() => {
-      this.setState({ isAdd: !this.state.isAdd });
+      this.setState({ isAdd: !this.state.isAdd, modalText: "" });
+    }, 3440);
+  };
+
+  addTOWishList = () => {
+    const product = [
+      ...this.props.wishList,
+      {
+        productName: this.state.product.name,
+        product_id: this.state.product.id,
+        image: this.state.productImg[0].image,
+        quantity: this.state.stock,
+        price: this.state.product.price,
+        total_price: this.state.product.price * this.state.stock,
+      },
+    ];
+    this.props.setWishtListData(product);
+    setTimeout(() => {
+      this.setState({ isAdd: !this.state.isAdd, modalText: "Add to Wishlist Success" });
+    }, 500);
+    setTimeout(() => {
+      this.setState({ isAdd: !this.state.isAdd, modalText: "" });
     }, 3440);
   };
 
@@ -110,6 +133,7 @@ class index extends Component {
       currency: "IDR",
       minimumFractionDigits: 2,
     });
+    console.log("WISHLIST", this.props.wishList);
     if (!this.state.animated) {
       return (
         <>
@@ -195,15 +219,12 @@ class index extends Component {
                 <button className={`btn btn-secondary ${css.cartBtn}`} onClick={this.addToCart}>
                   Add to cart
                 </button>
-                <button
-                  onClick={() => {
-                    this.props.DeletCart();
-                  }}
-                  className={`btn btn-secondary ${css.love}`}
-                >
+                <button className={`btn btn-secondary ${css.love}`}>
                   <i className="bi bi-heart"></i>
                 </button>
-                <button className={`btn btn-secondary ${css.wish}`}>Add To Wishlist</button>
+                <button onClick={this.addTOWishList} className={`btn btn-secondary ${css.wish}`}>
+                  Add To Wishlist
+                </button>
               </div>
               <div className={css.detail}>
                 <ul>
@@ -280,7 +301,7 @@ class index extends Component {
               </div>
               {/* TOAST */}
               <div hidden={!this.state.isAdd} className={css.toast}>
-                <p>Add to cart Success</p>
+                <p>{this.state.modalText}</p>
               </div>
             </div>
           </Main>
@@ -311,6 +332,7 @@ const mapStateToProps = (state) => {
     token: state.auth.token,
     users: state.auth.userData,
     cart: state.cart.cart,
+    wishList: state.wishList.wishList,
   };
 };
 
@@ -318,6 +340,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setCartData: bindActionCreators(setCart, dispatch),
     DeletCart: bindActionCreators(DelCart, dispatch),
+    setWishtListData: bindActionCreators(setWishList, dispatch),
   };
 };
 

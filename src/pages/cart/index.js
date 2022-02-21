@@ -3,7 +3,7 @@ import { withRouter } from "next/router";
 import { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { setCart, setTotalPrice } from "src/redux/actions/product";
+import { setCart, setTotalPrice, DelCart } from "src/redux/actions/product";
 
 import Header from "src/commons/components/Header";
 import Banner from "src/commons/components/Banner";
@@ -128,7 +128,9 @@ class index extends Component {
                   {/* end of card */}
                   <hr />
                   <div className="d-flex mb-3">
-                    <p className="text-muted px-3 ms-auto">Clear Cart</p>
+                    <p className={`text-muted px-3 ms-auto ${styles.delet}`} onClick={this.props.DeletCart}>
+                      Clear Cart
+                    </p>
                     <p className="fw-bold">Update Cart</p>
                   </div>
                 </section>
@@ -206,6 +208,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setCartData: bindActionCreators(setCart, dispatch),
     setTotal: bindActionCreators(setTotalPrice, dispatch),
+    DeletCart: bindActionCreators(DelCart, dispatch),
   };
 };
 
