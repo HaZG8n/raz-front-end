@@ -13,6 +13,8 @@ import { useState } from "react";
 
 const Header = () => {
   const { cart: carts } = useSelector((state) => state.cart);
+  const state = useSelector((state) => state);
+  const { wishList } = state.wishList;
   const [showSearch, setShowSearch] = useState(false);
   const [keyword, setKeyword] = useState("");
   const router = useRouter();
@@ -115,7 +117,7 @@ const Header = () => {
                     router.push("/wishlist");
                   }}
                 >
-                  <div className={styles.total}>1</div>
+                  <div className={styles.total}>{wishList.length}</div>
                   <Image src={wishlist} alt="avatar" />
                 </div>
               </div>

@@ -20,6 +20,10 @@
   color: white;
 }
 
+.delet:hover {
+  cursor: pointer;
+}
+
 /* Cart */
 .title {
   font-family: "Arimo";
