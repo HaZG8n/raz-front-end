@@ -20,19 +20,23 @@ function OrderTrack() {
   const onClickSerch = () => {
     setIsSearch(!isSaerch);
   };
-  console.log("TOKEN", token);
 
-  const GetDataOrder = async () => {
-    try {
-      const search = keyword;
-      const result = await getTrackOrder(search, token);
-      console.log(result);
-    } catch (error) {
-      console.log(error);
-    }
+  const GetDataOrder = () => {};
+
+  console.log(typeof token);
+  const Click = () => {
+    const body = {
+      search: keyword,
+    };
+    getTrackOrder(body)
+      .then((res) => {
+        console.log(res.data);
+        onClickSerch();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
-
-  console.log(keyword);
 
   return (
     <>
@@ -60,13 +64,7 @@ function OrderTrack() {
                   name="bilEmail"
                   placeholder="Input your Order Id"
                 />
-                <button
-                  onClick={() => {
-                    onClickSerch();
-                    GetDataOrder();
-                  }}
-                  className={`btn ${styles["button-track"]}`}
-                >
+                <button onClick={Click} className={`btn ${styles["button-track"]}`}>
                   Track Order
                 </button>
               </div>
@@ -82,7 +80,7 @@ function OrderTrack() {
                     <label htmlFor="name" className={styles["form-label"]}>
                       Order ID :
                     </label>
-                    <p className={styles.idOrder}>ABCD-EFGH-W123</p>
+                    <p className={styles.idOrder}>{keyword}</p>
                   </div>
                   <div className={`${styles["order-item"]} col-md-6`}>
                     <label htmlFor="name" className={styles["form-label"]}>
@@ -97,7 +95,7 @@ function OrderTrack() {
                 <p className={styles.destination}>Destination</p>
                 <p className={styles.city}>Kebun Mangga, Jakarta Selatan</p>
                 <button onClick={onClickSerch} className={`${styles["button-check"]} btn`}>
-                  Check on Map
+                  Back
                 </button>
               </div>
             </section>
