@@ -37,3 +37,13 @@
     width: 100%;
     margin-top: 10%;
 }
+
+
+/* About */
+.img-wrapper {
+    width: 90px;
+    height: 90px;
+}
+.content {
+    font-family: "Arimo";
+}

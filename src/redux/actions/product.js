@@ -12,6 +12,11 @@ export const DelCart = () => {
     type: "DEL_CART_FULFILLED",
   };
 };
+export const deletWishList = () => {
+  return {
+    type: "DEL_WISHLIST_FULFILLED",
+  };
+};
 
 export const setTotalPrice = (price) => {
   return {
@@ -40,4 +45,3 @@ export const setWishList = (product) => {
 //     // payload: product,
 //   }
 // }
-
