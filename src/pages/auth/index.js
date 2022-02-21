@@ -58,7 +58,7 @@ class Auth extends Component {
             setTimeout(() => {
               this.setState({ isLogin: !this.state.isLogin });
               console.log(this.state.isLogin);
-              // this.props.router.push("/home");
+              this.props.router.push("/home");
             }, 3450);
           })
           .catch((error) => {
