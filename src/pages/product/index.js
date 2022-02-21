@@ -171,37 +171,6 @@ class index extends Component {
                         </li>
                       );
                     })}
-
-                    {/* <li className={router.query.page == "1" ? `page-item ${css.active}` : "page-item"} aria-current="page" onClick={this.getAll}>
-                      <Link className="page-link" href="/product?page=1">
-                        01
-                      </Link>
-                    </li>
-                    <li onClick={this.getAll} className={router.query.page == "2" ? `page-item ${css.active}` : "page-item"}>
-                      <Link className="page-link" href="/product?page=2">
-                        02
-                      </Link>
-                    </li>
-                    <li onClick={this.getAll} className={router.query.page == "3" ? `page-item ${css.active}` : "page-item"}>
-                      <Link className="page-link" href="/product?page=3">
-                        03
-                      </Link>
-                    </li>
-                    <li onClick={this.getAll} className={router.query.page == "4" ? `page-item ${css.active}` : "page-item"}>
-                      <Link className="page-link" href="/product?page=4">
-                        04
-                      </Link>
-                    </li>
-                    <li onClick={this.getAll} className={router.query.page == "5" ? `page-item ${css.active}` : "page-item"}>
-                      <Link className="page-link" href="/product?page=5">
-                        05
-                      </Link>
-                    </li>
-                    <li onClick={this.getAll} className={router.query.page == "6" ? `page-item ${css.active}` : "page-item"}>
-                      <Link className="page-link" href="/product?page=6">
-                        06
-                      </Link>
-                    </li> */}
                   </ul>
                 </div>
               </div>

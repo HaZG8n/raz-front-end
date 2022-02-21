@@ -1,4 +1,8 @@
 import { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "next/router";
+import { bindActionCreators } from "redux";
+import { setCart, setWishList } from "src/redux/actions/product";
 
 import Image from "next/image";
 
@@ -6,7 +10,13 @@ import css from "src/commons/styles/Wishlist.module.css";
 import sofa from "src/assets/img/sofa.png";
 import check from "src/assets/svg/check.svg";
 
-export default class index extends Component {
+class index extends Component {
+  addToCart = (data) => {
+    this.props.setCartData([data]);
+  };
+  deletWishList = () => {
+    this.props.rmAction(this.props.idx);
+  };
   render() {
     return (
       <>
@@ -26,7 +36,15 @@ export default class index extends Component {
           <div className="col d-flex">
             <p className="fw-bold align-self-center">{this.props.total}</p>
             <div className="align-self-center ms-auto">
-              <button className={`btn ${css["btn-wishlist"]} py-3 px-5 shadow-none`}>Add to Cart</button>
+              <button
+                onClick={() => {
+                  this.deletWishList();
+                  this.addToCart(this.props.data);
+                }}
+                className={`btn ${css["btn-wishlist"]} py-3 px-5 shadow-none`}
+              >
+                Add to Cart
+              </button>
             </div>
           </div>
         </div>
@@ -34,3 +52,11 @@ export default class index extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setCartData: bindActionCreators(setCart, dispatch),
+  };
+};
+
+export default withRouter(connect(null, mapDispatchToProps)(index));
