@@ -4,6 +4,7 @@
   margin-top: 5%;
   margin-bottom: 10%;
   border: 1px solid #b4b4b4;
+  min-height: max(80vh, 800px);
 }
 
 .profile {
@@ -38,6 +39,10 @@
   letter-spacing: 0px;
   text-align: left;
   color: #b4b4b4;
+}
+
+.fill-profile {
+  border: 1px solid #b4b4b4;
 }
 
 .info-profile {
@@ -85,4 +90,35 @@
     bottom: 25px;
     /* right: 89%;
     top: 70%; */
+}
+
+.chat-message {
+  /* padding-top: 80%; */
+  border: 1px solid #b4b4b4;
+  margin: auto;
+  height: 98px;
+  position: relative;
+  top: 70%;
+}
+
+.types-message {
+  margin: auto;
+  border: 0;
+  height: 100%;
+  width: 60%;
+}
+
+.button-send {
+  /* height: 98px; */
+  height: 50px;
+  margin: auto;
+  width: 200px;
+  background-color: black;
+  color: #fff;
+  font-family: Arimo;
+  border-radius: 0;
+}
+
+.fill-chat {
+  padding: 0;
 }

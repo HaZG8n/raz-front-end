@@ -16,7 +16,7 @@ function Chat() {
             text="See your notifications for the latest updates"
           />
           <section className={`row ${styles["main-section"]}`}>
-            <div className="col-md-4">
+            <div className={`${styles["fill-profile"]} col-md-4`}>
               <div className={`${styles["profile-chat"]} row`}>
                 <div className={`${styles["profile"]} col-md-4`}>
                   <Image
@@ -70,7 +70,7 @@ function Chat() {
                 </div>
               </div>
             </div>
-            <div className="col-md-8">
+            <div className={`${styles["fill-chat"]} col-md-8`}>
               <div className={`${styles["profile-chat"]} row`}>
                 <div className={`${styles["profile"]} col-md-2`}>
                   <Image
@@ -87,7 +87,13 @@ function Chat() {
                   <p className={styles.status}>Online</p>
                 </div>
               </div>
-              <p>cek</p>
+              <div className={`${styles["chat-message"]} row`}>
+                <input className={`${styles["types-message"]} col-md-6`}
+                    type="text"
+                    placeholder="Write Your Message ..."
+                />
+                <button className={`btn ${styles["button-send"]} col-md-6`}>Send</button>
+              </div>
             </div>
           </section>
         </Layout>
