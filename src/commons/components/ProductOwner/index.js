@@ -75,9 +75,15 @@ function CardProductOwner() {
                                 deleteMyProduct(data.id, token)
                                   .then((res) => {
                                     console.log(res)
-                                    let arr = [...myProductArr]
-                                    arr.splice(myProductArr, 1)
-                                    setMyProductArr(arr)
+                                    // let arr = [...myProductArr]
+                                    // arr.splice(myProductArr, 1)
+                                    // setMyProductArr(arr)
+                                    getMyProduct(token)
+                                      .then((res) => {
+                                        // console.log("add tambah ", res)
+                                        setMyProductArr([...res.data.data])
+                                      }).catch((err) => console.log(err))
+
                                   }).catch((err) => console.log(err))
                               }
                             })
