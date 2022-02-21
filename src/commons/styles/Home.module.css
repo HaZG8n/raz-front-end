@@ -124,6 +124,73 @@ Height
   bottom: 7px;
 }
 
+.box-ceo{
+  background-color: #161616;
+  height: 100%;
+  width: auto;
+  /* margin-block: -38px; */
+}
+
+.content-text{
+  font-family: Playfair Display;
+  font-style: normal;
+  font-weight: normal;
+  padding: 23px;
+  font-size: 12px;
+  /* font-size: 28px;
+  line-height: 55px; */
+  /* or 196% */
+
+  text-align: center;
+
+  color: #FFFFFF;
+}
+
+.line-box{
+  position: relative;
+}
+
+.line-content{
+  position: relative;
+  width :72px;
+  height :12px;
+  background: yellow;
+  mix-blend-mode: normal;
+  /* opacity: 0.5; */
+  color: yellow;
+  text-align: center;
+}
+
+.ceo-text{
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  /* font-size: 18px;
+  line-height: 25px; */
+  /* identical to box height */
+  
+  text-align: center;
+  
+  color: #FFFFFF;
+  /* padding-bottom: 23px; */
+}
+
+.logo-content{
+padding-bottom: 83px;
+}
+
+.footer {
+  position: absolute;
+  width: 100%;
+  margin-block: -8px;
+}
+
+@media (min-width: 375px) {
+  .footer {
+    margin-block: -5px;
+  }
+}
+
 /* tablet */
 @media (min-width: 768px) {
   .furniture-text {
@@ -172,20 +239,21 @@ Height
     left: 12px;
     font-size: 16px;
   }
+  .content-text{
+    font-size: 18px;
+    line-height: 45px;
+  }
+  .ceo-text{
+    font-size: 18px;
+    line-height: 25px;
+  }
+  .logo-content{
+    position: relative;
+    top: 23px;
+  }
 }
 /* {<div style={{ position: 'absolute', width: '100%', marginBlock: '-40px' }}>} */
 
-.footer {
-  position: absolute;
-  width: 100%;
-  margin-block: -38px;
-}
-
-@media (min-width: 375px) {
-  .footer {
-    margin-block: -5px;
-  }
-}
 
 /* laptop S */
 @media (min-width: 1024px) {
@@ -243,5 +311,13 @@ Height
   .product-img{
     display: flex;
     justify-content: end;
+  }
+  .content-text{
+    font-size: 28px;
+    line-height: 55px;
+  }
+  .ceo-text{
+    font-size: 18px;
+    line-height: 25px;
   }
 }
