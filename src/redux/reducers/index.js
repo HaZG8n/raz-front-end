@@ -4,6 +4,7 @@ import cartData from "./cart";
 import wishListData from "./wishList";
 import addProductReducer from "./addProduct";
 import totalPrice from "./totalPrice";
+import searchReducer from "./search";
 // import myProductReducer from "./myProductReducer";
 
 const reducers = combineReducers({
@@ -13,6 +14,7 @@ const reducers = combineReducers({
   addProduct: addProductReducer,
   // myProduct: myProductReducer,
   price: totalPrice,
+  search:searchReducer
 });
 
 export default reducers;

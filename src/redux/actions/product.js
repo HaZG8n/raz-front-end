@@ -6,6 +6,12 @@ export const setCart = (product) => {
     payload: product,
   };
 };
+export const setsearch = (search) => {
+  return {
+    type: "SET_SEARCH_FULFILLED",
+    payload: search,
+  };
+};
 
 export const DelCart = () => {
   return {

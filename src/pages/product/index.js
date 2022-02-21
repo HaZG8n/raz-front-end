@@ -2,6 +2,7 @@ import { Component } from "react";
 import { withRouter } from "next/router";
 import Link from "next/link";
 import { getAllProduct, getProduct } from "src/commons/module/product";
+import { connect } from "react-redux";
 
 import Main from "src/commons/components/Main";
 import Layout from "src/commons/components/Layout";
@@ -18,32 +19,40 @@ class index extends Component {
       product: [],
       data: [],
       page: 1,
-      filter: "",
+      sortBy: "createdAt",
       sort: "",
+      search: this.props.search
+      
     };
   }
 
-  getAll = () => {
-    const page = this.state.page;
-    console.log("DIPANGGIL");
-    getAllProduct(page)
-      .then((res) => {
-        console.log(res.data);
-        this.setState({ data: res.data });
-        this.setState({ product: res.data.data });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // getAll = () => {
+  //   const page = this.state.page;
+  //   console.log("DIPANGGIL");
+  //   getAllProduct(page)
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       this.setState({ data: res.data });
+  //       this.setState({ product: res.data.data });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   getProduct = () => {
     const { router } = this.props;
-    let page = router.query.page ? router.query.page : this.state.page;
-    let filter = router.query.filter ? router.query.filter : "id";
-    let sort = router.query.sort ? router.query.sort : "ASC";
-    console.log("FILTER", filter);
-    getProduct(filter, sort, page)
+    
+    // const search =router.query.keyword ? router.query.keyword : ''
+    console.log("dimanaaaaa",this.state.search);
+    const page =  router.query.page ? router.query.page : this.state.page;
+    const sortBy = this.state.sortBy ?? router.query.sortBy;
+    const param={
+      page,
+      sortBy,
+      search:this.state.search
+    }
+    getAllProduct(param)
       .then((res) => {
         console.log("GET", res.data);
         this.setState({ data: res.data });
@@ -65,7 +74,7 @@ class index extends Component {
       pathname: "/product",
       query: {
         page: data.page,
-        filter: e.target.value,
+        sortBy: e.target.value,
         sort: "DESC",
       },
     });
@@ -73,14 +82,14 @@ class index extends Component {
   };
 
   componentDidMount() {
-    this.getAll();
+    // this.getAll();
     this.getProduct();
     console.log("RE RENDER");
   }
 
   render() {
     const { router } = this.props;
-    console.log("DATA", this.state.data);
+    console.log("DATA", this.state.page);
     const initial = [];
     const newArr = new Array(this.state.data.total_page);
     for (let i = 0; i < newArr.length; i++) {
@@ -100,19 +109,17 @@ class index extends Component {
                     <select
                       name="filter"
                       onChange={(e) => {
-                        if (e.target.value !== this.state.filter) {
-                          this.getProduct();
-                        }
-                        this.setState({ filter: e.target.value }, () => {
+                        console.log('fff',e.target.value);
+                        this.setState({ sortBy: e.target.value }, () => {
                           router.push({
                             pathname: "/product",
                             query: {
                               page: this.state.page,
-                              filter: e.target.value,
+                              sortBy: e.target.value,
                               sort: "DESC",
                             },
                           });
-                          getProduct();
+                          this.getProduct();
                         });
                       }}
                     >
@@ -142,8 +149,9 @@ class index extends Component {
                           aria-current="page"
                           onClick={() =>
                             this.setState({ page: val }, () => {
-                              this.getAll();
+                              this.getProduct();
                             })
+
                           }
                         >
                           <button className="btn btn-secondary">{val}</button>
@@ -160,5 +168,10 @@ class index extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    search:state.search.search
+  };
+};
 
-export default withRouter(index);
+export default withRouter(connect (mapStateToProps)(index));
