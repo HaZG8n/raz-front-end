@@ -80,7 +80,7 @@ function CardProductOwner() {
                                     // setMyProductArr(arr)
                                     getMyProduct(token)
                                       .then((res) => {
-                                        // console.log("add tambah ", res)
+                                        // console.log("change get ", res)
                                         setMyProductArr([...res.data.data])
                                       }).catch((err) => console.log(err))
 
