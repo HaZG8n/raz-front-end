@@ -35,7 +35,7 @@ function CardProductOwner() {
       {store_name !== null ?
         (
           <>
-            {store_name !== null && myProductArr !== [] ? (
+            {myProductArr.length !== 0 ? (
               <>
                 <div className="container" style={{ marginTop: '33px', marginBottom: '33px', }}>
                   {Array.isArray(myProductArr) && myProductArr.length > 0 &&
@@ -87,7 +87,6 @@ function CardProductOwner() {
                                   }).catch((err) => console.log(err))
                               }
                             })
-
                           }}
                         >Delete</div>
                       </section>

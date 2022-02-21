@@ -37,7 +37,7 @@
   height: 219px;
 }
 
-.head li a {
+.head li {
   display: flex;
   flex-direction: row;
   text-align: center;
@@ -50,6 +50,9 @@
   font-weight: 400;
   line-height: 57px;
   letter-spacing: 0px;
+}
+.head li:hover {
+  cursor: pointer;
 }
 
 .head > div > button {

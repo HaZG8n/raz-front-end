@@ -13,8 +13,6 @@ import { useState } from "react";
 
 const Header = () => {
   const { cart: carts } = useSelector((state) => state.cart);
-  const state = useSelector((state) => state);
-  const { wishList } = state.wishList;
   const [showSearch, setShowSearch] = useState(false);
   const [keyword, setKeyword] = useState("");
   const router = useRouter();
@@ -50,23 +48,31 @@ const Header = () => {
                   Page
                 </p>
                 <ul className="dropdown-menu bg-black" aria-labelledby="navbarDropdownMenuLink">
-                  <li>
-                    <p className={`dropdown-item ${styles["submenu"]}`}>About Us</p>
-                  </li>
-                  <li>
-                    <p className={`dropdown-item ${styles["submenu"]}`}>Contact Us</p>
-                  </li>
-                  <li>
-                    <p className={`dropdown-item ${styles["submenu"]}`}>Coming Soon</p>
-                  </li>
+                  <Link href="/about/about" passHref>
+                    <li>
+                      <p className={`dropdown-item ${styles["submenu"]}`}>About Us</p>
+                    </li>
+                  </Link>
+                  <Link href='/about/contact' passHref>
+                    <li>
+                      <p className={`dropdown-item ${styles["submenu"]}`}>Contact Us</p>
+                    </li>
+                  </Link>
+                  <Link href='/comingsoon' passHref>
+                    <li>
+                      <p className={`dropdown-item ${styles["submenu"]}`}>Coming Soon</p>
+                    </li>
+                  </Link>
                   <Link href="/404" passHref>
                     <li>
                       <p className={`dropdown-item ${styles["submenu"]}`}>404 Page</p>
                     </li>
                   </Link>
-                  <li>
-                    <p className={`dropdown-item ${styles["submenu"]}`}>FAQ page</p>
-                  </li>
+                  <Link href="/frequently-asked-questions" passHref>
+                    <li>
+                      <p className={`dropdown-item ${styles["submenu"]}`}>FAQ page</p>
+                    </li>
+                  </Link>
                 </ul>
               </li>
 
@@ -79,29 +85,36 @@ const Header = () => {
                     <p className={`dropdown-item disable ${styles["other-page-text"]}`}>Other Page</p>
                   </li>
                   <div className={`${styles["other-submenu"]}`}>
-                    <li>
-                      <p className={`dropdown-item ${styles["submenu"]}`}>Shopping Cart</p>
-                    </li>
-                    <li>
-                      <p className={`dropdown-item ${styles["submenu"]}`}>Check Out</p>
-                    </li>
+                    <Link href='/cart' passHref>
+                      <li>
+                        <p className={`dropdown-item ${styles["submenu"]}`}>Shopping Cart</p>
+                      </li>
+                    </Link>
+                    <Link href='/cart/checkout' passHref>
+                      <li>
+                        <p className={`dropdown-item ${styles["submenu"]}`}>Check Out</p>
+                      </li>
+                    </Link>
                     <Link href="/profile" passHref>
                       <li>
                         <p className={`dropdown-item ${styles["submenu"]}`}>My Account</p>
                       </li>
                     </Link>
-                    <li>
-                      <p className={`dropdown-item ${styles["submenu"]}`}>Order Tracking</p>
-                    </li>
+                    <Link href="/myorder" passHref>
+                      <li>
+                        <p className={`dropdown-item ${styles["submenu"]}`}>Order Tracking</p>
+                      </li>
+                    </Link>
                   </div>
                 </ul>
               </li>
-
-              <li className="nav-item">
-                <p className={`nav-link active ${styles["menu-nav"]}`} aria-current="page">
-                  Blog
-                </p>
-              </li>
+              <Link href="/blog" passHref>
+                <li className="nav-item">
+                  <p className={`nav-link active ${styles["menu-nav"]}`} aria-current="page">
+                    Blog
+                  </p>
+                </li>
+              </Link>
             </ul>
 
             <div className="row">
@@ -117,7 +130,7 @@ const Header = () => {
                     router.push("/wishlist");
                   }}
                 >
-                  <div className={styles.total}>{wishList.length}</div>
+                  <div className={styles.total}>1</div>
                   <Image src={wishlist} alt="avatar" />
                 </div>
               </div>
