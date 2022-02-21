@@ -1,5 +1,11 @@
 .textOrder {
   text-align: center;
+  font-family: Arimo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0px;
 }
 
 .form-info {
@@ -9,6 +15,21 @@
 .form-label {
   text-align: start;
   margin-top: 5%;
+  width: 80%;
+  margin-left: 10%;
+  text-transform: uppercase;
+}
+
+.input {
+  width: 80%;
+  margin: 5% auto 3% auto;
+  height: 70px;
+  border-radius: 0%;
+}
+
+.input:focus {
+  border-color: #1a1a1a;
+  transition: all 0.5s;
 }
 
 .button-track {
@@ -17,7 +38,7 @@
   color: #fff !important;
   border-radius: 0;
   margin: 5% 33%;
-  height: 50px;
+  height: 60px;
   width: 30%;
   text-align: center;
 }

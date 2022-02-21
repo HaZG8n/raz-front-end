@@ -4,17 +4,14 @@ import Banner from "src/commons/components/Banner";
 import styles from "src/commons/styles/orderTrack.module.css";
 import Image from "next/image";
 import map from "src/assets/img/MapOrder.png";
-import icon from "src/assets/img/delivery.png"
+import icon from "src/assets/img/delivery.png";
 
 function OrderDetail() {
   return (
     <>
       <Layout title="Order Detail">
         <Main>
-          <Banner
-            title="Tracking Detail"
-            text="Track where your order arrived"
-          />
+          <Banner title="Tracking Detail" text="Track where your order arrived" />
           <section className={`${styles["main-section"]} row col-12`}>
             <div className={`${styles["map-image"]} col-md-6`}>
               <Image alt="map" src={map} width={700} height={629} />
@@ -41,7 +38,6 @@ function OrderDetail() {
               <p className={styles.city}>Kebun Mangga, Jakarta Selatan</p>
               <button className={`${styles["button-check"]} btn`}>Check on Map</button>
             </div>
-            
           </section>
         </Main>
       </Layout>
