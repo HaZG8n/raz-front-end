@@ -12,14 +12,29 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 
 const Header = () => {
+  const { token } = useSelector((state) => state.auth)
   const { cart: carts } = useSelector((state) => state.cart);
   const [showSearch, setShowSearch] = useState(false);
-  // console.log(showSearch)
-  // const state = useSelector((state) => state)
-  // const { token } = state.auth
-  // console.log(token)
-  // repush
+  const [dropdown, setDropdown] = useState(false)
+  const [keyword, setKeyword] = useState("");
   const router = useRouter();
+
+  console.log("ROUTER", router);
+
+  const handleKeyword = (e) => {
+    if (e.key === "Enter") {
+    }
+  };
+
+  const clickSearch = () => {
+    setDropdown(false)
+    setShowSearch(!showSearch)
+  }
+
+  const clickDropdown = () => {
+    setDropdown(!dropdown)
+    setShowSearch(false)
+  }
 
   return (
     <>
@@ -45,23 +60,31 @@ const Header = () => {
                   Page
                 </p>
                 <ul className="dropdown-menu bg-black" aria-labelledby="navbarDropdownMenuLink">
-                  <li>
-                    <p className={`dropdown-item ${styles["submenu"]}`}>About Us</p>
-                  </li>
-                  <li>
-                    <p className={`dropdown-item ${styles["submenu"]}`}>Contact Us</p>
-                  </li>
-                  <li>
-                    <p className={`dropdown-item ${styles["submenu"]}`}>Coming Soon</p>
-                  </li>
+                  <Link href="/about-us" passHref>
+                    <li>
+                      <p className={`dropdown-item ${styles["submenu"]}`}>About Us</p>
+                    </li>
+                  </Link>
+                  <Link href='/contact-us' passHref>
+                    <li>
+                      <p className={`dropdown-item ${styles["submenu"]}`}>Contact Us</p>
+                    </li>
+                  </Link>
+                  <Link href='/comingsoon' passHref>
+                    <li>
+                      <p className={`dropdown-item ${styles["submenu"]}`}>Coming Soon</p>
+                    </li>
+                  </Link>
                   <Link href="/404" passHref>
                     <li>
                       <p className={`dropdown-item ${styles["submenu"]}`}>404 Page</p>
                     </li>
                   </Link>
-                  <li>
-                    <p className={`dropdown-item ${styles["submenu"]}`}>FAQ page</p>
-                  </li>
+                  <Link href="/frequently-asked-questions" passHref>
+                    <li>
+                      <p className={`dropdown-item ${styles["submenu"]}`}>FAQ page</p>
+                    </li>
+                  </Link>
                 </ul>
               </li>
 
@@ -74,34 +97,41 @@ const Header = () => {
                     <p className={`dropdown-item disable ${styles["other-page-text"]}`}>Other Page</p>
                   </li>
                   <div className={`${styles["other-submenu"]}`}>
-                    <li>
-                      <p className={`dropdown-item ${styles["submenu"]}`}>Shopping Cart</p>
-                    </li>
-                    <li>
-                      <p className={`dropdown-item ${styles["submenu"]}`}>Check Out</p>
-                    </li>
+                    <Link href='/cart' passHref>
+                      <li>
+                        <p className={`dropdown-item ${styles["submenu"]}`}>Shopping Cart</p>
+                      </li>
+                    </Link>
+                    <Link href='/cart/checkout' passHref>
+                      <li>
+                        <p className={`dropdown-item ${styles["submenu"]}`}>Check Out</p>
+                      </li>
+                    </Link>
                     <Link href="/profile" passHref>
                       <li>
                         <p className={`dropdown-item ${styles["submenu"]}`}>My Account</p>
                       </li>
                     </Link>
-                    <li>
-                      <p className={`dropdown-item ${styles["submenu"]}`}>Order Tracking</p>
-                    </li>
+                    <Link href="/myorder" passHref>
+                      <li>
+                        <p className={`dropdown-item ${styles["submenu"]}`}>Order Tracking</p>
+                      </li>
+                    </Link>
                   </div>
                 </ul>
               </li>
-
-              <li className="nav-item">
-                <p className={`nav-link active ${styles["menu-nav"]}`} aria-current="page">
-                  Blog
-                </p>
-              </li>
+              <Link href="/blog" passHref>
+                <li className="nav-item">
+                  <p className={`nav-link active ${styles["menu-nav"]}`} aria-current="page">
+                    Blog
+                  </p>
+                </li>
+              </Link>
             </ul>
 
             <div className="row">
               <div className="col">
-                <div className={styles["logo"]} onClick={() => setShowSearch(!showSearch)}>
+                <div className={styles["logo"]} onClick={clickSearch}>
                   <Image src={search} alt="avatar" />
                 </div>
               </div>
@@ -127,21 +157,74 @@ const Header = () => {
                   <Image src={cart} alt="avatar" />
                 </div>
               </div>
-              <div className="col">
-                <div className={styles["hamburger-menu"]}>
+              <div className="col dropdown">
+                <div className={`${styles["hamburger-menu"]}`} onClick={clickDropdown}>
+                  {console.log(dropdown)}
                   <span className={styles["line-up"]}></span>
                   <span className={styles["line-center"]}></span>
                   <span className={styles["line-down"]}></span>
                 </div>
+                {dropdown ?
+                  (
+                    <>
+                      {!token ?
+                        (
+                          <>
+                            <div className={`${styles['box-hamburger-menu']}`}>
+                              <ul className={`${styles['ul-menu']}`}>
+                                <Link href='/auth' passHref>
+                                  <li className={`${styles['li-menu']}`}>Login</li>
+                                </Link>
+                                <Link href='/auth' passHref>
+                                  <li className={`${styles['li-menu']}`}>Register</li>
+                                </Link>
+                                <li className={`${styles['li-menu']}`}>Chat</li>
+                                <li className={`${styles['li-menu']}`}>Notification</li>
+                              </ul>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div className={`${styles['box-hamburger-menu']}`}>
+                              <ul className={`${styles['ul-menu']}`}>
+                                <Link href='/profile' passHref>
+                                  <li className={`${styles['li-menu']}`}>Profile</li>
+                                </Link>
+                                <li className={`${styles['li-menu']}`}>Chat</li>
+                                <li className={`${styles['li-menu']}`}>Notification</li>
+                                <li className={`${styles['li-menu']}`}>Logout</li>
+                              </ul>
+                            </div>
+                          </>
+                        )
+                      }
+                    </>
+                  ) :
+                  (
+                    <></>
+                  )
+                }
+
               </div>
             </div>
+
           </section>
         </nav>
       </header>
       {showSearch ? (
         <>
           <div className={`${styles["search-box"]}`}>
-            <input className={`${styles["animated-input-in"]}`} />
+            <input
+              onChange={(e) => {
+                setKeyword(e.target.value);
+              }}
+              onKeyDown={(e) => {
+                if (e.key == "Enter") {
+                  router.push(`${router.asPath}&keyword=${keyword}`);
+                }
+              }}
+              className={`${styles["animated-input-in"]}`}
+            />
             <div className={styles["logo-input"]}>
               <Image src={searchWhite} alt="avatar" />
             </div>
