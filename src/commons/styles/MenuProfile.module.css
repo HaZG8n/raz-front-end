@@ -61,6 +61,9 @@
     width: 80%;
 }
 
+.menu-profile{
+    cursor: pointer;
+}
 
 @keyframes line-effect{
     from {width: 0;}

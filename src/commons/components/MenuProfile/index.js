@@ -23,13 +23,15 @@ const MenuProfile = ({ children }) => {
                         <span className={pathname == '/test' ? `${styles['line']}` : ''}></span>
                     </div>
                     <div className='col' onClick={() => setDropdown(!dropdown)}>
-                        <h3 className={dropdown ? `${styles['menu-profile-text']} ${styles['on']}` : `${styles['menu-profile-text']} ${styles['off']}`}>My Product</h3>
+                        <h3 className={pathname === '/product/list' ? `${styles['menu-profile-text']} ${styles['on']}` : `${styles['menu-profile-text']} ${styles['off']}`}>My Product</h3>
                         <span className={dropdown ? `${styles['line']}` : ''}></span>
                         {dropdown ? (
                             <>
                                 <div className={`${styles['dropdown-profile']}`}>
                                     <ul>
-                                        <li><p>View All</p></li>
+                                        <Link href='/product/list' passHref>
+                                            <li className={`${styles['menu-profile']}`}><p>View All</p></li>
+                                        </Link>
                                     </ul>
                                 </div>
                             </>
