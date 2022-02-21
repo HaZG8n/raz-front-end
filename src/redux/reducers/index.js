@@ -2,17 +2,16 @@ import { combineReducers } from "redux";
 import authReducer from "./auth";
 import cartData from "./cart";
 import wishListData from "./wishList";
-import addProductReducers from "./addProduct";
+import addProductReducer from "./addProduct";
 import totalPrice from "./totalPrice";
-import myProduct from "./myProduct";
+// import myProductReducer from "./myProductReducer";
 
 const reducers = combineReducers({
   auth: authReducer,
   cart: cartData,
   wishList: wishListData,
-
-  addProduct: addProductReducers,
-  myProduct: myProduct,
+  addProduct: addProductReducer,
+  // myProduct: myProductReducer,
   price: totalPrice,
 });
 
