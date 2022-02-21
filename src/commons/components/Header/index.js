@@ -250,7 +250,7 @@ const Header = () => {
     </>
   );
   // navigasi header
-  // check
+  // check2
 };
 
 export default Header;
