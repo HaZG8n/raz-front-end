@@ -22,6 +22,7 @@ class checkout extends Component {
       adress: "",
       phone: "",
       bank: "",
+      dataBefore: [],
       va_number: [],
       isShow: false,
     };
@@ -37,15 +38,11 @@ class checkout extends Component {
 
   goCheckOut = () => {
     const body = {
-      cart: {
-        product_id: this.props.cart.productId,
-        total_price: this.props.cart.total,
-        quantity: this.props.cart.stock,
-      },
+      cart: this.props.cart,
       name_user: this.state.name_user,
       adress: this.state.adress,
       phone: this.state.phone,
-      total_price: this.props.cart.total,
+      total_price: this.props.totalPrice.price,
       bank: this.state.bank,
     };
     console.log("body", body);
@@ -56,6 +53,7 @@ class checkout extends Component {
         const { va_number } = res.data.data.va_numbers[0];
         this.setState({ isShow: !this.state.isShow });
         this.setState({ va_number: va_number });
+        this.props.DelCartProduct();
       })
       .catch((err) => {
         console.log(err);
@@ -63,7 +61,7 @@ class checkout extends Component {
   };
 
   render() {
-    console.log("val", this.state.va_number);
+    console.log("STATE", this.props.totalPrice);
     return (
       <>
         <Layout title={"Check Out"} />
@@ -99,42 +97,46 @@ class checkout extends Component {
             </button>
           </div>
           <div className={styles.modal}>
-            <Modal show={this.state.isShow}>
-              <Modal.Header>
-                <button
-                  type="button"
-                  className="btn-close"
-                  aria-label="Close"
-                  onClick={() => {
-                    this.setState({ isShow: !this.state.isShow });
-                  }}
-                ></button>
-              </Modal.Header>
+            <Modal show={this.state.isShow} centered>
+              <div className={styles.modalHeader}>
+                <Modal.Header>
+                  <p>Please Finish Your Payment</p>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    aria-label="Close"
+                    onClick={() => {
+                      this.setState({ isShow: !this.state.isShow });
+                    }}
+                  ></button>
+                </Modal.Header>
+              </div>
               <Modal.Body>
-                <p>Your Va Numbers: {this.state.va_number}</p>
+                <div className={styles.modalBody}>
+                  <p>Your Payment Code : {this.state.va_number}</p>
+                  <p>Copy your payment code for payment</p>
+                </div>
               </Modal.Body>
               <Modal.Footer>
-                <button
-                  className="btn btn-primary"
-                  onClick={() => {
-                    if (this.state.bank == "bri") {
-                      window.open("https://simulator.sandbox.midtrans.com/bri/va/index");
-                    } else if (this.state.bank == "bni") {
-                      window.open("https://simulator.sandbox.midtrans.com/bni/va/index");
-                    } else {
-                      window.open("https://simulator.sandbox.midtrans.com/bca/va/index");
-                    }
-                  }}
-                >
-                  Please Pay Your Payment
-                </button>
+                <div className={styles.modalFooter}>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => {
+                      if (this.state.bank == "bri") {
+                        window.open("https://simulator.sandbox.midtrans.com/bri/va/index");
+                      } else if (this.state.bank == "bni") {
+                        window.open("https://simulator.sandbox.midtrans.com/bni/va/index");
+                      } else {
+                        window.open("https://simulator.sandbox.midtrans.com/bca/va/index");
+                      }
+                    }}
+                  >
+                    Go to Payment Page
+                  </button>
+                </div>
               </Modal.Footer>
             </Modal>
           </div>
-
-          {/* <button className={`btn ${styles["btn-checkout"]} py-3`} onClick={this.goCheckOut}>
-              Check Out
-            </button> */}
         </div>
         <Footer />
       </>
@@ -143,9 +145,11 @@ class checkout extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log("TESADIFHG", state);
   return {
     cart: state.cart.cart,
     token: state.auth.token,
+    totalPrice: state.price,
   };
 };
 

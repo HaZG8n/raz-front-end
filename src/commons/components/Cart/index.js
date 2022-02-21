@@ -29,8 +29,9 @@ class index extends Component {
   };
 
   deletCart = () => {
-    this.props.RemoveCart();
-    window.location.reload();
+    // this.props.RemoveCart();
+    // window.location.reload();
+    this.props.rmAction(this.props.idx);
   };
 
   render() {
@@ -78,5 +79,10 @@ const mapDispatchToProps = (dispatch) => {
     RemoveCart: bindActionCreators(DelCart, dispatch),
   };
 };
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     RemoveCart: (key) => dispatch(DelCart(key)),
+//   };
+// };
 
 export default withRouter(connect(null, mapDispatchToProps)(index));

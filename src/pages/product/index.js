@@ -16,13 +16,18 @@ class index extends Component {
     super(props);
     this.state = {
       product: [],
+      data: [],
     };
   }
 
   getAll = () => {
-    getAllProduct()
+    // const page = this.props.router.query.page;
+    const page = 1;
+    console.log("DIPANGGIL");
+    getAllProduct(page)
       .then((res) => {
-        console.log(res.data.data);
+        console.log(res.data);
+        this.setState({ data: res.data });
         this.setState({ product: res.data.data });
       })
       .catch((err) => {
@@ -37,6 +42,8 @@ class index extends Component {
   render() {
     const { router } = this.props;
     console.log("ROUTER", router.query);
+    console.log("DATA", this.state.data);
+    let i = 0;
     return (
       <Layout title="Product">
         <div className={css.main}>
@@ -79,32 +86,32 @@ class index extends Component {
                 </div>
                 <div className={css.paginasi}>
                   <ul className="pagination pagination-lg mt-5">
-                    <li className={router.query.page == "1" ? `page-item ${css.active}` : "page-item"} aria-current="page">
+                    <li className={router.query.page == "1" ? `page-item ${css.active}` : "page-item"} aria-current="page" onClick={this.getAll}>
                       <Link className="page-link" href="/product?page=1">
                         01
                       </Link>
                     </li>
-                    <li className={router.query.page == "2" ? `page-item ${css.active}` : "page-item"}>
+                    <li onClick={this.getAll} className={router.query.page == "2" ? `page-item ${css.active}` : "page-item"}>
                       <Link className="page-link" href="/product?page=2">
                         02
                       </Link>
                     </li>
-                    <li className={router.query.page == "3" ? `page-item ${css.active}` : "page-item"}>
+                    <li onClick={this.getAll} className={router.query.page == "3" ? `page-item ${css.active}` : "page-item"}>
                       <Link className="page-link" href="/product?page=3">
                         03
                       </Link>
                     </li>
-                    <li className={router.query.page == "4" ? `page-item ${css.active}` : "page-item"}>
+                    <li onClick={this.getAll} className={router.query.page == "4" ? `page-item ${css.active}` : "page-item"}>
                       <Link className="page-link" href="/product?page=4">
                         04
                       </Link>
                     </li>
-                    <li className={router.query.page == "5" ? `page-item ${css.active}` : "page-item"}>
+                    <li onClick={this.getAll} className={router.query.page == "5" ? `page-item ${css.active}` : "page-item"}>
                       <Link className="page-link" href="/product?page=5">
                         05
                       </Link>
                     </li>
-                    <li className={router.query.page == "6" ? `page-item ${css.active}` : "page-item"}>
+                    <li onClick={this.getAll} className={router.query.page == "6" ? `page-item ${css.active}` : "page-item"}>
                       <Link className="page-link" href="/product?page=6">
                         06
                       </Link>

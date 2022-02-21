@@ -10,6 +10,11 @@ export const SignUp = (body) => {
   return axios.post(URL, body);
 };
 
+export const logout = (token) => {
+  const URL = `${process.env.NEXT_PUBLIC_HOST}auth/logout`;
+  return axios.post(URL, token);
+};
+
 export const forgotPass = (body) => {
   const URL = `${process.env.NEXT_PUBLIC_HOST}auth/forgotpassword `;
   return axios.post(URL, body);
@@ -18,10 +23,9 @@ export const forgotPass = (body) => {
 export const resetPass = (body) => {
   const URL = `${process.env.NEXT_PUBLIC_HOST}auth/resetpassword `;
   return axios.post(URL, body);
-}
+};
 
 export const GetUserProfile = (token) => {
   const URL = `${process.env.NEXT_PUBLIC_HOST}user/profile `;
   return axios.get(URL, { headers: { "x-access-token": token } });
 };
-

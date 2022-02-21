@@ -12,8 +12,15 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 
 const Header = () => {
+  const { cart: carts } = useSelector((state) => state.cart);
   const [showSearch, setShowSearch] = useState(false);
+  // console.log(showSearch)
+  // const state = useSelector((state) => state)
+  // const { token } = state.auth
+  // console.log(token)
+  // repush
   const router = useRouter();
+
   return (
     <>
       <header className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: "transparent" }}>
@@ -66,7 +73,7 @@ const Header = () => {
                   <li>
                     <p className={`dropdown-item disable ${styles["other-page-text"]}`}>Other Page</p>
                   </li>
-                  <di className={`${styles["other-submenu"]}`}>
+                  <div className={`${styles["other-submenu"]}`}>
                     <li>
                       <p className={`dropdown-item ${styles["submenu"]}`}>Shopping Cart</p>
                     </li>
@@ -81,7 +88,7 @@ const Header = () => {
                     <li>
                       <p className={`dropdown-item ${styles["submenu"]}`}>Order Tracking</p>
                     </li>
-                  </di>
+                  </div>
                 </ul>
               </li>
 
@@ -116,7 +123,7 @@ const Header = () => {
                     router.push("/cart");
                   }}
                 >
-                  <div className={styles.total}>5</div>
+                  <div className={styles.total}>{carts.length}</div>
                   <Image src={cart} alt="avatar" />
                 </div>
               </div>

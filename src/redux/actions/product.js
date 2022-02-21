@@ -1,4 +1,4 @@
-import { addProduct } from "src/commons/module/product";
+// import { getMyProduct } from "src/commons/module/product";
 
 export const setCart = (product) => {
   return {
@@ -13,6 +13,13 @@ export const DelCart = () => {
   };
 };
 
+export const setTotalPrice = (price) => {
+  return {
+    type: "SET_TOTAL_FULFILLED",
+    payload: price,
+  };
+};
+
 export const setWishList = (product) => {
   return {
     type: "SET_WISHLIST_FULFILLED",
@@ -20,10 +27,17 @@ export const setWishList = (product) => {
   };
 };
 
-export const addProductAction = (body, token) => {
-  return {
-    type: "SET_ADD_PRODUCT_FULFILLED",
-    payload: addProduct(body, token)
-    // payload: product,
-  }
-}
+// export const myProductAction = (token) => {
+//   return {
+//     type: "SET_MY_PRODUCT_FULFILLED",
+//     payload: getMyProduct(token)
+//   }
+// }
+// export const addProductAction = (body, token) => {
+//   return {
+//     type: "SET_ADD_PRODUCT_FULFILLED",
+//     payload: addProduct(body, token)
+//     // payload: product,
+//   }
+// }
+
