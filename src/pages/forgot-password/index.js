@@ -36,7 +36,7 @@ class index extends Component {
     e.preventDefault();
     const body = {
       email: this.state.email,
-      linkUrl: "http://localhost:3000/reset-password/",
+      linkUrl: "https://raz-store.vercel.app/reset-password/",
     };
     // console.log(body);
     forgotPass(body)

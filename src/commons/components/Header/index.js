@@ -8,18 +8,24 @@ import wishlist from "src/assets/svg/wishlist.svg";
 import cart from "src/assets/svg/cart.svg";
 
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import { setsearch } from "src/redux/actions/product";
 
 const Header = () => {
-  const { token } = useSelector((state) => state.auth)
+  const dispatch= useDispatch()
+  const allState = useSelector((state) => state)
+  console.log("fakyuuuu",allState);
+
+  const { token } = useSelector((state) => state.auth);
   const { cart: carts } = useSelector((state) => state.cart);
+  const wishList = useSelector((state) => state.wishList.wishList);
   const [showSearch, setShowSearch] = useState(false);
-  const [dropdown, setDropdown] = useState(false)
+  const [dropdown, setDropdown] = useState(false);
   const [keyword, setKeyword] = useState("");
   const router = useRouter();
 
-  console.log("ROUTER", router);
+  console.log("WISH", wishList);
 
   const handleKeyword = (e) => {
     if (e.key === "Enter") {
@@ -27,14 +33,14 @@ const Header = () => {
   };
 
   const clickSearch = () => {
-    setDropdown(false)
-    setShowSearch(!showSearch)
-  }
+    setDropdown(false);
+    setShowSearch(!showSearch);
+  };
 
   const clickDropdown = () => {
-    setDropdown(!dropdown)
-    setShowSearch(false)
-  }
+    setDropdown(!dropdown);
+    setShowSearch(false);
+  };
 
   return (
     <>
@@ -65,12 +71,12 @@ const Header = () => {
                       <p className={`dropdown-item ${styles["submenu"]}`}>About Us</p>
                     </li>
                   </Link>
-                  <Link href='/contact-us' passHref>
+                  <Link href="/contact-us" passHref>
                     <li>
                       <p className={`dropdown-item ${styles["submenu"]}`}>Contact Us</p>
                     </li>
                   </Link>
-                  <Link href='/comingsoon' passHref>
+                  <Link href="/comingsoon" passHref>
                     <li>
                       <p className={`dropdown-item ${styles["submenu"]}`}>Coming Soon</p>
                     </li>
@@ -97,12 +103,12 @@ const Header = () => {
                     <p className={`dropdown-item disable ${styles["other-page-text"]}`}>Other Page</p>
                   </li>
                   <div className={`${styles["other-submenu"]}`}>
-                    <Link href='/cart' passHref>
+                    <Link href="/cart" passHref>
                       <li>
                         <p className={`dropdown-item ${styles["submenu"]}`}>Shopping Cart</p>
                       </li>
                     </Link>
-                    <Link href='/cart/checkout' passHref>
+                    <Link href="/cart/checkout" passHref>
                       <li>
                         <p className={`dropdown-item ${styles["submenu"]}`}>Check Out</p>
                       </li>
@@ -142,7 +148,7 @@ const Header = () => {
                     router.push("/wishlist");
                   }}
                 >
-                  <div className={styles.total}>1</div>
+                  <div className={styles.total}>{wishList.length}</div>
                   <Image src={wishlist} alt="avatar" />
                 </div>
               </div>
@@ -164,58 +170,51 @@ const Header = () => {
                   <span className={styles["line-center"]}></span>
                   <span className={styles["line-down"]}></span>
                 </div>
-                {dropdown ?
-                  (
-                    <>
-                      {!token ?
-                        (
-                          <>
-                            <div className={`${styles['box-hamburger-menu']}`}>
-                              <ul className={`${styles['ul-menu']}`}>
-                                <Link href='/auth' passHref>
-                                  <li className={`${styles['li-menu']}`}>Login</li>
-                                </Link>
-                                <Link href='/auth' passHref>
-                                  <li className={`${styles['li-menu']}`}>Register</li>
-                                </Link>
-                                <Link href='/chat' passHref>
-                                  <li className={`${styles['li-menu']}`}>Chat</li>
-                                </Link>
-                                <Link href='/notification' passHref>
-                                  <li className={`${styles['li-menu']}`}>Notification</li>
-                                </Link>
-                              </ul>
-                            </div>
-                          </>
-                        ) : (
-                          <>
-                            <div className={`${styles['box-hamburger-menu']}`}>
-                              <ul className={`${styles['ul-menu']}`}>
-                                <Link href='/profile' passHref>
-                                  <li className={`${styles['li-menu']}`}>Profile</li>
-                                </Link>
-                                <Link href='/chat' passHref>
-                                  <li className={`${styles['li-menu']}`}>Chat</li>
-                                </Link>
-                                <Link href='/notification' passHref>
-                                  <li className={`${styles['li-menu']}`}>Notification</li>
-                                </Link>
-                                <li className={`${styles['li-menu']}`}>Logout</li>
-                              </ul>
-                            </div>
-                          </>
-                        )
-                      }
-                    </>
-                  ) :
-                  (
-                    <></>
-                  )
-                }
-
+                {dropdown ? (
+                  <>
+                    {!token ? (
+                      <>
+                        <div className={`${styles["box-hamburger-menu"]}`}>
+                          <ul className={`${styles["ul-menu"]}`}>
+                            <Link href="/auth" passHref>
+                              <li className={`${styles["li-menu"]}`}>Login</li>
+                            </Link>
+                            <Link href="/auth" passHref>
+                              <li className={`${styles["li-menu"]}`}>Register</li>
+                            </Link>
+                            <Link href="/chat" passHref>
+                              <li className={`${styles["li-menu"]}`}>Chat</li>
+                            </Link>
+                            <Link href="/notification" passHref>
+                              <li className={`${styles["li-menu"]}`}>Notification</li>
+                            </Link>
+                          </ul>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className={`${styles["box-hamburger-menu"]}`}>
+                          <ul className={`${styles["ul-menu"]}`}>
+                            <Link href="/profile" passHref>
+                              <li className={`${styles["li-menu"]}`}>Profile</li>
+                            </Link>
+                            <Link href="/chat" passHref>
+                              <li className={`${styles["li-menu"]}`}>Chat</li>
+                            </Link>
+                            <Link href="/notification" passHref>
+                              <li className={`${styles["li-menu"]}`}>Notification</li>
+                            </Link>
+                            <li className={`${styles["li-menu"]}`}>Logout</li>
+                          </ul>
+                        </div>
+                      </>
+                    )}
+                  </>
+                ) : (
+                  <></>
+                )}
               </div>
             </div>
-
           </section>
         </nav>
       </header>
@@ -225,10 +224,17 @@ const Header = () => {
             <input
               onChange={(e) => {
                 setKeyword(e.target.value);
+                
               }}
               onKeyDown={(e) => {
                 if (e.key == "Enter") {
-                  router.push(`${router.asPath}&keyword=${keyword}`);
+                  // router.push(`${router.asPath}&keyword=${keyword}`);
+                  router.query.keyword = keyword
+                  router.push({
+                    pathname: router.pathname,
+                    query: router.query
+                  });
+                  dispatch(setsearch(keyword))
                 }
               }}
               className={`${styles["animated-input-in"]}`}

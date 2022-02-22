@@ -11,8 +11,15 @@ export const GetProductDetail = (id, token) => {
   return axios.get(URL, { headers: { "x-access-token": token } });
 };
 
-export const getAllProduct = (page) => {
-  const URL = `${process.env.NEXT_PUBLIC_HOST}product?sort=ASC&per_page=9&page=${page}`;
+export const getAllProduct = (param) => {
+  const queryParam = {
+    search: (param.search ?? '').replace('+', ' '),
+    sortBy: param.sortBy ?? "createdAt",
+    sort: '',
+    per_page: param.per_page ?? '5',
+    page: param.page ?? '1',
+  }
+  const URL = `${process.env.NEXT_PUBLIC_HOST}product?search=${queryParam.search}&sortBy=${queryParam.sortBy}&sort=ASC&per_page=9&page=${queryParam.page}`;
   return axios.get(URL);
 };
 

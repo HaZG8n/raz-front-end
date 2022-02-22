@@ -5,55 +5,101 @@ import styles from "src/commons/styles/orderTrack.module.css";
 import Image from "next/image";
 import map from "src/assets/img/MapOrder.png";
 
+import { getTrackOrder } from "src/commons/module/checkOut";
+import { useSelector } from "react-redux";
+
+import { useState } from "react";
+
 import Link from "next/link";
 
 function OrderTrack() {
+  const [isSaerch, setIsSearch] = useState(false);
+  const [keyword, setKeyword] = useState("");
+  const token = useSelector((state) => state.auth.token);
+
+  const onClickSerch = () => {
+    setIsSearch(!isSaerch);
+  };
+
+  const GetDataOrder = () => {};
+
+  console.log(typeof token);
+  const Click = () => {
+    const body = {
+      search: keyword,
+    };
+    getTrackOrder(body)
+      .then((res) => {
+        console.log(res.data);
+        onClickSerch();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <>
       <Layout title="Order Track">
         <Main>
-          <Banner
-            title="Order Tracking"
-            text="Track where your order arrived"
-          />
-          <section className={`${styles["main-section"]} row col-12`}>
-            <div className={`${styles["map-image"]} col-md-6`}>
-              <Image alt="map" src={map} width={700} height={629} />
-            </div>
-            <div className={`${styles["form-info"]} col-md-6`}>
-              <p className={styles.textOrder}>
-                To track your order please enter your Order ID in the box below
-                and press the <br /> {' " '}Track{' " '} button. This was given
-                to you on your receipt and in the confirmation <br /> email you
-                should have received.
-              </p>
-              <form>
+          <Banner title={isSaerch == false ? "Order Tracking" : "Tracking Detail"} text="Track where your order arrived" />
+          {isSaerch == false ? (
+            <section className={`${styles["main-section"]} row col-12`}>
+              <div className={`${styles["map-image"]} col-md-6`}>
+                <Image alt="map" src={map} width={700} height={629} />
+              </div>
+              <div className={`${styles["form-info"]} col-md-6`}>
+                <p className={styles.textOrder}>
+                  To track your order please enter your Order ID in the box below and press the <br /> {' " '}Track{' " '} button. This was given to you on your receipt and in the confirmation <br /> email you should have received.
+                </p>
                 <label htmlFor="name" className={styles["form-label"]}>
                   Order ID :
                 </label>
                 <input
                   type="text"
-                  className="form-control"
-                  name="orderId"
-                  defaultValue="Found in your order confirmation email."
-                />
-                <label htmlFor="name" className={styles["form-label"]}>
-                  Billing Email :
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
+                  className={`form-control ${styles.input} shadow-none`}
+                  onChange={(e) => {
+                    setKeyword(e.target.value);
+                  }}
                   name="bilEmail"
-                  defaultValue="Email you used during checkout"
+                  placeholder="Input your Order Id"
                 />
-                <Link href="detail" passHref>
-                  <button className={`btn ${styles["button-track"]}`}>
-                    Track Order
-                  </button>
-                </Link>
-              </form>
-            </div>
-          </section>
+                <button onClick={Click} className={`btn ${styles["button-track"]}`}>
+                  Track Order
+                </button>
+              </div>
+            </section>
+          ) : (
+            <section className={`${styles["main-section"]} row col-12`}>
+              <div className={`${styles["map-image"]} col-md-6`}>
+                <Image alt="map" src={map} width={700} height={629} />
+              </div>
+              <div className={`${styles["form-info"]} col-md-6`}>
+                <div className={`${styles["order-info"]} row`}>
+                  <div className={`${styles["order-id"]} col-md-6`}>
+                    <label htmlFor="name" className={styles["form-label"]}>
+                      Order ID :
+                    </label>
+                    <p className={styles.idOrder}>{keyword}</p>
+                  </div>
+                  <div className={`${styles["order-item"]} col-md-6`}>
+                    <label htmlFor="name" className={styles["form-label"]}>
+                      Order Item :
+                    </label>
+                    <p className={styles.item}>Fabric Mid Century Chair</p>
+                  </div>
+                </div>
+                <hr />
+                <p className={styles["status-order"]}>On Delivery</p>
+                <p className={styles["city-order"]}>Kebun Jeruk, Jakrta Barat</p>
+                <p className={styles.destination}>Destination</p>
+                <p className={styles.city}>Kebun Mangga, Jakarta Selatan</p>
+                <button onClick={onClickSerch} className={`${styles["button-check"]} btn`}>
+                  Back
+                </button>
+              </div>
+            </section>
+          )}
         </Main>
       </Layout>
     </>

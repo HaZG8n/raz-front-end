@@ -133,7 +133,7 @@ class index extends Component {
       currency: "IDR",
       minimumFractionDigits: 2,
     });
-    console.log("WISHLIST", this.props.wishList);
+    console.log("DATA PRODUCT", this.state.product);
     if (!this.state.animated) {
       return (
         <>

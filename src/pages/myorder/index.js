@@ -21,6 +21,7 @@ class index extends Component {
     try {
       const token = this.props.token;
       const result = await getOrder(token);
+      console.log("RESULT", result);
       this.setState({ order: result.data.data });
     } catch (error) {
       console.log(error);
@@ -40,12 +41,20 @@ class index extends Component {
             <p>QUANTITY</p>
             <p>STATUS ORDER</p>
             <p>STATUS SHIPING</p>
+            <p>ORDER ID</p>
             <p>TOTAL</p>
           </div>
-
           {this.state.order.map((val) => {
-            return <CardOrderUser shiping={val.shipping_status} price={val.product[0].price} status={val.status_order} quantity={val.quantity} total={val.total_price} name={val.product[0].name} key={val.id} />;
+            return <CardOrderUser shiping={val.shipping_status} price={val.product[0].price} status={val.status_order} orderId={val.order_id} quantity={val.quantity} total={val.total_price} name={val.product[0].name} key={val.id} />;
           })}
+          <button
+            onClick={() => {
+              this.props.router.push("/order/track");
+            }}
+            className="btn btn-secondary"
+          >
+            Track Your Order
+          </button>
         </Main>
       </>
     );

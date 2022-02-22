@@ -2,7 +2,7 @@ import styles from "src/commons/styles/orderUser.module.css";
 import Image from "next/image";
 import chair from "src/assets/img/chair-home.png";
 
-function CardOrderUser({ name, price, shiping, quantity, status, total }) {
+function CardOrderUser({ name, orderId, price, shiping, quantity, status, total }) {
   return (
     <>
       <section className={`${styles["card-order"]} row col-12`}>
@@ -26,6 +26,9 @@ function CardOrderUser({ name, price, shiping, quantity, status, total }) {
         </div>
         <div className={`${styles["total-product"]} col-md-2`}>
           <p className={styles.totalProduct}>{total}</p>
+        </div>
+        <div className={`${styles["id-product"]} col-md-2`}>
+          <p className={styles.totalProduct}>{orderId}</p>
         </div>
       </section>
     </>
