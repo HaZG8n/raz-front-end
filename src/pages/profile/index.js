@@ -63,6 +63,10 @@ function Profile(props) {
         GetUserProfile(token).then((res) => {
           console.log(res);
           const data = res.data.data;
+           toast.success("Profile Diperbaharui", {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 3000,
+          });
           props.setUsers(data);
           console.log(data);
         });
