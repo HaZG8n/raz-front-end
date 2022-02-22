@@ -166,7 +166,7 @@ class Auth extends Component {
                 <div className={`form-check form-check-inline mt-3 ${css["radio-container"]} `}>
                   <input className={`form-check-input ${css.radio}`} type="checkbox" id="inlineCheckbox2" value="seller" />
                   <label className="form-check-label">Remember me</label>
-                  <Link href="/forgot_password">
+                  <Link href="/forgot-password">
                     <a>Forget your password ?</a>
                   </Link>
                 </div>
