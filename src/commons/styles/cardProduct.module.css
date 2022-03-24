@@ -27,8 +27,20 @@
   color: #ffffff;
   margin-top: auto;
   margin-bottom: auto;
-}
+  
 
+}
+@media(max-width:426px){
+  .button-delete{
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    width: auto;
+
+  }
+}
 .product-price {
   font-weight: 700;
   font-family: Arimo;
