@@ -13,9 +13,8 @@ import { useState } from "react";
 import { setsearch } from "src/redux/actions/product";
 
 const Header = () => {
-  const dispatch= useDispatch()
-  const allState = useSelector((state) => state)
-  console.log("fakyuuuu",allState);
+  const dispatch = useDispatch();
+  const allState = useSelector((state) => state);
 
   const { token } = useSelector((state) => state.auth);
   const { cart: carts } = useSelector((state) => state.cart);
@@ -44,83 +43,140 @@ const Header = () => {
 
   return (
     <>
-      <header className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: "transparent" }}>
+      <header
+        className="navbar navbar-expand-lg navbar-light"
+        style={{ backgroundColor: "transparent" }}
+      >
         <nav className="container">
           <h1 className={`${styles["brand-text"]}`}>RAZ</h1>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarText"
+            aria-controls="navbarText"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span className="navbar-toggler-icon" />
           </button>
 
           <section className="collapse navbar-collapse" id="navbarText">
             <ul className="nav navbar-nav mx-auto">
               <li className="nav-item">
-                <Link href="/home" passHref>
-                  <p className={`nav-link active ${styles["menu-nav"]}`} aria-current="page">
+                <Link href="/" passHref>
+                  <p
+                    className={`nav-link active ${styles["menu-nav"]}`}
+                    aria-current="page"
+                  >
                     Home
                   </p>
                 </Link>
               </li>
 
               <li className="nav-item dropdown">
-                <p className={`nav-link dropdown-toggle active ${styles["menu-nav"]}`} id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <p
+                  className={`nav-link dropdown-toggle active ${styles["menu-nav"]}`}
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
                   Page
                 </p>
-                <ul className="dropdown-menu bg-black" aria-labelledby="navbarDropdownMenuLink">
+                <ul
+                  className="dropdown-menu bg-black"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
                   <Link href="/about-us" passHref>
                     <li>
-                      <p className={`dropdown-item ${styles["submenu"]}`}>About Us</p>
+                      <p className={`dropdown-item ${styles["submenu"]}`}>
+                        About Us
+                      </p>
                     </li>
                   </Link>
                   <Link href="/contact-us" passHref>
                     <li>
-                      <p className={`dropdown-item ${styles["submenu"]}`}>Contact Us</p>
+                      <p className={`dropdown-item ${styles["submenu"]}`}>
+                        Contact Us
+                      </p>
                     </li>
                   </Link>
                   <Link href="/comingsoon" passHref>
                     <li>
-                      <p className={`dropdown-item ${styles["submenu"]}`}>Coming Soon</p>
+                      <p className={`dropdown-item ${styles["submenu"]}`}>
+                        Coming Soon
+                      </p>
                     </li>
                   </Link>
                   <Link href="/404" passHref>
                     <li>
-                      <p className={`dropdown-item ${styles["submenu"]}`}>404 Page</p>
+                      <p className={`dropdown-item ${styles["submenu"]}`}>
+                        404 Page
+                      </p>
                     </li>
                   </Link>
                   <Link href="/frequently-asked-questions" passHref>
                     <li>
-                      <p className={`dropdown-item ${styles["submenu"]}`}>FAQ page</p>
+                      <p className={`dropdown-item ${styles["submenu"]}`}>
+                        FAQ page
+                      </p>
                     </li>
                   </Link>
                 </ul>
               </li>
 
               <li className="nav-item dropdown">
-                <p className={`nav-link dropdown-toggle active ${styles["menu-nav"]}`} id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <p
+                  className={`nav-link dropdown-toggle active ${styles["menu-nav"]}`}
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
                   Shop
                 </p>
-                <ul className="dropdown-menu bg-black" aria-labelledby="navbarDropdownMenuLink">
-                  <li>
+                <ul
+                  className="dropdown-menu bg-black"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  {/* <li>
                     <p className={`dropdown-item disable ${styles["other-page-text"]}`}>Other Page</p>
-                  </li>
+                  </li> */}
                   <div className={`${styles["other-submenu"]}`}>
+                    <Link href="/product" passHref>
+                      <li>
+                        <p className={`dropdown-item ${styles["submenu"]}`}>
+                          Products
+                        </p>
+                      </li>
+                    </Link>
                     <Link href="/cart" passHref>
                       <li>
-                        <p className={`dropdown-item ${styles["submenu"]}`}>Shopping Cart</p>
+                        <p className={`dropdown-item ${styles["submenu"]}`}>
+                          Shopping Cart
+                        </p>
                       </li>
                     </Link>
                     <Link href="/cart/checkout" passHref>
                       <li>
-                        <p className={`dropdown-item ${styles["submenu"]}`}>Check Out</p>
+                        <p className={`dropdown-item ${styles["submenu"]}`}>
+                          Check Out
+                        </p>
                       </li>
                     </Link>
                     <Link href="/profile" passHref>
                       <li>
-                        <p className={`dropdown-item ${styles["submenu"]}`}>My Account</p>
+                        <p className={`dropdown-item ${styles["submenu"]}`}>
+                          My Account
+                        </p>
                       </li>
                     </Link>
                     <Link href="/myorder" passHref>
                       <li>
-                        <p className={`dropdown-item ${styles["submenu"]}`}>Order Tracking</p>
+                        <p className={`dropdown-item ${styles["submenu"]}`}>
+                          Order Tracking
+                        </p>
                       </li>
                     </Link>
                   </div>
@@ -128,7 +184,10 @@ const Header = () => {
               </li>
               <Link href="/blog" passHref>
                 <li className="nav-item">
-                  <p className={`nav-link active ${styles["menu-nav"]}`} aria-current="page">
+                  <p
+                    className={`nav-link active ${styles["menu-nav"]}`}
+                    aria-current="page"
+                  >
                     Blog
                   </p>
                 </li>
@@ -164,7 +223,10 @@ const Header = () => {
                 </div>
               </div>
               <div className="col dropdown">
-                <div className={`${styles["hamburger-menu"]}`} onClick={clickDropdown}>
+                <div
+                  className={`${styles["hamburger-menu"]}`}
+                  onClick={clickDropdown}
+                >
                   {console.log(dropdown)}
                   <span className={styles["line-up"]}></span>
                   <span className={styles["line-center"]}></span>
@@ -180,13 +242,17 @@ const Header = () => {
                               <li className={`${styles["li-menu"]}`}>Login</li>
                             </Link>
                             <Link href="/auth" passHref>
-                              <li className={`${styles["li-menu"]}`}>Register</li>
+                              <li className={`${styles["li-menu"]}`}>
+                                Register
+                              </li>
                             </Link>
                             <Link href="/chat" passHref>
                               <li className={`${styles["li-menu"]}`}>Chat</li>
                             </Link>
                             <Link href="/notification" passHref>
-                              <li className={`${styles["li-menu"]}`}>Notification</li>
+                              <li className={`${styles["li-menu"]}`}>
+                                Notification
+                              </li>
                             </Link>
                           </ul>
                         </div>
@@ -196,13 +262,17 @@ const Header = () => {
                         <div className={`${styles["box-hamburger-menu"]}`}>
                           <ul className={`${styles["ul-menu"]}`}>
                             <Link href="/profile" passHref>
-                              <li className={`${styles["li-menu"]}`}>Profile</li>
+                              <li className={`${styles["li-menu"]}`}>
+                                Profile
+                              </li>
                             </Link>
                             <Link href="/chat" passHref>
                               <li className={`${styles["li-menu"]}`}>Chat</li>
                             </Link>
                             <Link href="/notification" passHref>
-                              <li className={`${styles["li-menu"]}`}>Notification</li>
+                              <li className={`${styles["li-menu"]}`}>
+                                Notification
+                              </li>
                             </Link>
                             <li className={`${styles["li-menu"]}`}>Logout</li>
                           </ul>
@@ -224,17 +294,16 @@ const Header = () => {
             <input
               onChange={(e) => {
                 setKeyword(e.target.value);
-                
               }}
               onKeyDown={(e) => {
                 if (e.key == "Enter") {
                   // router.push(`${router.asPath}&keyword=${keyword}`);
-                  router.query.keyword = keyword
+                  router.query.keyword = keyword;
                   router.push({
                     pathname: router.pathname,
-                    query: router.query
+                    query: router.query,
                   });
-                  dispatch(setsearch(keyword))
+                  dispatch(setsearch(keyword));
                 }
               }}
               className={`${styles["animated-input-in"]}`}

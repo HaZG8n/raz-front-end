@@ -11,6 +11,7 @@ import Banner from "src/commons/components/Banner";
 import CardProduct from "src/commons/components/Product";
 
 import css from "src/commons/styles/product.module.css";
+import LoadingComp from "src/commons/components/LoadingComp";
 
 class index extends Component {
   constructor(props) {
@@ -21,8 +22,8 @@ class index extends Component {
       page: 1,
       sortBy: "createdAt",
       sort: "",
-      search: this.props.search
-      
+      search: this.props.search,
+      isLoading: false,
     };
   }
 
@@ -42,21 +43,22 @@ class index extends Component {
 
   getProduct = () => {
     const { router } = this.props;
-    
+    this.setState({ isLoading: true });
     // const search =router.query.keyword ? router.query.keyword : ''
-    console.log("dimanaaaaa",this.state.search);
-    const page =  router.query.page ? router.query.page : this.state.page;
+    console.log("dimanaaaaa", this.state.search);
+    const page = router.query.page ? router.query.page : this.state.page;
     const sortBy = this.state.sortBy ?? router.query.sortBy;
-    const param={
+    const param = {
       page,
       sortBy,
-      search:this.state.search
-    }
+      search: this.state.search,
+    };
     getAllProduct(param)
       .then((res) => {
         console.log("GET", res.data);
         this.setState({ data: res.data });
         this.setState({ product: res.data.data });
+        this.setState({ isLoading: false });
       })
       .catch((err) => {
         console.log(err);
@@ -97,9 +99,13 @@ class index extends Component {
     }
     return (
       <Layout title="Product">
+        {!this.state.isLoading ? (
         <div className={css.main}>
           <Main>
-            <Banner text="Find and buy the one you like" title="Let's Shopping" />
+            <Banner
+              text="Find and buy the one you like"
+              title="Let's Shopping"
+            />
             <div className={css.wrapper}>
               <Sidebar />
               <div className={css.content}>
@@ -109,7 +115,7 @@ class index extends Component {
                     <select
                       name="filter"
                       onChange={(e) => {
-                        console.log('fff',e.target.value);
+                        console.log("fff", e.target.value);
                         this.setState({ sortBy: e.target.value }, () => {
                           router.push({
                             pathname: "/product",
@@ -136,7 +142,14 @@ class index extends Component {
                   {this.state.product.length == 0
                     ? null
                     : this.state.product.map((val) => {
-                        return <CardProduct key={val.id} id={val.id} name={val.name} price={val.price} />;
+                        return (
+                          <CardProduct
+                            key={val.id}
+                            id={val.id}
+                            name={val.name}
+                            price={val.price}
+                          />
+                        );
                       })}
                 </div>
                 <div className={css.paginasi}>
@@ -145,13 +158,16 @@ class index extends Component {
                       return (
                         <li
                           key={idx}
-                          className={router.query.page == "1" ? `page-item ${css.active}` : "page-item"}
+                          className={
+                            router.query.page == "1"
+                              ? `page-item ${css.active}`
+                              : "page-item"
+                          }
                           aria-current="page"
                           onClick={() =>
                             this.setState({ page: val }, () => {
                               this.getProduct();
                             })
-
                           }
                         >
                           <button className="btn btn-secondary">{val}</button>
@@ -164,14 +180,17 @@ class index extends Component {
             </div>
           </Main>
         </div>
+        ) : (
+          <LoadingComp />
+        )}
       </Layout>
     );
   }
 }
 const mapStateToProps = (state) => {
   return {
-    search:state.search.search
+    search: state.search.search,
   };
 };
 
-export default withRouter(connect (mapStateToProps)(index));
+export default withRouter(connect(mapStateToProps)(index));
