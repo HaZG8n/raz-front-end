@@ -1,4 +1,4 @@
-.brand-text{
+.brand-text {
   font-family: Arimo;
   font-style: normal;
   font-weight: bold;
@@ -7,22 +7,22 @@
 
   text-align: center;
 
-  color: #1A1A1A;
+  color: #1a1a1a;
 }
 
-.menu-nav{
+.menu-nav {
   font-family: Arimo;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
   line-height: 21px;
 
-  color: #1A1A1A;
+  color: #1a1a1a;
 
   cursor: pointer;
 }
 
-.submenu{
+.submenu {
   font-family: Arimo;
   font-style: normal;
   font-weight: normal;
@@ -34,32 +34,33 @@
   cursor: pointer;
 }
 
-.submenu:hover{
+.submenu:hover {
   background: none;
   color: #fff;
 }
 
-.other-page-text{
+.other-page-text {
   font-family: Arimo;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
   line-height: 18px;
-  
-  color: #FFFFFF;
+
+  color: #ffffff;
 }
 
-.other-page-text:hover{
+.other-page-text:hover {
   background: none;
 
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
-.hamburger-menu{
+.hamburger-menu {
   position: relative;
+  cursor: pointer;
 }
 
-.line-up{
+.line-up {
   position: absolute;
 
   width: 22px;
@@ -70,20 +71,20 @@
   /* bottom: 96.2%; */
   /* right: 48px; */
   left: 20px;
-  background: #1A1A1A;
+  background: #1a1a1a;
 }
 
-.line-center{
+.line-center {
   position: absolute;
   width: 44px;
   height: 4px;
 
   /* top: 33px; */
   top: 8px;
-  background: #1A1A1A;
+  background: #1a1a1a;
 }
 
-.line-down{
+.line-down {
   position: absolute;
   width: 22px;
   height: 4px;
@@ -91,37 +92,40 @@
   /* top: 43px; */
   /* top: 2px; */
   top: 16px;
-  background: #1A1A1A;
+  background: #1a1a1a;
 }
 
-.search-box{
+.search-box {
   /* width: 100%; */
   text-align: center;
   margin-bottom: 23px;
 }
 
-.animated-input-in{
+.animated-input-in {
   width: 90%;
   animation-name: animasi-in;
   animation-duration: 2s;
-  background-color: #1A1A1A;
-  
+  background-color: #1a1a1a;
+
   font-family: Arimo;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
   line-height: 37px;
 
-
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 12px;
 }
-@keyframes animasi-in{
-  from {width: 0;}
-  to {width: 90%;}
+@keyframes animasi-in {
+  from {
+    width: 0;
+  }
+  to {
+    width: 90%;
+  }
 }
 
-.logo-input{
+.logo-input {
   position: relative;
   /* background-color: #919191; */
   width: 10%;
@@ -132,24 +136,79 @@
   animation-name: search;
   animation-duration: 4s;
 }
-@keyframes search{
-  from {width: 0;}
-  to {width: 10%; display: none;}
-}
-
-.logo{
-  cursor: pointer;
-}
-
-@media(min-width:768px){
-  .logo-input{
-      left: 85%;
+@keyframes search {
+  from {
+    width: 0;
+  }
+  to {
+    width: 10%;
+    display: none;
   }
 }
 
-@media(min-width:1024px){
-  .other-submenu{
-      position: relative;
-      top: 4px;
+.total {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  color: white;
+  top: -50%;
+  right: -50%;
+  background-color: #1a1a1a;
+  position: absolute;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Oswald;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 15px;
+  letter-spacing: 0px;
+  text-align: center;
+}
+
+.logo {
+  cursor: pointer;
+  position: relative;
+}
+
+
+.box-hamburger-menu{
+  position: absolute;
+  background-color: #1A1A1A;
+  right: 20px;
+}
+
+.ul-menu{
+  list-style: none;
+  padding: 0;
+}
+
+.li-menu{
+  color: #919191;
+  padding: 8px;
+  padding-right: 20px;
+  padding-left: 25px;
+  cursor: pointer;
+}
+.li-menu:active{
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+  .logo-input {
+    left: 85%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .other-submenu {
+    position: relative;
+    top: 4px;
+  }
+  .box-hamburger-menu{
+    top: 33px;
+    right: -10px;
   }
 }

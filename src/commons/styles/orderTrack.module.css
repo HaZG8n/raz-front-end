@@ -1,0 +1,114 @@
+.textOrder {
+  text-align: center;
+  font-family: Arimo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0px;
+}
+
+.form-info {
+  padding: 5% 3%;
+}
+
+.form-label {
+  text-align: start;
+  margin-top: 5%;
+  width: 80%;
+  margin-left: 10%;
+  text-transform: uppercase;
+}
+
+.input {
+  width: 80%;
+  margin: 5% auto 3% auto;
+  height: 70px;
+  border-radius: 0%;
+}
+
+.input:focus {
+  border-color: #1a1a1a;
+  transition: all 0.5s;
+}
+
+.button-track {
+  /* margin-top: 5%; */
+  background-color: black;
+  color: #fff !important;
+  border-radius: 0;
+  margin: 5% 33%;
+  height: 60px;
+  width: 30%;
+  text-align: center;
+}
+
+.idOrder {
+  font-family: Arimo;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.item {
+  font-family: Arimo;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.city-order {
+  font-family: Arimo;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.status-order {
+  font-family: Arimo;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 37px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.destination {
+  margin-top: 20%;
+  font-family: Arimo;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 37px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.city {
+  font-family: Arimo;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.button-check {
+  margin-top: 5%;
+  color: #fff !important;
+  background-color: black;
+  height: 50px;
+  width: 40%;
+  border-radius: 0;
+}

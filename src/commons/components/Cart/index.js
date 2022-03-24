@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { withRouter } from "next/router";
 import styles from "src/commons/styles/Cart.module.css";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { DelCart } from "src/redux/actions/product";
 
 import Image from "next/image";
 import chair from "src/assets/img/Mask.png";
@@ -24,19 +27,26 @@ class index extends Component {
       counter: newCounter - 1 < 1 ? 1 : newCounter - 1,
     });
   };
+
+  deletCart = () => {
+    // this.props.RemoveCart();
+    // window.location.reload();
+    this.props.rmAction(this.props.idx);
+  };
+
   render() {
     return (
       <div className="row">
         <div className="col-md-5">
           <div className={`row mb-4 ${styles.product}`}>
             <div className="col-md-1">
-              <div className={`pt-5 ${styles.remove}`}>
+              <div onClick={this.deletCart} className={`pt-5 ${styles.remove}`}>
                 <Image src={this.props.remove} alt="remove" layout="responsive" width={30} height={30} />
               </div>
             </div>
             <div className="col-md-5 ps-5">
               <div className={`${styles["img-product"]}`}>
-                <Image src={this.props.productImage} alt="product img" layout="responsive" />
+                <Image src={this.props.productImage} alt="product img" height={120} width={120} layout="responsive" />
               </div>
             </div>
             <div className={`${styles["product-name"]} mx-auto col-md-6 d-flex align-self-center`}>
@@ -51,13 +61,7 @@ class index extends Component {
         </div>
         <div className="col-md-2 text-center">
           <div className={`${styles.price} d-flex justify-content-center`}>
-            <p onClick={this.subCounter} className={`${styles.counter} me-3`}>
-              -
-            </p>
-            <p>{this.state.counter}</p>
-            <p onClick={this.addCounter} className={`${styles.counter} ms-3`}>
-              +
-            </p>
+            <p>{this.props.quantity}</p>
           </div>
         </div>
         <div className="col">
@@ -70,4 +74,15 @@ class index extends Component {
   }
 }
 
-export default withRouter(index);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    RemoveCart: bindActionCreators(DelCart, dispatch),
+  };
+};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     RemoveCart: (key) => dispatch(DelCart(key)),
+//   };
+// };
+
+export default withRouter(connect(null, mapDispatchToProps)(index));

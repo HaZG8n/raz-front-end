@@ -1,100 +1,116 @@
-.bg-menu{
-    background-color: #fafafa;
-    height: 250px;
-    width: auto;
-
+.bg-menu {
+  background-color: #fafafa;
+  height: 250px;
+  width: auto;
 }
 
-.profile-text{
-    position: relative;
-    font-family: Arimo;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 56px;
-    line-height: 64px;
-    text-align: center;
-
-    color: #1A1A1A;
-
-    top: 74px;
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.see-notification-text{
-    position: relative;
-    font-family: Arimo;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 18px;
-    text-align: center;
+.profile-text {
+  position: relative;
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 56px;
+  line-height: 64px;
+  text-align: center;
 
-    color: #1A1A1A;
+  color: #1a1a1a;
 
-    top: 84px;
+  top: 74px;
 }
 
-.menu-profile-text{
-    font-family: Arimo;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-
-    cursor: pointer;
+.see-notification-text {
+  position: relative;
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 18px;
+  text-align: center;
+  color: #1a1a1a;
+  top: 84px;
 }
 
-
-
-.line{
-    position: absolute;
-    height: 2px;
-    width: 5%;
-    border-radius: 0px;
-
-    background: #C2C2C2;
-
-    animation-name: line-effect;
-    animation-duration: 1s;
+.menu-profile-text {
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: center;
 }
 
-.dropdown-profile{
-    background-color: aqua;
-    width: 80%;
+.line {
+  position: absolute;
+  height: 2px;
+  width: 5%;
+  border-radius: 0px;
+
+  background: #c2c2c2;
+
+  animation-name: line-effect;
+  animation-duration: 1s;
 }
 
+.dropdown-profile {
+  background-color: aqua;
+  width: 80%;
+}
 
-@keyframes line-effect{
-    from {width: 0;}
-    to {width: 6%;}
+.menu-profile {
+  cursor: pointer;
+}
+
+@keyframes line-effect {
+  from {
+    width: 0;
+  }
+  to {
+    width: 6%;
+  }
 }
 
 /* tablet */
-@media(min-width:768px){
-    .menu-profile-text{
-        font-size: 22px;
-        line-height: 37px;
-    }
+@media (min-width: 768px) {
+  .menu-profile-text {
+    font-size: 22px;
+    line-height: 37px;
+  }
 }
 
 /* laptop M */
-@media (min-width:1200px){
-    .line{
-        width: 3%;
+@media (min-width: 1200px) {
+  .line {
+    width: 3%;
+  }
+  @keyframes line-effect {
+    from {
+      width: 0;
     }
-    @keyframes line-effect{
-        from {width: 0;}
-        to {width: 3%;}
+    to {
+      width: 3%;
     }
+  }
 }
 
-.on{
-    color: #1A1A1A;
-    animation-name: on-effect;
-    animation-duration: 1s;
+.on {
+  color: #1a1a1a;
+  animation-name: on-effect;
+  animation-duration: 1s;
 }
-@keyframes on-effect{
-    from {color: #B4B4B4;}
-    to {color: #1A1A1A;}
+@keyframes on-effect {
+  from {
+    color: #b4b4b4;
+  }
+  to {
+    color: #1a1a1a;
+  }
 }
-.off{
-    color: #B4B4B4;
+.off {
+  color: #b4b4b4;
 }

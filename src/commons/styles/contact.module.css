@@ -1,0 +1,66 @@
+.main-section {
+    margin: 0;
+}
+
+.image-map {
+    margin: 0;
+}
+
+.form-contact {
+    margin: auto;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.form-contact > input{
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    width: 100%;
+    margin-top: 10%;
+}
+
+.form-contact > textarea {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    width: 100%;
+    margin-top: 10%;
+    padding-bottom: 10%;
+}
+
+.button-send {
+    background-color: black;
+    color: #FFF;
+    border-radius: 0;
+    text-align: center;
+    width: 100%;
+    margin-top: 10%;
+}
+
+
+/* About */
+.img-wrapper {
+    width: 90px;
+    height: 90px;
+}
+.content {
+    font-family: "Arimo";
+}
+.img-container {
+    width: 250px;
+}
+.position {
+    margin-top: -15px;
+}
+.name {
+    font-size: 15px;
+}
+.img-testi {
+    width: 50px;
+    height: 50px;
+}
+.testimoni {
+    background-color: #fafafa;
+    height: 300px;
+}

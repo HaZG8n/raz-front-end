@@ -1,0 +1,194 @@
+@import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
+
+.main-section {
+  margin: 0;
+}
+
+.jumbotron-section {
+  /* background-image: url("../../../public/bg.png"); */
+  min-height: max(40vh, 300px);
+  background-repeat: no-repeat;
+  font-family: "Arimo";
+  padding: 0;
+  margin: 0;
+}
+
+.title-profile {
+  font-weight: 400;
+  font-size: 3.6rem;
+  text-align: center;
+  padding-top: 3%;
+  margin: 0;
+}
+
+.fill-title {
+  font-weight: 400;
+  font-size: 1rem;
+  text-align: center;
+  margin: 0;
+  padding-top: 3%;
+}
+
+.edit-profile {
+  padding: 0 5%;
+  text-align: center;
+}
+
+.image-edit {
+  margin-bottom: auto;
+  margin-top: auto;
+}
+
+.image-profile {
+  border-radius: 100%;
+}
+
+.fill-edit {
+  text-align: start;
+}
+
+.name {
+  font-family: "Arimo";
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0px;
+  text-align: start;
+  margin: 0;
+  border: 0;
+}
+
+.role {
+  font-family: "Arimo";
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 37px;
+  letter-spacing: 0px;
+  margin: 0;
+}
+
+.fill-profile {
+  margin-left: 5%;
+  margin-right: 5%;
+  /* border: 1px solid #4D4D4D; */
+  margin-bottom: 10%;
+}
+
+.edit-gender {
+  margin-top: auto;
+  margin-bottom: auto;
+  text-align: end;
+}
+
+.gender-fill {
+  text-align: start;
+  padding-left: 5%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.word-gender {
+  font-family: "Arimo";
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 37px;
+  letter-spacing: 0px;
+  text-align: left;
+  margin: 0;
+}
+
+.gender-type {
+  font-family: "Arimo";
+  font-size: 1.1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0px;
+  text-align: left;
+  margin: 0;
+}
+
+.gender-profile {
+  border: 1px solid #4d4d4d;
+  /* border-top: 0;
+  border-left: 0;
+  border-right: 0; */
+  margin-left: 0.5px;
+}
+
+.click-edit {
+  font-family: "Arimo";
+  font-size: 1.1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 21px;
+  letter-spacing: 0px;
+  text-align: end;
+  border: 0;
+}
+
+.button-logout {
+  margin-right: 5%;
+  margin-top: 3%;
+  margin-bottom: 10%;
+  width: 15%;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #d94141;
+  font-family: "Arimo";
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #fff !important;
+  border-radius: 0;
+  height: 50px;
+}
+
+.gender-fill > input {
+  border: 0;
+}
+
+.notif {
+    width: 26px;
+    height: 26px;
+    background-color: #d94141;
+    border-radius: 100%;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.word-titles {
+  font-family: Arimo;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.word-title {
+  font-family: Arimo;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.word-fill {
+  font-family: Arimo;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 37px;
+  letter-spacing: 0px;
+  text-align: left;
+}

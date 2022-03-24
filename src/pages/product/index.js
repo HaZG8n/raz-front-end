@@ -1,6 +1,8 @@
 import { Component } from "react";
 import { withRouter } from "next/router";
 import Link from "next/link";
+import { getAllProduct, getProduct } from "src/commons/module/product";
+import { connect } from "react-redux";
 
 import Main from "src/commons/components/Main";
 import Layout from "src/commons/components/Layout";
@@ -11,9 +13,88 @@ import CardProduct from "src/commons/components/Product";
 import css from "src/commons/styles/product.module.css";
 
 class index extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      product: [],
+      data: [],
+      page: 1,
+      sortBy: "createdAt",
+      sort: "",
+      search: this.props.search
+      
+    };
+  }
+
+  // getAll = () => {
+  //   const page = this.state.page;
+  //   console.log("DIPANGGIL");
+  //   getAllProduct(page)
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       this.setState({ data: res.data });
+  //       this.setState({ product: res.data.data });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+
+  getProduct = () => {
+    const { router } = this.props;
+    
+    // const search =router.query.keyword ? router.query.keyword : ''
+    console.log("dimanaaaaa",this.state.search);
+    const page =  router.query.page ? router.query.page : this.state.page;
+    const sortBy = this.state.sortBy ?? router.query.sortBy;
+    const param={
+      page,
+      sortBy,
+      search:this.state.search
+    }
+    getAllProduct(param)
+      .then((res) => {
+        console.log("GET", res.data);
+        this.setState({ data: res.data });
+        this.setState({ product: res.data.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  formChange = (e) => {
+    const data = { ...this.state };
+    data[e.target.name] = e.target.value;
+    this.setState(data);
+    const { router } = this.props;
+    let { query } = this.props.router;
+    console.log("QUERY FORM CHANGE", query);
+    router.push({
+      pathname: "/product",
+      query: {
+        page: data.page,
+        sortBy: e.target.value,
+        sort: "DESC",
+      },
+    });
+    this.getProduct();
+  };
+
+  componentDidMount() {
+    // this.getAll();
+    this.getProduct();
+    console.log("RE RENDER");
+  }
+
   render() {
     const { router } = this.props;
-    console.log("ROUTER", router.query);
+    console.log("DATA", this.state.page);
+    const initial = [];
+    const newArr = new Array(this.state.data.total_page);
+    for (let i = 0; i < newArr.length; i++) {
+      initial.push(1 + i);
+    }
     return (
       <Layout title="Product">
         <div className={css.main}>
@@ -25,74 +106,58 @@ class index extends Component {
                 <div className={css.head}>
                   <p>Showing 1-16 of 39 Results</p>
                   <div className="dropdown">
-                    <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                      Sort By
-                    </button>
-                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          Latest product
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          More Expensive
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          More Cheap
-                        </a>
-                      </li>
-                    </ul>
+                    <select
+                      name="filter"
+                      onChange={(e) => {
+                        console.log('fff',e.target.value);
+                        this.setState({ sortBy: e.target.value }, () => {
+                          router.push({
+                            pathname: "/product",
+                            query: {
+                              page: this.state.page,
+                              sortBy: e.target.value,
+                              sort: "DESC",
+                            },
+                          });
+                          this.getProduct();
+                        });
+                      }}
+                    >
+                      <option value="" disable="true" hidden className="filter">
+                        Sort By
+                      </option>
+                      <option value="createdAt">Latest Product</option>
+                      <option value="price">Price</option>
+                      <option value="stock">Stock</option>
+                    </select>
                   </div>
                 </div>
                 <div className={css.card}>
-                  <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
-                  <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
-                  <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
-                  <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
-                  <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
-                  <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
-                  <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
-                  <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
-                  <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
-                  <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
-                  <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
-                  <CardProduct id="1" name="Kursi lah" price="Rp 25.000" />
+                  {this.state.product.length == 0
+                    ? null
+                    : this.state.product.map((val) => {
+                        return <CardProduct key={val.id} id={val.id} name={val.name} price={val.price} />;
+                      })}
                 </div>
                 <div className={css.paginasi}>
                   <ul className="pagination pagination-lg mt-5">
-                    <li className={router.query.page == "1" ? `page-item ${css.active}` : "page-item"} aria-current="page">
-                      <Link className="page-link" href="/product?page=1">
-                        01
-                      </Link>
-                    </li>
-                    <li className={router.query.page == "2" ? `page-item ${css.active}` : "page-item"}>
-                      <Link className="page-link" href="/product?page=2">
-                        02
-                      </Link>
-                    </li>
-                    <li className={router.query.page == "3" ? `page-item ${css.active}` : "page-item"}>
-                      <Link className="page-link" href="/product?page=3">
-                        03
-                      </Link>
-                    </li>
-                    <li className={router.query.page == "4" ? `page-item ${css.active}` : "page-item"}>
-                      <Link className="page-link" href="/product?page=4">
-                        04
-                      </Link>
-                    </li>
-                    <li className={router.query.page == "5" ? `page-item ${css.active}` : "page-item"}>
-                      <Link className="page-link" href="/product?page=5">
-                        05
-                      </Link>
-                    </li>
-                    <li className={router.query.page == "6" ? `page-item ${css.active}` : "page-item"}>
-                      <Link className="page-link" href="/product?page=6">
-                        06
-                      </Link>
-                    </li>
+                    {initial.map((val, idx) => {
+                      return (
+                        <li
+                          key={idx}
+                          className={router.query.page == "1" ? `page-item ${css.active}` : "page-item"}
+                          aria-current="page"
+                          onClick={() =>
+                            this.setState({ page: val }, () => {
+                              this.getProduct();
+                            })
+
+                          }
+                        >
+                          <button className="btn btn-secondary">{val}</button>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               </div>
@@ -103,5 +168,10 @@ class index extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    search:state.search.search
+  };
+};
 
-export default withRouter(index);
+export default withRouter(connect (mapStateToProps)(index));
