@@ -75,11 +75,6 @@ function AddProduct() {
     form.append("condition", condition);
     form.append("stock", parseInt(stock));
     images.map((val) => form.append("image[]", val));
-    // console.log(form.get['images[]'])
-    // for (var value of form.values()) {
-    //   console.log(value);
-    // }
-    // console.log(images);
     try {
       const result = await addProduct(form, token);
       console.log(result.data);
