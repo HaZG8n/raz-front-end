@@ -69,7 +69,7 @@ class index extends Component {
     this.calCulate();
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (prevProps.cart.length !== this.props.cart.length) {
       this.calCulate();
     }
