@@ -222,12 +222,8 @@ const Header = () => {
                   <Image src={cart} alt="avatar" />
                 </div>
               </div>
-              <div className="col dropdown">
-                <div
-                  className={`${styles["hamburger-menu"]}`}
-                  onClick={clickDropdown}
-                >
-                  {console.log(dropdown)}
+              <div className="col dropdown" >
+                <div className={`${styles["hamburger-menu"]}`} onClick={clickDropdown}>
                   <span className={styles["line-up"]}></span>
                   <span className={styles["line-center"]}></span>
                   <span className={styles["line-down"]}></span>
