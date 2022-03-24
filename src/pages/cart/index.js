@@ -14,6 +14,7 @@ import remove from "src/assets/svg/close.svg";
 import styles from "src/commons/styles/Cart.module.css";
 import Cart from "src/commons/components/Cart";
 import Keranjang from "src/assets/img/shopping-cart.png";
+import Routing from "src/commons/components/Routing";
 
 class index extends Component {
   state = {
@@ -85,6 +86,7 @@ class index extends Component {
     return (
       <>
         <Layout title="Cart" />
+        <Routing />
         <Header />
         <Banner title="Your Cart" text="Buy everything in your cart now!" />
         {this.props.cart.length !== 0 ? (
