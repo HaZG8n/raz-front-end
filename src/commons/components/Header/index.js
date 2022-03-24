@@ -13,9 +13,9 @@ import { useState } from "react";
 import { setsearch } from "src/redux/actions/product";
 
 const Header = () => {
-  const dispatch= useDispatch()
+  const dispatch = useDispatch()
   const allState = useSelector((state) => state)
-  console.log("fakyuuuu",allState);
+  console.log("fakyuuuu", allState);
 
   const { token } = useSelector((state) => state.auth);
   const { cart: carts } = useSelector((state) => state.cart);
@@ -46,7 +46,9 @@ const Header = () => {
     <>
       <header className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: "transparent" }}>
         <nav className="container">
-          <h1 className={`${styles["brand-text"]}`}>RAZ</h1>
+          <Link href="/" passHref>
+            <h1 className={`${styles["brand-text"]}`}>RAZ</h1>
+          </Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon" />
           </button>
@@ -163,9 +165,8 @@ const Header = () => {
                   <Image src={cart} alt="avatar" />
                 </div>
               </div>
-              <div className="col dropdown">
+              <div className="col dropdown" >
                 <div className={`${styles["hamburger-menu"]}`} onClick={clickDropdown}>
-                  {console.log(dropdown)}
                   <span className={styles["line-up"]}></span>
                   <span className={styles["line-center"]}></span>
                   <span className={styles["line-down"]}></span>
@@ -224,7 +225,7 @@ const Header = () => {
             <input
               onChange={(e) => {
                 setKeyword(e.target.value);
-                
+
               }}
               onKeyDown={(e) => {
                 if (e.key == "Enter") {
