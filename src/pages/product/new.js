@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useRouter } from 'next/router'
 
 import Main from "src/commons/components/Main";
 import Layout from "src/commons/components/Layout";
@@ -13,8 +14,10 @@ import { addProduct } from "src/commons/module/product";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, createRef } from "react";
 import { images } from "next.config";
+import Swal from "sweetalert2";
 
 function AddProduct() {
+  const router = useRouter()
   const state = useSelector((state) => state);
   const inputImage = createRef();
   const [imagesFile, setImagesFile] = useState([]);
@@ -27,6 +30,7 @@ function AddProduct() {
   const [brand, setBrand] = useState("");
   const [condition, setCondition] = useState("");
   const [stock, setStock] = useState(0);
+
 
   const { token } = state.auth;
 
@@ -64,6 +68,14 @@ function AddProduct() {
     setColors(Name);
   };
 
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success ',
+      cancelButton: 'btn btn-danger range-right'
+    },
+    buttonsStyling: false
+  })
+
   const _setData = async () => {
     const form = new FormData();
     form.append("name", name);
@@ -77,9 +89,21 @@ function AddProduct() {
     images.map((val) => form.append("image[]", val));
     try {
       const result = await addProduct(form, token);
-      console.log(result.data);
+      console.log(result);
+      if (result.data.statusCode === 200) {
+        swalWithBootstrapButtons.fire(
+          {
+            tittle: 'Success',
+            text: `${result.data.status}`,
+            icon: 'success',
+          }
+        )
+        setTimeout(() => {
+          router.push('/product/list')
+        }, 3000)
+      }
     } catch (error) {
-      console.log(error);
+      console.log({ ...error });
     }
   };
 
