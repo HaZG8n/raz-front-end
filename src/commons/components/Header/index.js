@@ -11,6 +11,8 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { setsearch } from "src/redux/actions/product";
+import { logout } from "src/commons/module/auth";
+import Swal from "sweetalert2";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -39,6 +41,33 @@ const Header = () => {
   const clickDropdown = () => {
     setDropdown(!dropdown);
     setShowSearch(false);
+  };
+
+  const onLogout = () => {
+    Swal.fire({
+      icon: "warning",
+      title: "Are you sure you want to logout?",
+      showCancelButton: true,
+      confirmButtonText: "Logout",
+      cancelButtonText: `Cancel`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logout(token)
+          .then((res) => console.log(res))
+          .catch((err) => console.error(err));
+
+        localStorage.clear("persist:root");
+        Swal.fire({
+          title: "Logout Successful",
+          text: "You have successfully logged out",
+          icon: "success",
+        });
+        setTimeout(() => {
+          window.location.reload(false);
+        }, 5000);
+        router.push("/auth");
+      }
+    });
   };
 
   return (
@@ -270,7 +299,7 @@ const Header = () => {
                                 Notification
                               </li>
                             </Link>
-                            <li className={`${styles["li-menu"]}`}>Logout</li>
+                            <li className={`${styles["li-menu"]}`} onClick={onLogout}>Logout</li>
                           </ul>
                         </div>
                       </>
