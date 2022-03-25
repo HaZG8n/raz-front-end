@@ -9,6 +9,7 @@ import Layout from "src/commons/components/Layout";
 import MenuProfile from "src/commons/components/MenuProfile";
 import Banner from "src/commons/components/Banner/index";
 import CardOrderUser from "src/commons/components/OrderUser";
+import Routing from "src/commons/components/Routing";
 
 class index extends Component {
   constructor(props) {
@@ -32,6 +33,7 @@ class index extends Component {
     return (
       <>
         <Layout title="My Order" />
+      <Routing type="private" user="user" />
         <Main>
           <Banner text="See your notifications for the latest updates" title="My Order" />
           <MenuProfile />

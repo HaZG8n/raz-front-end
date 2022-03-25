@@ -86,7 +86,7 @@ class index extends Component {
     return (
       <>
         <Layout title="Cart" />
-        <Routing />
+        <Routing type="private" user="user" />
         <Header />
         <Banner title="Your Cart" text="Buy everything in your cart now!" />
         {this.props.cart.length !== 0 ? (
@@ -130,7 +130,10 @@ class index extends Component {
                   {/* end of card */}
                   <hr />
                   <div className="d-flex mb-3">
-                    <p className={`text-muted px-3 ms-auto ${styles.delet}`} onClick={this.props.DeletCart}>
+                    <p
+                      className={`text-muted px-3 ms-auto ${styles.delet}`}
+                      onClick={this.props.DeletCart}
+                    >
                       Clear Cart
                     </p>
                     <p className="fw-bold">Update Cart</p>
@@ -142,33 +145,55 @@ class index extends Component {
                     <p className="fw-bold my-4">Cart Total</p>
                     <div className="d-flex">
                       <p className="fw-bold">Subtotal</p>
-                      <p className="ms-auto fw-bold">{formater.format(this.state.totalPrice)}</p>
+                      <p className="ms-auto fw-bold">
+                        {formater.format(this.state.totalPrice)}
+                      </p>
                     </div>
                     <div className="d-flex">
                       <p className="fw-bold">Shipping</p>
                       <div className="form-check ms-auto">
-                        <input className="form-check-input" type="radio" name="rate" />
-                        <label className="form-check-label text-muted">Flat rate: {formater.format(this.state.totalPrice)}</label>
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="rate"
+                        />
+                        <label className="form-check-label text-muted">
+                          Flat rate: {formater.format(this.state.totalPrice)}
+                        </label>
                       </div>
                     </div>
                     <div className="d-flex">
                       <span></span>
                       <div className="form-check ms-auto mb-3">
-                        <input className={`form-check-input ${styles["radio-btn"]}`} type="radio" name="shipping" />
-                        <label className="form-check-label text-muted">Free Shipping</label>
+                        <input
+                          className={`form-check-input ${styles["radio-btn"]}`}
+                          type="radio"
+                          name="shipping"
+                        />
+                        <label className="form-check-label text-muted">
+                          Free Shipping
+                        </label>
                       </div>
                     </div>
                     <div className="d-flex">
                       <span></span>
                       <div className="form-check ms-auto">
-                        <input className={`form-check-input ${styles["btn-radio"]}`} type="radio" name="pickup" />
-                        <label className="form-check-label text-muted">Local Pickup</label>
+                        <input
+                          className={`form-check-input ${styles["btn-radio"]}`}
+                          type="radio"
+                          name="pickup"
+                        />
+                        <label className="form-check-label text-muted">
+                          Local Pickup
+                        </label>
                       </div>
                     </div>
                     <hr className="mt-5" />
                     <div className="d-flex mb-5">
                       <p className="fw-bold">Total Price</p>
-                      <p className="ms-auto fw-bold">{formater.format(this.state.totalPrice)}</p>
+                      <p className="ms-auto fw-bold">
+                        {formater.format(this.state.totalPrice)}
+                      </p>
                     </div>
                   </div>
                   <button
@@ -190,7 +215,9 @@ class index extends Component {
             </div>
             <p>Your Cart is Empty</p>
             <p>
-              Donec nunc nunc, gravida vitae diam vel, varius interdum erat. Quisque a nunc <br /> vel diam auctor commodo. urabitur blandit ultri
+              Donec nunc nunc, gravida vitae diam vel, varius interdum erat.
+              Quisque a nunc <br /> vel diam auctor commodo. urabitur blandit
+              ultri
             </p>
           </div>
         )}
