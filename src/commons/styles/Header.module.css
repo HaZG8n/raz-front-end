@@ -8,6 +8,8 @@
   text-align: center;
 
   color: #1a1a1a;
+
+  cursor: pointer;
 }
 
 .menu-nav {
@@ -56,6 +58,8 @@
 }
 
 .hamburger-menu {
+  width: 44px;
+  height: 70%;
   position: relative;
   cursor: pointer;
 }

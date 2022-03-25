@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useRouter } from 'next/router'
 
 import Main from "src/commons/components/Main";
 import Layout from "src/commons/components/Layout";
@@ -13,8 +14,10 @@ import { addProduct } from "src/commons/module/product";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, createRef } from "react";
 import { images } from "next.config";
+import Swal from "sweetalert2";
 
 function AddProduct() {
+  const router = useRouter()
   const state = useSelector((state) => state);
   const inputImage = createRef();
   const [imagesFile, setImagesFile] = useState([]);
@@ -27,6 +30,7 @@ function AddProduct() {
   const [brand, setBrand] = useState("");
   const [condition, setCondition] = useState("");
   const [stock, setStock] = useState(0);
+
 
   const { token } = state.auth;
 
@@ -64,6 +68,14 @@ function AddProduct() {
     setColors(Name);
   };
 
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success ',
+      cancelButton: 'btn btn-danger range-right'
+    },
+    buttonsStyling: false
+  })
+
   const _setData = async () => {
     const form = new FormData();
     form.append("name", name);
@@ -75,12 +87,23 @@ function AddProduct() {
     form.append("condition", condition);
     form.append("stock", parseInt(stock));
     images.map((val) => form.append("image[]", val));
-    console.log(images);
     try {
       const result = await addProduct(form, token);
-      console.log(result.data);
+      console.log(result);
+      if (result.data.statusCode === 200) {
+        swalWithBootstrapButtons.fire(
+          {
+            tittle: 'Success',
+            text: `${result.data.status}`,
+            icon: 'success',
+          }
+        )
+        setTimeout(() => {
+          router.push('/product/list')
+        }, 3000)
+      }
     } catch (error) {
-      console.log(error);
+      console.log({ ...error });
     }
   };
 
@@ -95,11 +118,20 @@ function AddProduct() {
     }
   };
 
-  console.log(imagesFile.length);
+  const deleteImg = (index) => {
+    let arr = [...imagesFile]
+    arr.splice(index, 1)
+    setImagesFile(arr)
+    let arrImg = [...images]
+    arrImg.splice(index, 1)
+    setImages(arrImg)
+  }
 
   const clickImage = () => {
     inputImage.current.click();
   };
+
+  console.log('jumlah yang dikirim', images.length, 'jumlah yang ditampilkan', imagesFile.length)
 
   return (
     <>
@@ -179,28 +211,48 @@ function AddProduct() {
             </div>
           </section>
 
-          <section className="img-product my-5">
-            <h4>Photo of Goods</h4>
-            <div className={`${css["img-wrapper"]} mt-5`}>
-              <input type="file" id="image" multiple hidden ref={inputImage} onChange={(e) => handleImage(e)} />
-              <Image src={product} alt="product" onClick={clickImage} />
-            </div>
-          </section>
 
-          <div className="container">
-            <div className="row">
+          <section >
+            <h4>Photo of Goods</h4>
+            <div className={`${css['img-flex']} mt-5`}>
               {imagesFile !== [] &&
                 imagesFile.length > 0 &&
                 imagesFile.map((data, idx) => (
                   <>
-                    {console.log("data", data)}
-                    <div className="col-sm" key={idx}>
-                      <Image src={data} alt="avatar" width={93} height={83} />
+                    <div className={`mt-5 w-1`} style={{ marginRight: 50 }} key={idx}>
+                      <Image src={data} alt="avatar" width={200} height={200} onClick={(e) => { e.preventDefault(); deleteImg(idx) }} />
                     </div>
                   </>
                 ))}
+              <div className={`${css["img-wrapper"]} mt-5 mb-5`}>
+                <input type="file" id="image" multiple hidden ref={inputImage} onChange={(e) => handleImage(e)} />
+                <Image src={product} alt="product" onClick={clickImage} />
+              </div>
             </div>
-          </div>
+          </section>
+
+          {/* <section>
+            <h4>Photo of Goods</h4>
+            <div className="container bg-danger">
+              <div className="row">
+                {imagesFile !== [] &&
+                  imagesFile.length > 0 &&
+                  imagesFile.map((data, idx) => (
+                    <>
+                      <div className={`bg-success col-sm mt-5 w-1 ${css['img-wrapper']}`} key={idx}>
+                        <Image src={data} alt="avatar" width={200} height={200} onClick={() => { }} />
+                      </div>
+                    </>
+                  ))}
+                <div className={`${css["img-wrapper"]} col-sm  mt-5`}>
+                  <input type="file" id="image" multiple hidden ref={inputImage} onChange={(e) => handleImage(e)} />
+                  <Image src={product} alt="product" onClick={clickImage} />
+                </div>
+              </div>
+            </div>
+          </section> */}
+
+
 
           <button type="submit" onClick={_setData} className={`btn shadow-none mb-5 py-3 ${css["btn-sell"]}`}>
             Sell Product
