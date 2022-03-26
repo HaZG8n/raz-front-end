@@ -13,6 +13,7 @@ import { DelCart } from "src/redux/actions/product";
 import { CheckOutProduct } from "src/commons/module/checkOut";
 
 import { Component } from "react";
+import Routing from "src/commons/components/Routing";
 
 class checkout extends Component {
   constructor(props) {
@@ -65,6 +66,7 @@ class checkout extends Component {
     return (
       <>
         <Layout title={"Check Out"} />
+        <Routing type="private" user="user" />
         <Header />
         <Banner title={"Check Out"} text={"Pay and get your ordered items"} />
         <div className="checkout mb-5">

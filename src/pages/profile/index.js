@@ -21,6 +21,7 @@ import { GetUserProfile, logout } from "src/commons/module/auth";
 import { Router, useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import Routing from "src/commons/components/Routing";
 
 function Profile(props) {
   // console.log(props)
@@ -150,6 +151,7 @@ function Profile(props) {
   return (
     <>
       <Layout title="Profile">
+      <Routing type="private" user="user" />
         <main className={`${styles["main-section"]}`}>
           <Header />
           <div className={`${styles["jumbotron-section"]} row col-12 col-md-12`}>
