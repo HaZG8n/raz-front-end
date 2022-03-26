@@ -58,11 +58,16 @@
 }
 
 .dropdown-profile {
-  background-color: aqua;
-  width: 80%;
+  background-color: #000000;
+  margin-top: 23px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  width: auto;
 }
 
 .menu-profile {
+  color: #B4B4B4;
+  list-style: none;
   cursor: pointer;
 }
 
