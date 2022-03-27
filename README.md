@@ -4,8 +4,6 @@
 
 <div align="center">
 	<img height="200" src="public/favicon.ico" alt="RAZZ">
-    
-<br/>
 
 [![Next Js](https://img.shields.io/npm/v/next?label=next)](https://www.npmjs.com/package/next)
 [![Axios](https://img.shields.io/npm/v/axios?label=axios)](https://www.npmjs.com/package/axios)
