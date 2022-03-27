@@ -152,6 +152,8 @@
 
 .gender-fill > input {
   border: 0;
+  height: 20px;
+  width: 100%;
 }
 
 .button-save {
@@ -175,8 +177,26 @@
   height: 50px;
 }
 
+.imageProfileWrapper {
+  width: 50px;
+  height: 50px;
+}
+
+.radio-gender {
+  width: 5px;
+  height: 5px;
+}
+
 .form-name {
   border: 0;
+}
+
+.form-profile {
+  height: 60px;
+}
+
+.form-gender {
+  height: 20px;
 }
 
 .button-editPass {
@@ -198,4 +218,9 @@
   color: #fff !important;
   border-radius: 0;
   height: 50px;
+}
+
+.changePass {
+  margin-top: auto;
+  margin-bottom: auto;
 }
