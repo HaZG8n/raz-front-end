@@ -17,7 +17,6 @@
 
 </div>
 
-<br/>
 
 RAZ E-Commerce is a platform for buying and selling various products, where this platform can make it easier for customers and sellers to transact with each other
 
