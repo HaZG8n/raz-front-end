@@ -3,8 +3,24 @@ import Image from "next/image";
 import chair from "src/assets/img/chair-home.png";
 
 import Link from "next/link";
+import { useState } from "react";
 
-function CardProduct({ name, price, id }) {
+function CardProduct({ name, price, id, image }) {
+  const [error, setError] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+
+  const onImageError = () => {
+    setError(true);
+    console.log(error);
+  };
+
+  const onImageLoaded = () => {
+    setLoaded(true);
+    console.log(loaded);
+  };
+
+  const imgSrc = !error ? image : chair;
+
   return (
     <>
       <Link href={`/product/${id}`} passHref>

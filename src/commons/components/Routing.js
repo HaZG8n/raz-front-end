@@ -8,18 +8,20 @@ function Routing(props) {
 
   const router = useRouter();
   const user = useSelector((state) => state.auth);
+  const token = useSelector((state) => state.auth.token);
+  console.log("PROPS", props.type);
 
   useEffect(() => {
     if (props.type.toLowerCase() === "public") {
-      if (user.token) {
+      if (token) {
         return router.replace("/");
       }
     } else if (props.type.toLowerCase() === "private") {
-      if (!user.token) {
+      if (!token) {
         return router.replace("/auth");
       } else {
         if (props.user.toLowerCase() === "all") {
-          if (!user.token) {
+          if (!token) {
             return router.replace("/auth");
           }
         } else if (props.user.toLowerCase() === "user") {

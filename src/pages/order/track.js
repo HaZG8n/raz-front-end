@@ -15,6 +15,7 @@ import Link from "next/link";
 function OrderTrack() {
   const [isSaerch, setIsSearch] = useState(false);
   const [keyword, setKeyword] = useState("");
+  const [data, setData] = useState({});
   const token = useSelector((state) => state.auth.token);
 
   const onClickSerch = () => {
@@ -23,20 +24,19 @@ function OrderTrack() {
 
   const GetDataOrder = () => {};
 
-  console.log(typeof token);
   const Click = () => {
-    const body = {
-      search: keyword,
-    };
-    getTrackOrder(body)
+    getTrackOrder(keyword, token)
       .then((res) => {
-        console.log(res.data);
+        console.log("DATA", res.data);
+        setData(res.data.data);
         onClickSerch();
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  console.log("DATA PEMESANAN", data);
 
   return (
     <>

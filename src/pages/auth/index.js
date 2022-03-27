@@ -9,6 +9,7 @@ import Link from "next/link";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { loginAction, saveAction } from "src/redux/actions/auth";
+import Loading from "src/commons/components/LoadingComp/index";
 
 // MODULE
 import { login, SignUp as CreateAccount, GetUserProfile } from "src/commons/module/auth/index";
@@ -26,6 +27,7 @@ class Auth extends Component {
       isSignUp: false,
       loginErr: false,
       signupErr: false,
+      loading: false,
     };
   }
 
@@ -42,6 +44,7 @@ class Auth extends Component {
       email: this.state.emailLogin,
       password: this.state.passwordLogin,
     };
+    this.setState({ loading: true });
     login(body)
       .then((res) => {
         const token = res.data.data;
@@ -51,6 +54,7 @@ class Auth extends Component {
             console.log("USER DATA", result.data.data);
             const data = result.data.data;
             this.props.setUsers(data);
+            this.setState({ loading: false });
             setTimeout(() => {
               this.setState({ isLogin: !this.state.isLogin });
               console.log(this.state.isLogin);
@@ -63,12 +67,14 @@ class Auth extends Component {
           })
           .catch((error) => {
             console.log(error);
+            this.setState({ loading: false });
             this.setState({ loginErr: !this.state.loginErr }, () => {
               console.log(this.state.loginErr);
             });
           });
       })
       .catch((err) => {
+        this.setState({ loading: false });
         console.log(err);
       });
   };
@@ -79,6 +85,7 @@ class Auth extends Component {
       password: this.state.passwordSignup,
       role: this.state.role,
     };
+    this.setState({ loading: true });
     CreateAccount(body)
       .then((res) => {
         console.log(res.data);
@@ -100,8 +107,9 @@ class Auth extends Component {
               GetUserProfile(token)
                 .then((ress) => {
                   console.log("USER DATA", ress.data.data);
-                  const data = result.data.data;
+                  const data = ress.data.data;
                   this.props.setUsers(data);
+                  this.setState({ loading: false });
                   setTimeout(() => {
                     this.setState({ isLogin: !this.state.isLogin });
                     console.log(this.state.isLogin);
@@ -113,6 +121,7 @@ class Auth extends Component {
                 })
                 .catch((errorr) => {
                   console.log(errorr);
+                  this.setState({ loading: false });
                   this.setState({ loginErr: !this.state.loginErr }, () => {
                     console.log(this.state.loginErr);
                   });
@@ -128,12 +137,14 @@ class Auth extends Component {
               }, 3450);
             })
             .catch((error) => {
+              this.setState({ loading: false });
               console.log(error);
             });
         }, 3450);
       })
       .catch((err) => {
         console.log(err);
+        this.setState({ loading: false });
         this.setState({ signupErr: !this.state.signupErr }, () => {
           console.log(this.state.signupErr);
         });
@@ -142,66 +153,72 @@ class Auth extends Component {
 
   render() {
     return (
-      <Layout title="Auth">
-        <div className={css.wrapper}>
-          <Header />
-          <Banner title="My Account" text="Register and log in with your account to be able to shop at will" />
-          <div className={css.content}>
-            <div className={css.grid}>
-              <div className={css.login}>
-                <p>Login</p>
-                <input
-                  className={`form-control shadow-none ${this.state.loginErr ? css.error : null}`}
-                  type="email"
-                  placeholder="User name or email address *"
-                  name="emailLogin"
-                  onChange={this.formChange}
-                  aria-label="default input example"
-                />
-                <input className={`form-control shadow-none ${this.state.loginErr ? css.error : null}`} type="password" name="passwordLogin" onChange={this.formChange} placeholder="Password *" aria-label="default input example" />
-                <p hidden={!this.state.loginErr}>Wrong Password or email</p>
-                <button onClick={this.Login} className="btn btn-secondary">
-                  Login
-                </button>
-                <div className={`form-check form-check-inline mt-3 ${css["radio-container"]} `}>
-                  <input className={`form-check-input ${css.radio}`} type="checkbox" id="inlineCheckbox2" value="seller" />
-                  <label className="form-check-label">Remember me</label>
-                  <Link href="/forgot-password">
-                    <a>Forget your password ?</a>
-                  </Link>
+      <>
+        {this.state.loading ? (
+          <Loading />
+        ) : (
+          <Layout title="Auth">
+            <div className={css.wrapper}>
+              <Header />
+              <Banner title="My Account" text="Register and log in with your account to be able to shop at will" />
+              <div className={css.content}>
+                <div className={css.grid}>
+                  <div className={css.login}>
+                    <p>Login</p>
+                    <input
+                      className={`form-control shadow-none ${this.state.loginErr ? css.error : null}`}
+                      type="email"
+                      placeholder="User name or email address *"
+                      name="emailLogin"
+                      onChange={this.formChange}
+                      aria-label="default input example"
+                    />
+                    <input className={`form-control shadow-none ${this.state.loginErr ? css.error : null}`} type="password" name="passwordLogin" onChange={this.formChange} placeholder="Password *" aria-label="default input example" />
+                    <p hidden={!this.state.loginErr}>Wrong Password or email</p>
+                    <button onClick={this.Login} className="btn btn-secondary">
+                      Login
+                    </button>
+                    <div className={`form-check form-check-inline mt-3 ${css["radio-container"]} `}>
+                      <input className={`form-check-input ${css.radio}`} type="checkbox" id="inlineCheckbox2" value="seller" />
+                      <label className="form-check-label">Remember me</label>
+                      <Link href="/forgot-password">
+                        <a>Forget your password ?</a>
+                      </Link>
+                    </div>
+                  </div>
+                  <div className={css.signup}>
+                    <p>Create Account</p>
+                    <input className={`form-control shadow-none ${this.state.signupErr ? css.error : null}`} type="email" name="emailSignup" onChange={this.formChange} placeholder="Email Address *" aria-label="default input example" />
+                    <input className={`form-control shadow-none ${this.state.signupErr ? css.error : null}`} type="password" name="passwordSignup" onChange={this.formChange} placeholder="Password *" aria-label="default input example" />
+                    <div className="form-check form-check-inline">
+                      <input className={`form-check-input ${css.radio}`} type="checkbox" id="inlineCheckbox1" value="user" name="role" onChange={this.formChange} />
+                      <label className="form-check-label">I`m Costumer</label>
+                    </div>
+                    <div className="form-check form-check-inline mt-3">
+                      <input className={`form-check-input ${css.radio}`} name="role" type="checkbox" id="inlineCheckbox2" value="seller" onChange={this.formChange} />
+                      <label className="form-check-label">I`m Seller</label>
+                    </div>
+                    <p hidden={!this.state.signupErr}>Sign Up Error,please try again</p>
+                    <button onClick={this.signup} className="btn btn-secondary">
+                      Register
+                    </button>
+                  </div>
+                </div>
+                {/* TOAST */}
+                <div hidden={!this.state.isLogin} className={css.toast}>
+                  <p>Login Success</p>
+                </div>
+                <div hidden={!this.state.isSignUp} className={css.toast}>
+                  <p>Sign Up Success</p>
                 </div>
               </div>
-              <div className={css.signup}>
-                <p>Create Account</p>
-                <input className={`form-control shadow-none ${this.state.signupErr ? css.error : null}`} type="email" name="emailSignup" onChange={this.formChange} placeholder="Email Address *" aria-label="default input example" />
-                <input className={`form-control shadow-none ${this.state.signupErr ? css.error : null}`} type="password" name="passwordSignup" onChange={this.formChange} placeholder="Password *" aria-label="default input example" />
-                <div className="form-check form-check-inline">
-                  <input className={`form-check-input ${css.radio}`} type="checkbox" id="inlineCheckbox1" value="user" name="role" onChange={this.formChange} />
-                  <label className="form-check-label">I`m Costumer</label>
-                </div>
-                <div className="form-check form-check-inline mt-3">
-                  <input className={`form-check-input ${css.radio}`} name="role" type="checkbox" id="inlineCheckbox2" value="seller" onChange={this.formChange} />
-                  <label className="form-check-label">I`m Seller</label>
-                </div>
-                <p hidden={!this.state.signupErr}>Sign Up Error,please try again</p>
-                <button onClick={this.signup} className="btn btn-secondary">
-                  Register
-                </button>
+              <div className={css.footer}>
+                <Footer />
               </div>
             </div>
-            {/* TOAST */}
-            <div hidden={!this.state.isLogin} className={css.toast}>
-              <p>Login Success</p>
-            </div>
-            <div hidden={!this.state.isSignUp} className={css.toast}>
-              <p>Sign Up Success</p>
-            </div>
-          </div>
-          <div className={css.footer}>
-            <Footer />
-          </div>
-        </div>
-      </Layout>
+          </Layout>
+        )}
+      </>
     );
   }
 }

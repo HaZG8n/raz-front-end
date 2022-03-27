@@ -12,6 +12,8 @@ import CardProduct from "src/commons/components/Product";
 
 import css from "src/commons/styles/product.module.css";
 import LoadingComp from "src/commons/components/LoadingComp";
+// import formatRupiah from "src/commons/module/helper/formatRupiah";
+import { formatRupiah } from "src/helpers/index";
 
 class index extends Component {
   constructor(props) {
@@ -27,25 +29,9 @@ class index extends Component {
     };
   }
 
-  // getAll = () => {
-  //   const page = this.state.page;
-  //   console.log("DIPANGGIL");
-  //   getAllProduct(page)
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       this.setState({ data: res.data });
-  //       this.setState({ product: res.data.data });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
   getProduct = () => {
     const { router } = this.props;
     this.setState({ isLoading: true });
-    // const search =router.query.keyword ? router.query.keyword : ''
-    console.log("dimanaaaaa", this.state.search);
     const page = router.query.page ? router.query.page : this.state.page;
     const sortBy = this.state.sortBy ?? router.query.sortBy;
     const param = {
@@ -55,7 +41,6 @@ class index extends Component {
     };
     getAllProduct(param)
       .then((res) => {
-        console.log("GET", res.data);
         this.setState({ data: res.data });
         this.setState({ product: res.data.data });
         this.setState({ isLoading: false });
@@ -71,7 +56,6 @@ class index extends Component {
     this.setState(data);
     const { router } = this.props;
     let { query } = this.props.router;
-    console.log("QUERY FORM CHANGE", query);
     router.push({
       pathname: "/product",
       query: {
@@ -84,9 +68,7 @@ class index extends Component {
   };
 
   componentDidMount() {
-    // this.getAll();
     this.getProduct();
-    console.log("RE RENDER");
   }
 
   render() {
@@ -100,86 +82,72 @@ class index extends Component {
     return (
       <Layout title="Product">
         {!this.state.isLoading ? (
-        <div className={css.main}>
-          <Main>
-            <Banner
-              text="Find and buy the one you like"
-              title="Let's Shopping"
-            />
-            <div className={css.wrapper}>
-              <Sidebar />
-              <div className={css.content}>
-                <div className={css.head}>
-                  <p>Showing 1-16 of 39 Results</p>
-                  <div className="dropdown">
-                    <select
-                      name="filter"
-                      onChange={(e) => {
-                        console.log("fff", e.target.value);
-                        this.setState({ sortBy: e.target.value }, () => {
-                          router.push({
-                            pathname: "/product",
-                            query: {
-                              page: this.state.page,
-                              sortBy: e.target.value,
-                              sort: "DESC",
-                            },
+          <div className={css.main}>
+            <Main>
+              <Banner text="Find and buy the one you like" title="Let's Shopping" />
+              <div className={css.wrapper}>
+                <Sidebar />
+                <div className={css.content}>
+                  <div className={css.head}>
+                    <p>Showing 1-16 of 39 Results</p>
+                    <div className="dropdown">
+                      <select
+                        name="filter"
+                        onChange={(e) => {
+                          console.log("fff", e.target.value);
+                          this.setState({ sortBy: e.target.value }, () => {
+                            router.push({
+                              pathname: "/product",
+                              query: {
+                                page: this.state.page,
+                                sortBy: e.target.value,
+                                sort: "DESC",
+                              },
+                            });
+                            this.getProduct();
                           });
-                          this.getProduct();
-                        });
-                      }}
-                    >
-                      <option value="" disable="true" hidden className="filter">
-                        Sort By
-                      </option>
-                      <option value="createdAt">Latest Product</option>
-                      <option value="price">Price</option>
-                      <option value="stock">Stock</option>
-                    </select>
+                        }}
+                      >
+                        <option value="" disable="true" hidden className="filter">
+                          Sort By
+                        </option>
+                        <option value="createdAt">Latest Product</option>
+                        <option value="price">Price</option>
+                        <option value="stock">Stock</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div className={css.card}>
-                  {this.state.product.length == 0
-                    ? null
-                    : this.state.product.map((val) => {
+                  <div className={css.card}>
+                    {this.state.product.length == 0
+                      ? null
+                      : this.state.product.map((val) => {
+                          return <CardProduct key={val.id} id={val.id} name={val.name} price={formatRupiah(val.price)} />;
+                        })}
+                  </div>
+                  <div className={css.paginasi}>
+                    <ul className="pagination pagination-lg mt-5">
+                      {initial.map((val, idx) => {
                         return (
-                          <CardProduct
-                            key={val.id}
-                            id={val.id}
-                            name={val.name}
-                            price={val.price}
-                          />
+                          <li
+                            key={idx}
+                            className={router.query.page == "1" ? `page-item ${css.active}` : "page-item"}
+                            aria-current="page"
+                            onClick={() =>
+                              this.setState({ page: val }, () => {
+                                this.getProduct();
+                              })
+                            }
+                          >
+                            <button className="btn btn-secondary">{val}</button>
+                          </li>
                         );
                       })}
-                </div>
-                <div className={css.paginasi}>
-                  <ul className="pagination pagination-lg mt-5">
-                    {initial.map((val, idx) => {
-                      return (
-                        <li
-                          key={idx}
-                          className={
-                            router.query.page == "1"
-                              ? `page-item ${css.active}`
-                              : "page-item"
-                          }
-                          aria-current="page"
-                          onClick={() =>
-                            this.setState({ page: val }, () => {
-                              this.getProduct();
-                            })
-                          }
-                        >
-                          <button className="btn btn-secondary">{val}</button>
-                        </li>
-                      );
-                    })}
-                  </ul>
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
-          </Main>
-        </div>
+            </Main>
+          </div>
         ) : (
           <LoadingComp />
         )}

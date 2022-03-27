@@ -7,6 +7,7 @@ export const CheckOutProduct = (body, token) => {
 
 export const getTrackOrder = (body, token) => {
   console.log("BODY UTILS", body);
-  const URL = `${process.env.NEXT_PUBLIC_HOST}checkout/ordertracking`;
-  return axios.get(URL, body);
+  console.log("TOKEN UTILS", token);
+  const URL = `${process.env.NEXT_PUBLIC_HOST}checkout/ordertracking/${body}`;
+  return axios.get(URL, { headers: { "x-access-token": token } });
 };

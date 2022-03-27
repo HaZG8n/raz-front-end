@@ -13,17 +13,17 @@ import plate from "src/assets/img/plate.png";
 import modernLamp from "src/assets/img/modern-lamp.png";
 import Layout from "src/commons/components/Layout";
 
-import BackToWork from "src/assets/img/back-to-work.png"
-import Furniture from "src/assets/img/furniture.png"
-import FurnitureOffice from "src/assets/img/furniture-office.png"
-import WorkSpace from "src/assets/img/work-space.png"
+import BackToWork from "src/assets/img/back-to-work.png";
+import Furniture from "src/assets/img/furniture.png";
+import FurnitureOffice from "src/assets/img/furniture-office.png";
+import WorkSpace from "src/assets/img/work-space.png";
+import { useSelector } from "react-redux";
 
-
-const Home = () => {
+const Home = (props) => {
   return (
     // <Main>
     <>
-      <Layout title='Home'>
+      <Layout title="Home">
         <section className={`${styles["bg-home"]}`}>
           <Header />
           <h1 className={`${styles["furniture-text"]}`}>Minimal Furniture Store</h1>
@@ -193,33 +193,30 @@ const Home = () => {
 
         {/* <div style={{ position: 'absolute', width: '100%', marginBlock: '-40px' }}> */}
 
-
         <div className={`${styles["footer"]}`}>
-          <section className={`${styles['box-ceo']}`}>
+          <section className={`${styles["box-ceo"]}`}>
             <div className="container">
-              <p className={`${styles['content-text']}`}>
-                Gave 5 stars for excellent customer service.
-                I had a couple of questions which they replied quickly to answer.
-                If I could give multiple reasons for my rating it would also be for the design quality and customization to go along with the great service.
-                The theme is excellent, keep up the great work.
+              <p className={`${styles["content-text"]}`}>
+                Gave 5 stars for excellent customer service. I had a couple of questions which they replied quickly to answer. If I could give multiple reasons for my rating it would also be for the design quality and customization to go
+                along with the great service. The theme is excellent, keep up the great work.
               </p>
-              <div className={`${styles['line-box']}`}>
-                <span className={`${styles['line-content']}`}></span>
+              <div className={`${styles["line-box"]}`}>
+                <span className={`${styles["line-content"]}`}></span>
               </div>
-              <p className={styles['ceo-text']}>Trevor Rivera - CEO IKEA</p>
+              <p className={styles["ceo-text"]}>Trevor Rivera - CEO IKEA</p>
               <div className="container">
-                <div className={`row ${styles['logo-content']}`}>
+                <div className={`row ${styles["logo-content"]}`}>
                   <div className="col">
-                    <Image src={BackToWork} alt='avatar' />
+                    <Image src={BackToWork} alt="avatar" />
                   </div>
                   <div className="col">
-                    <Image src={Furniture} alt='avatar' />
+                    <Image src={Furniture} alt="avatar" />
                   </div>
                   <div className="col">
-                    <Image src={FurnitureOffice} alt='avatar' />
+                    <Image src={FurnitureOffice} alt="avatar" />
                   </div>
                   <div className="col">
-                    <Image src={WorkSpace} alt='avatar' />
+                    <Image src={WorkSpace} alt="avatar" />
                   </div>
                 </div>
               </div>

@@ -1,34 +1,94 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# RAZ E-Commerce - Frontend
 
-## Getting Started
+<br/>
 
-First, run the development server:
+<div align="center">
+	<img height="200" src="public/favicon.ico" alt="RAZZ">
+    
+<br/>
 
-```bash
-npm run dev
-# or
-yarn dev
+[![Next Js](https://img.shields.io/npm/v/next?label=next)](https://www.npmjs.com/package/next)
+[![Axios](https://img.shields.io/npm/v/axios?label=axios)](https://www.npmjs.com/package/axios)
+[![Bootstrap](https://img.shields.io/npm/v/bootstrap?label=bootstrap)](https://www.npmjs.com/package/bootstrap)
+[![Redux](https://img.shields.io/npm/v/redux?label=redux)](https://www.npmjs.com/package/redux)
+[![Redux-persist](https://img.shields.io/npm/v/redux-persist?label=redux-persist)](https://www.npmjs.com/package/redux-persist)
+[![Redux-promise-middleware](https://img.shields.io/npm/v/redux-promise-middleware?label=redux-promise-middleware)](https://www.npmjs.com/package/redux-promise-middleware)
+[![midtrans-client](https://img.shields.io/npm/v/midtrans-client?label=midtrans-client)](https://www.npmjs.com/package/midtrans-client)
+
+<br/>
+
+</div>
+
+<br/>
+
+RAZ E-Commerce is a platform for buying and selling various products, where this platform can make it easier for customers and sellers to transact with each other
+
+## Contents
+
+- [RAZ E-Commerce - Frontend](#raz-e-commerce---frontend)
+  - [Contents](#contents)
+  - [Feature](#feature)
+    - [Public](#public)
+    - [Customer:](#customer)
+    - [Seller:](#seller)
+  - [How to Run the Application](#how-to-run-the-application)
+    - [1. Clone this repository](#1-clone-this-repository)
+    - [2. Install dependency packages](#2-install-dependency-packages)
+    - [3. Run `npm run dev`](#3-run-npm-run-dev)
+  - [Deployment](#deployment)
+  - [Related Projects](#related-projects)
+  - [Contributors](#contributors)
+
+## Feature
+
+### Public
+
+- Login
+- Register
+- Forgot Password
+- Search Product
+- Product Detail
+
+### Customer:
+
+- Payment
+- History Payment
+
+### Seller:
+
+- Add Product
+- Edit Product
+
+## How to Run the Application
+
+### 1. Clone this repository
+
+Clone this repository by run the following code:
+
+```
+$ git clone <this-repo-url>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install dependency packages
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Install dependency packages by run the following code inside project folder:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```
+$ npm install
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### 3. Run `npm run dev`
 
-## Learn More
+And open [http://localhost:3000](http://localhost:3000) in your browser.
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<https://raz-store.netlify.app/>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Related Projects
 
-## Deploy on Vercel
+`RAZ E-COMMERCE - Backend` <https://github.com/Trisumanzaya93/raze-back-end>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contributors
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project created with Next Js by [Fahrul Muhammad](https://github.com/fahrul-muhammad), [Tri Sumanzaya](https://github.com/Trisumanzaya93), [Muhammad Iqbal Firdaus](https://github.com/mahendraiqbal), [Rahma Sya'bani](https://github.com/rahmasbn), [Hazpi Nurafgan](https://github.com/Hazgn).
