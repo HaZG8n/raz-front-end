@@ -34,7 +34,7 @@ RAZ E-Commerce is a platform for buying and selling various products, where this
   - [How to Run the Application](#how-to-run-the-application)
     - [1. Clone this repository](#1-clone-this-repository)
     - [2. Install dependency packages](#2-install-dependency-packages)
-    - [3. Run `npm run dev`](#3-run-npm-run-dev)
+    - [3. Run development server](#3-run-development-server)
   - [Deployment](#deployment)
   - [Related Projects](#related-projects)
   - [Contributors](#contributors)
@@ -77,9 +77,15 @@ Install dependency packages by run the following code inside project folder:
 $ npm install
 ```
 
-### 3. Run `npm run dev`
+### 3. Run development server
 
-And open [http://localhost:3000](http://localhost:3000) in your browser.
+Run development server by run the following code inside project folder:
+
+```
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Deployment
 
