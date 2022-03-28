@@ -10,7 +10,7 @@ import cart from "src/assets/svg/cart.svg";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { setsearch } from "src/redux/actions/product";
+import { getAllProductAction, setsearch } from "src/redux/actions/product";
 import { logout } from "src/commons/module/auth";
 import Swal from "sweetalert2";
 
@@ -29,9 +29,18 @@ const Header = () => {
   console.log("WISH", wishList);
 
   const handleKeyword = (e) => {
-    if (e.key === "Enter") {
-    }
+    console.log(e.target.value);
   };
+  const getProduct = () => {
+    const param = {
+      search:keyword
+    }
+    dispatch(getAllProductAction(param))
+      .then ((res)=>{
+        console.log(res.data)
+      })
+      .catch((err)=>console.log(err.message))
+  }
 
   const clickSearch = () => {
     setDropdown(false);
@@ -323,12 +332,13 @@ const Header = () => {
               onKeyDown={(e) => {
                 if (e.key == "Enter") {
                   // router.push(`${router.asPath}&keyword=${keyword}`);
-                  router.query.keyword = keyword;
-                  router.push({
-                    pathname: router.pathname,
-                    query: router.query,
-                  });
-                  dispatch(setsearch(keyword));
+                  // router.query.keyword = keyword;
+                  // router.push({
+                  //   pathname: router.pathname,
+                  //   query: router.query,
+                  // });
+                  // dispatch(setsearch(keyword));
+                  getProduct()
                 }
               }}
               className={`${styles["animated-input-in"]}`}

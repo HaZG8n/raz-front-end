@@ -12,14 +12,17 @@ export const GetProductDetail = (id, token) => {
 };
 
 export const getAllProduct = (param) => {
+  console.log("utils",param);
   const queryParam = {
     search: (param.search ?? '').replace('+', ' '),
     sortBy: param.sortBy ?? "createdAt",
-    sort: '',
-    per_page: param.per_page ?? '5',
+    sort: param.sort??"ASC",
+    per_page: param.per_page ?? '9',
     page: param.page ?? '1',
+    price:param.price??20000000
   }
-  const URL = `${process.env.NEXT_PUBLIC_HOST}product?search=${queryParam.search}&sortBy=${queryParam.sortBy}&sort=ASC&per_page=9&page=${queryParam.page}`;
+  console.log("utils 2",queryParam);
+  const URL = `${process.env.NEXT_PUBLIC_HOST}product?search=${queryParam.search}&sortBy=${queryParam.sortBy}&sort=${queryParam.sort}&per_page=${queryParam.per_page}&page=${queryParam.page}&min=0&max=${queryParam.price}`;
   return axios.get(URL);
 };
 
