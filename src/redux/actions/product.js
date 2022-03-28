@@ -1,5 +1,8 @@
 // import { getMyProduct } from "src/commons/module/product";
 
+import { getAllProduct } from "src/commons/module/product";
+import { ACTION_STRING } from "./actionString";
+
 export const setCart = (product) => {
   return {
     type: "SET_CART_FULFILLED",
@@ -10,6 +13,13 @@ export const setsearch = (search) => {
   return {
     type: "SET_SEARCH_FULFILLED",
     payload: search,
+  };
+};
+
+export const getAllProductAction = (body) => {
+  return {
+    type: ACTION_STRING.getallProduct,
+    payload: getAllProduct(body),
   };
 };
 

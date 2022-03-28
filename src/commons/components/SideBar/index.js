@@ -1,13 +1,28 @@
-import { Component } from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
 import css from "src/commons/styles/Sidebar.module.css";
+import { getAllProductAction } from "src/redux/actions/product";
 
-export default class index extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
+const Index =()=>{
+  const dispatch =useDispatch()
+  const [price,setPrice]=useState(0)
+
+  const handlePrice =(e)=>{
+    setPrice(e.target.value)
   }
-  render() {
+
+  const getProduct = () => {
+    const param = {
+      price
+    }
+    dispatch(getAllProductAction(param))
+      .then ((res)=>{
+        console.log(res.data)
+      })
+      .catch((err)=>console.log(err.message))
+  }
+
     return (
       <div className={css.wrapper}>
         <div className={css.category}>
@@ -41,8 +56,8 @@ export default class index extends Component {
         </div>
         <div className={css.price}>
           <p>Price</p>
-          <input type="range" className="form-range" id="customRange1"></input>
-          <button className="btn btn-secondary mb-3">Filter</button>
+          <input type="range" className="form-range" id="customRange1" min={0} max={1000000} onChange={(e)=>handlePrice(e)}></input>
+          <button className="btn btn-secondary mb-3" onClick={getProduct}>Filter</button>
         </div>
         <div className={css.brands}>
           <p>Brands</p>
@@ -77,5 +92,7 @@ export default class index extends Component {
         </div>
       </div>
     );
-  }
+  
 }
+export default Index;
+
